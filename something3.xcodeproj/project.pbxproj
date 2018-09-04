@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */; };
-		0B2B43AF213DE73E00DFD4A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43AE213DE73E00DFD4A9 /* ViewController.swift */; };
 		0B2B43B2213DE73E00DFD4A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B43B0213DE73E00DFD4A9 /* Main.storyboard */; };
 		0B2B43B4213DE74000DFD4A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B43B3213DE74000DFD4A9 /* Assets.xcassets */; };
 		0B2B43B7213DE74000DFD4A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B43B5213DE74000DFD4A9 /* LaunchScreen.storyboard */; };
 		0B2B43C2213DE74000DFD4A9 /* something3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43C1213DE74000DFD4A9 /* something3Tests.swift */; };
 		0B2B43CD213DE74100DFD4A9 /* something3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43CC213DE74100DFD4A9 /* something3UITests.swift */; };
+		0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B502125213F3D7D009C3510 /* NotebookViewController.swift */; };
 		84B8172D5632015271A3238C /* Pods_something3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		0B2B43A9213DE73D00DFD4A9 /* something3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = something3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0B2B43AE213DE73E00DFD4A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0B2B43B1213DE73E00DFD4A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B2B43B3213DE74000DFD4A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B2B43B6213DE74000DFD4A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +47,7 @@
 		0B2B43C8213DE74000DFD4A9 /* something3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = something3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B2B43CC213DE74100DFD4A9 /* something3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = something3UITests.swift; sourceTree = "<group>"; };
 		0B2B43CE213DE74100DFD4A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B502125213F3D7D009C3510 /* NotebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookViewController.swift; sourceTree = "<group>"; };
 		3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_something3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9645F5EE26730D4A3299EE68 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
 		9D90EF2874F8C4A5FF794747 /* Pods-something3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.release.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 		0B2B43AB213DE73D00DFD4A9 /* something3 */ = {
 			isa = PBXGroup;
 			children = (
+				0B502124213F3D48009C3510 /* ViewControllers */,
 				0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */,
-				0B2B43AE213DE73E00DFD4A9 /* ViewController.swift */,
 				0B2B43B0213DE73E00DFD4A9 /* Main.storyboard */,
 				0B2B43B3213DE74000DFD4A9 /* Assets.xcassets */,
 				0B2B43B5213DE74000DFD4A9 /* LaunchScreen.storyboard */,
@@ -130,6 +130,14 @@
 				0B2B43CE213DE74100DFD4A9 /* Info.plist */,
 			);
 			path = something3UITests;
+			sourceTree = "<group>";
+		};
+		0B502124213F3D48009C3510 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B502125213F3D7D009C3510 /* NotebookViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		AA1AA6FB088295AA804BFA36 /* Frameworks */ = {
@@ -284,15 +292,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-something3-checkManifestLockResult.txt",
 			);
@@ -306,16 +310,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-something3/Pods-something3-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -332,8 +332,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B2B43AF213DE73E00DFD4A9 /* ViewController.swift in Sources */,
 				0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */,
+				0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
