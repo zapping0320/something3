@@ -42,16 +42,40 @@
                                     <segue destination="7Q8-aW-MNB" kind="show" id="YJY-d4-vC4"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iZA-oz-2Qb">
+                                <rect key="frame" x="10" y="131" width="355" height="477"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="notebookCell" id="XgW-RO-hMA">
+                                        <rect key="frame" x="0.0" y="28" width="355" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XgW-RO-hMA" id="uaR-mS-Ffl">
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="KuC-bY-jQR" id="Ad1-jj-VFi"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.42268639460000001" green="0.74532666260000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="csw-rO-Fym" firstAttribute="leading" secondItem="aSe-yg-Tpt" secondAttribute="leading" constant="10" id="KY9-Mz-3P7"/>
                             <constraint firstItem="csw-rO-Fym" firstAttribute="top" secondItem="aSe-yg-Tpt" secondAttribute="top" constant="10" id="T6H-DE-H25"/>
                             <constraint firstItem="aSe-yg-Tpt" firstAttribute="trailing" secondItem="csw-rO-Fym" secondAttribute="trailing" constant="10" id="aeE-R3-Lhy"/>
+                            <constraint firstItem="aSe-yg-Tpt" firstAttribute="bottom" secondItem="iZA-oz-2Qb" secondAttribute="bottom" constant="10" id="d5o-rL-fWt"/>
+                            <constraint firstItem="iZA-oz-2Qb" firstAttribute="top" secondItem="csw-rO-Fym" secondAttribute="bottom" constant="15" id="gBk-KA-uvk"/>
+                            <constraint firstItem="aSe-yg-Tpt" firstAttribute="trailing" secondItem="iZA-oz-2Qb" secondAttribute="trailing" constant="10" id="gGp-uf-Rf6"/>
+                            <constraint firstItem="iZA-oz-2Qb" firstAttribute="leading" secondItem="aSe-yg-Tpt" secondAttribute="leading" constant="10" id="nMq-tu-EqY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aSe-yg-Tpt"/>
                     </view>
                     <navigationItem key="navigationItem" id="ddI-9d-IXC"/>
+                    <connections>
+                        <outlet property="tableview" destination="iZA-oz-2Qb" id="T8k-KY-Pab"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VA2-fB-DdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,11 +129,11 @@
             </objects>
             <point key="canvasLocation" x="-476" y="-64"/>
         </scene>
-        <!--Item 1-->
+        <!--NoteBooks-->
         <scene sceneID="EZk-ZQ-IUM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PL0-op-PCl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="GGC-Z6-vIX"/>
+                    <tabBarItem key="tabBarItem" title="NoteBooks" id="GGC-Z6-vIX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U82-5v-Bsc">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

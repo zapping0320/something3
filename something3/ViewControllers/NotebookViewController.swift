@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import RealmSwift
 
-class NotebookViewController: UIViewController {
-
+class NotebookViewController: UIViewController, UITableViewDataSource {
+    
+    
+    let cellIdentifier: String = "notebookCell"
+    @IBOutlet weak var tableview: UITableView!
+    
+    
+    fileprivate var notebookArray_:[Int:[R_NoteBook]] = [Int:[R_NoteBook]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,5 +39,32 @@ class NotebookViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+extension NotebookViewController {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section > 1 || section < 0){
+            return 0
+        }else{
+            let datalist = notebookArray_[section] as [R_NoteBook]?
+            if datalist != nil {
+                return datalist!.count
+            }
+            else{
+                return 0
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        
+        return cell
+    }
+
 
 }
