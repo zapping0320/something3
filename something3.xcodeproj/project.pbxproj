@@ -14,6 +14,7 @@
 		0B2B43C2213DE74000DFD4A9 /* something3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43C1213DE74000DFD4A9 /* something3Tests.swift */; };
 		0B2B43CD213DE74100DFD4A9 /* something3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43CC213DE74100DFD4A9 /* something3UITests.swift */; };
 		0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B502125213F3D7D009C3510 /* NotebookViewController.swift */; };
+		0B9C11252143339600E4AE7D /* AddNotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C11242143339600E4AE7D /* AddNotebookViewController.swift */; };
 		0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB4D6892141D5B70046F7F0 /* R_NoteBook.swift */; };
 		0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB4D68B2141DC090046F7F0 /* R_Note.swift */; };
 		84B8172D5632015271A3238C /* Pods_something3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */; };
@@ -50,6 +51,7 @@
 		0B2B43CC213DE74100DFD4A9 /* something3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = something3UITests.swift; sourceTree = "<group>"; };
 		0B2B43CE213DE74100DFD4A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B502125213F3D7D009C3510 /* NotebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookViewController.swift; sourceTree = "<group>"; };
+		0B9C11242143339600E4AE7D /* AddNotebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotebookViewController.swift; sourceTree = "<group>"; };
 		0BB4D6892141D5B70046F7F0 /* R_NoteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_NoteBook.swift; sourceTree = "<group>"; };
 		0BB4D68B2141DC090046F7F0 /* R_Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_Note.swift; sourceTree = "<group>"; };
 		3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_something3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				0B502125213F3D7D009C3510 /* NotebookViewController.swift */,
+				0B9C11242143339600E4AE7D /* AddNotebookViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */,
 				0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */,
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
+				0B9C11252143339600E4AE7D /* AddNotebookViewController.swift in Sources */,
 				0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

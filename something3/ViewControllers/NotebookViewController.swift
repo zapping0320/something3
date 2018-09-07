@@ -21,7 +21,12 @@ class NotebookViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)//only for simulator
         
+        loadNotebooks()
+    }
+    
+    override func  viewDidAppear(_ animated: Bool) {
         loadNotebooks()
     }
     
@@ -32,7 +37,7 @@ class NotebookViewController: UIViewController, UITableViewDataSource {
         var notebookarray_all = [R_NoteBook]()
         
         let realm = try! Realm()
-        let results = realm.objects(R_NoteBook.self).sorted(byKeyPath: "name", ascending: true)
+        let results = realm.objects(R_NoteBook.self).sorted(byKeyPath: "updated_at", ascending: true)
         print(results.count)
         for i in 0..<results.count {
             let item = results[i]
