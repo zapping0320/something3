@@ -13,6 +13,7 @@ class NotebookViewController: UIViewController, UITableViewDataSource {
     
     
     let cellIdentifier: String = "notebookCell"
+    let headerSectionIdendifier: String = "headerSectionCell"
     @IBOutlet weak var tableview: UITableView!
     
     
@@ -20,25 +21,38 @@ class NotebookViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        loadNotebooks()
+    }
+    
+    func loadNotebooks() {
+        notebookArray_ = [Int:[R_NoteBook]]()
+        
+        var notebookarray_recent = [R_NoteBook]()
+        var notebookarray_all = [R_NoteBook]()
+        
+        let realm = try! Realm()
+        let results = realm.objects(R_NoteBook.self).sorted(byKeyPath: "name", ascending: true)
+        print(results.count)
+        for i in 0..<results.count {
+            let item = results[i]
+            notebookarray_all.append(item)
+            if(i >= results.count - 5)//pick last modified data 5 dd
+            {
+                notebookarray_recent.insert(item, at: 0)
+            }
+        }
+        
+        notebookArray_[0] = notebookarray_recent
+        notebookArray_[1] = notebookarray_all
+        
+        self.tableview.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -61,9 +75,18 @@ extension NotebookViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let currentNotebook = notebookArray_[indexPath.section]![indexPath.row] as R_NoteBook
+        cell.textLabel?.text = currentNotebook.name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var title:String = "All Notebooks"
+        if section == 0 {
+            title = "Recent Notebooks"
+        }
+        return title
     }
 
 
