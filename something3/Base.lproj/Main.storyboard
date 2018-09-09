@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Search-->
         <scene sceneID="0px-xU-8JC">
             <objects>
                 <viewController id="Fwe-J2-cpi" sceneMemberID="viewController">
@@ -20,11 +20,100 @@
                         <color key="backgroundColor" red="1" green="0.9021650819" blue="0.55611881340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="uuM-vF-nTy"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="flr-kr-sjh"/>
+                    <tabBarItem key="tabBarItem" title="Search" id="flr-kr-sjh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gaj-89-bp2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="476" y="268"/>
+        </scene>
+        <!--ADD-->
+        <scene sceneID="pOm-LV-Aq2">
+            <objects>
+                <viewController id="vR9-Og-n5N" customClass="AddNoteViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R4T-Yq-j6Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insert Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tX-B0-qaO">
+                                <rect key="frame" x="15" y="70" width="345" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="A0u-HR-iPS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQz-qC-YeO">
+                                <rect key="frame" x="15" y="125" width="345" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="gwQ-WS-VmQ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="vR9-Og-n5N" id="QaW-Wj-Etl"/>
+                                    <outlet property="delegate" destination="vR9-Og-n5N" id="3ug-fD-Uc2"/>
+                                </connections>
+                            </pickerView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FNf-at-LeS">
+                                <rect key="frame" x="15" y="302" width="345" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KXH-C3-yPw"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hTc-8V-nTg">
+                                <rect key="frame" x="15" y="357" width="345" height="246"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUj-0X-RZf">
+                                <rect key="frame" x="160" y="25" width="200" height="50"/>
+                                <color key="backgroundColor" red="0.38654898030000001" green="0.75559884430000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="OTu-GB-RTQ"/>
+                                    <constraint firstAttribute="width" constant="200" id="dPt-Bc-YBN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn_save_action:" destination="vR9-Og-n5N" eventType="touchUpInside" id="ZFA-hK-ZzD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.54021114029999995" green="1" blue="0.64958068410000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="eUj-0X-RZf" firstAttribute="top" secondItem="opc-Hg-oi0" secondAttribute="top" constant="5" id="373-A3-ckT"/>
+                            <constraint firstItem="opc-Hg-oi0" firstAttribute="bottom" secondItem="hTc-8V-nTg" secondAttribute="bottom" constant="15" id="3Xd-WM-ruJ"/>
+                            <constraint firstItem="PQz-qC-YeO" firstAttribute="trailing" secondItem="opc-Hg-oi0" secondAttribute="trailing" constant="-15" id="4cX-ES-Jwy"/>
+                            <constraint firstItem="1tX-B0-qaO" firstAttribute="leading" secondItem="opc-Hg-oi0" secondAttribute="leading" constant="15" id="4eG-6Z-fOU"/>
+                            <constraint firstItem="opc-Hg-oi0" firstAttribute="trailing" secondItem="hTc-8V-nTg" secondAttribute="trailing" constant="15" id="68i-Ye-tyd"/>
+                            <constraint firstItem="hTc-8V-nTg" firstAttribute="leading" secondItem="opc-Hg-oi0" secondAttribute="leading" constant="15" id="A1K-JF-0yD"/>
+                            <constraint firstItem="opc-Hg-oi0" firstAttribute="trailing" secondItem="FNf-at-LeS" secondAttribute="trailing" constant="15" id="GzJ-RW-KEL"/>
+                            <constraint firstItem="FNf-at-LeS" firstAttribute="top" secondItem="PQz-qC-YeO" secondAttribute="bottom" constant="15" id="N3l-3Q-S89"/>
+                            <constraint firstItem="1tX-B0-qaO" firstAttribute="top" secondItem="opc-Hg-oi0" secondAttribute="top" constant="50" id="OfM-dQ-ckl"/>
+                            <constraint firstItem="opc-Hg-oi0" firstAttribute="trailing" secondItem="1tX-B0-qaO" secondAttribute="trailing" constant="15" id="RWd-SV-TVs"/>
+                            <constraint firstItem="PQz-qC-YeO" firstAttribute="leading" secondItem="opc-Hg-oi0" secondAttribute="leading" constant="15" id="Ruc-03-YGq"/>
+                            <constraint firstItem="opc-Hg-oi0" firstAttribute="trailing" secondItem="eUj-0X-RZf" secondAttribute="trailing" constant="15" id="meR-mm-RzP"/>
+                            <constraint firstItem="FNf-at-LeS" firstAttribute="leading" secondItem="opc-Hg-oi0" secondAttribute="leading" constant="15" id="shP-33-oiM"/>
+                            <constraint firstItem="PQz-qC-YeO" firstAttribute="top" secondItem="1tX-B0-qaO" secondAttribute="bottom" constant="15" id="zMh-oJ-ZDX"/>
+                            <constraint firstItem="hTc-8V-nTg" firstAttribute="top" secondItem="FNf-at-LeS" secondAttribute="bottom" constant="15" id="zze-27-bM6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="opc-Hg-oi0"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="ADD" id="6tn-Ad-Md3"/>
+                    <connections>
+                        <outlet property="pv_notebooks" destination="PQz-qC-YeO" id="ZuJ-lC-kl3"/>
+                        <outlet property="tf_title" destination="FNf-at-LeS" id="yE9-kq-Zzu"/>
+                        <outlet property="tv_content" destination="hTc-8V-nTg" id="3Pb-mg-7tX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rxJ-vB-mDp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="474" y="937"/>
         </scene>
         <!--Notebook View Controller-->
         <scene sceneID="DAR-3i-yXz">
@@ -189,6 +278,7 @@
                     <connections>
                         <segue destination="PL0-op-PCl" kind="relationship" relationship="viewControllers" id="DgA-cO-AkC"/>
                         <segue destination="Fwe-J2-cpi" kind="relationship" relationship="viewControllers" id="xXF-BY-6wr"/>
+                        <segue destination="vR9-Og-n5N" kind="relationship" relationship="viewControllers" id="WWq-Er-aG5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzw-yd-NOD" userLabel="First Responder" sceneMemberID="firstResponder"/>

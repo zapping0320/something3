@@ -13,6 +13,7 @@ class R_Note: Object  {
     @objc dynamic var content = ""
     @objc dynamic var isfavorite = false
     @objc dynamic var title = ""
+    @objc dynamic var relatedNotebookId = 0
     //dynamic var relatedNotebook: R_Notebook?
     @objc dynamic var updated_at = Date()
     @objc dynamic var created_at = Date()
