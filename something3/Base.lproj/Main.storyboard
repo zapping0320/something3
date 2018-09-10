@@ -144,6 +144,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vVp-AU-VAa" kind="show" id="g9S-DT-cxG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -172,20 +175,71 @@
             </objects>
             <point key="canvasLocation" x="1415.2" y="-397.15142428785612"/>
         </scene>
-        <!--View Controller-->
+        <!--Notebook Contents View Controller-->
         <scene sceneID="fSp-Vx-8EQ">
             <objects>
-                <viewController id="vVp-AU-VAa" sceneMemberID="viewController">
+                <viewController id="vVp-AU-VAa" customClass="NotebookContentsViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dnt-D7-W50">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-zu-7gc">
+                                <rect key="frame" x="5" y="64" width="365" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="pDK-1i-KP8"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cb3-dk-8Yu">
+                                <rect key="frame" x="15" y="135" width="345" height="468"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" id="7JG-6c-EkW">
+                                        <rect key="frame" x="0.0" y="28" width="345" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7JG-6c-EkW" id="xE2-F0-nqc">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vVp-AU-VAa" id="5An-ga-NO2"/>
+                                    <outlet property="delegate" destination="vVp-AU-VAa" id="Sim-CC-77N"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.38654898030000001" green="0.75559884430000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fZH-zu-7gc" firstAttribute="leading" secondItem="y3c-e6-i1w" secondAttribute="leading" constant="5" id="96B-Y1-a9U"/>
+                            <constraint firstItem="y3c-e6-i1w" firstAttribute="trailing" secondItem="cb3-dk-8Yu" secondAttribute="trailing" constant="15" id="ACd-Wc-SnV"/>
+                            <constraint firstItem="fZH-zu-7gc" firstAttribute="top" secondItem="y3c-e6-i1w" secondAttribute="top" id="BiW-1e-Cx7"/>
+                            <constraint firstItem="cb3-dk-8Yu" firstAttribute="leading" secondItem="y3c-e6-i1w" secondAttribute="leading" constant="15" id="O6U-xg-T5a"/>
+                            <constraint firstItem="y3c-e6-i1w" firstAttribute="bottom" secondItem="cb3-dk-8Yu" secondAttribute="bottom" constant="15" id="YxD-1n-5An"/>
+                            <constraint firstItem="cb3-dk-8Yu" firstAttribute="top" secondItem="fZH-zu-7gc" secondAttribute="bottom" constant="15" id="bvf-0Z-nOt"/>
+                            <constraint firstItem="fZH-zu-7gc" firstAttribute="trailing" secondItem="y3c-e6-i1w" secondAttribute="trailing" constant="-5" id="fTy-oJ-bFf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="y3c-e6-i1w"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VKH-Gs-2jE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2173" y="-395"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ihJ-03-osF">
+            <objects>
+                <viewController id="iJw-0O-XZd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JwG-cR-f2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.79458982099999997" green="1" blue="0.34285237089999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="8ZP-Ef-mwm"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JCB-Xs-R71" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2941" y="-398"/>
         </scene>
         <!--Add Notebook View Controller-->
         <scene sceneID="0tN-fp-LuT">
