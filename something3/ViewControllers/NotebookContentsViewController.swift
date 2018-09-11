@@ -21,7 +21,8 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         loadContents()
     }
     
@@ -36,11 +37,9 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     
     func loadContents() {
         selectedNotebookContents = [R_Note]()
-        
         let realm = try! Realm()
-        //let predicate = NSPredicate(format: "relatedNotebookId = %@", selectedNoteBookId)
-        //let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
-        let results = realm.objects(R_Note.self).filter("relatedNotebookId = 1").sorted(byKeyPath: "updated_at", ascending: false)
+        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: self.selectedNoteBookId))
+        let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
         selectedNotebookContents = Array(results)
         
         self.tableview?.reloadData()

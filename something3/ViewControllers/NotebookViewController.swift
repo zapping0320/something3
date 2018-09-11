@@ -108,6 +108,23 @@ extension NotebookViewController {
         }
         return title
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let contentsVC : NotebookContentsViewController = segue.destination as? NotebookContentsViewController
+            else {
+                return
+            }
+        
+        guard let cell:UITableViewCell = sender as? UITableViewCell else {
+            return
+        }
+        
+        guard  let index:IndexPath = self.tableview.indexPath(for: cell)  else {
+            return
+        }
+        
+        let selectedNotebook = notebookArray_[index.section]![index.row] as R_NoteBook
+        contentsVC.selectedNoteBookId = selectedNotebook.id
+    }
 
 }
