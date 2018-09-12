@@ -18,6 +18,7 @@
 		0B9C11252143339600E4AE7D /* AddNotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C11242143339600E4AE7D /* AddNotebookViewController.swift */; };
 		0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB4D6892141D5B70046F7F0 /* R_NoteBook.swift */; };
 		0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB4D68B2141DC090046F7F0 /* R_Note.swift */; };
+		0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD657C0214876970037FE79 /* NoteViewController.swift */; };
 		0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */; };
 		84B8172D5632015271A3238C /* Pods_something3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		0B9C11242143339600E4AE7D /* AddNotebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotebookViewController.swift; sourceTree = "<group>"; };
 		0BB4D6892141D5B70046F7F0 /* R_NoteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_NoteBook.swift; sourceTree = "<group>"; };
 		0BB4D68B2141DC090046F7F0 /* R_Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_Note.swift; sourceTree = "<group>"; };
+		0BD657C0214876970037FE79 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookContentsViewController.swift; sourceTree = "<group>"; };
 		3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_something3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9645F5EE26730D4A3299EE68 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				0B9C11242143339600E4AE7D /* AddNotebookViewController.swift */,
 				0B91D1C42145CCF2005DCCD9 /* AddNoteViewController.swift */,
 				0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */,
+				0BD657C0214876970037FE79 /* NoteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */,
 				0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */,
 				0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */,
 				0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */,

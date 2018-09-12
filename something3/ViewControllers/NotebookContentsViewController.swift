@@ -21,9 +21,7 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        loadContents()
+        //loadContents()
     }
     
     override func  viewDidAppear(_ animated: Bool) {
@@ -44,7 +42,23 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         
         self.tableview?.reloadData()
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let noteVC : NoteViewController = segue.destination as? NoteViewController
+            else {
+                return
+        }
+        
+        guard let cell:UITableViewCell = sender as? UITableViewCell else {
+            return
+        }
+        
+        guard  let index:IndexPath = self.tableview?.indexPath(for: cell)  else {
+            return
+        }
+        
+        noteVC.selectedNote = selectedNotebookContents[index.row]
+    }
 }
 
 extension NotebookContentsViewController {
@@ -95,7 +109,7 @@ extension NotebookContentsViewController {
         
         return cell
     }
-    
+    /*
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -112,5 +126,7 @@ extension NotebookContentsViewController {
             }
             loadContents()
         }
-    }
+    }*/
+    
+    
 }
