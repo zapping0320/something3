@@ -59,7 +59,7 @@ class NoteViewController: UIViewController {
             selectedNote.updated_at = Date()
         }
         
-        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: false)
         
     }
 }

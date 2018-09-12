@@ -20,6 +20,7 @@ class AddNotebookViewController : UIViewController {
     @IBAction func btn_cancel_action(_ sender: UIButton) {
         closeViewController()
     }
+    
     @IBAction func btn_save_action(_ sender: UIButton) {
         
         if(self.tf_notebookName.text == "")
