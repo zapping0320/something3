@@ -151,6 +151,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="KuC-bY-jQR" id="Ad1-jj-VFi"/>
+                                    <outlet property="delegate" destination="KuC-bY-jQR" id="JGI-ov-Asr"/>
                                 </connections>
                             </tableView>
                         </subviews>

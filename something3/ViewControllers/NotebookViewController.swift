@@ -9,8 +9,9 @@
 import UIKit
 import RealmSwift
 
-class NotebookViewController: UIViewController, UITableViewDataSource {
-    
+var selectedNotebookId: Int = 0
+
+class NotebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let cellIdentifier: String = "notebookCell"
     let headerSectionIdendifier: String = "headerSectionCell"
@@ -53,7 +54,7 @@ class NotebookViewController: UIViewController, UITableViewDataSource {
         
         let realm = try! Realm()
         let results = realm.objects(R_NoteBook.self).sorted(byKeyPath: "updated_at", ascending: true)
-        print(results.count)
+        //print(results.count)
         for i in 0..<results.count {
             let item = results[i]
             notebookarray_all.append(item)
@@ -77,6 +78,13 @@ class NotebookViewController: UIViewController, UITableViewDataSource {
 }
 
 extension NotebookViewController {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentNoteBook = notebookArray_[indexPath.section]![indexPath.row] as R_NoteBook
+        selectedNotebookId = currentNoteBook.id
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }

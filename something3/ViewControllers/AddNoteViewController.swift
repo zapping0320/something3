@@ -24,7 +24,14 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     override func  viewDidAppear(_ animated: Bool) {
         loadNotebooks()
         if notebookArray_.count > 0 {
-            self.pv_notebooks.selectRow(0, inComponent: 0, animated: false)
+            for i in 0..<notebookArray_.count {
+                let notebook = notebookArray_[i]
+                if(notebook.id == selectedNotebookId)
+                {
+                    self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
+                    break
+                }
+            }
         }
     }
     
