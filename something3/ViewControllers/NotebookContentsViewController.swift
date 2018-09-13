@@ -109,16 +109,25 @@ extension NotebookContentsViewController {
         
         return cell
     }
-    /*
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if(self.selectedNoteBookId != -1)
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
     }
     
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             let realm = try! Realm()
             try! realm.write {
-                realm.delete(selectedNotebookContents[indexPath.row])
+                selectedNotebookContents[indexPath.row].relatedNotebookId = -1
+                selectedNotebookContents[indexPath.row].oldNotebookId = self.selectedNoteBookId
+                
                 /*
                  tableView.beginUpdates()
                  tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
@@ -126,7 +135,5 @@ extension NotebookContentsViewController {
             }
             loadContents()
         }
-    }*/
-    
-    
+    }
 }

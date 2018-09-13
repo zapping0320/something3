@@ -26,7 +26,7 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
         let config = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 1,
+            schemaVersion: 2,
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
             migrationBlock: { migration, oldSchemaVersion in
@@ -63,6 +63,11 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
                 notebookarray_recent.insert(item, at: 0)
             }
         }
+        
+        let trashCan = R_NoteBook()
+        trashCan.name = "Trash"
+        trashCan.id = -1
+        notebookarray_all.append(trashCan)
         
         notebookArray_[0] = notebookarray_recent
         notebookArray_[1] = notebookarray_all
