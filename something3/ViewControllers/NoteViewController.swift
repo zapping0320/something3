@@ -24,6 +24,10 @@ class NoteViewController: UIViewController {
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
         self.tf_title.text = selectedNote.title
         self.tv_content.text = selectedNote.content
+        if(selectedNote.relatedNotebookId == -1){
+            self.tf_title.isUserInteractionEnabled = false
+            self.tv_content.isEditable = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +40,20 @@ class NoteViewController: UIViewController {
     }
     
     @IBAction func btn_save_action(_ sender: UIButton) {
+        if(self.selectedNote.relatedNotebookId == -1)
+        {
+            let alert = UIAlertController(title: title,
+                                          message: "It's not allowed to modify notes at TrashCan. Please try after restoring this",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            
+            let cancelAction = UIAlertAction(title: "OK",
+                                             style: .cancel, handler: nil)
+            
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         if(self.tf_title.text == "" && self.tv_content.text == "")
         {
             let alert = UIAlertController(title: title,
