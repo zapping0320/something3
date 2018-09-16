@@ -125,7 +125,7 @@
             </objects>
             <point key="canvasLocation" x="-476" y="613"/>
         </scene>
-        <!--Favorite-->
+        <!--Favorite View Controller-->
         <scene sceneID="L31-Ie-OF3">
             <objects>
                 <viewController id="zkd-vC-fiP" customClass="FavoriteViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
@@ -134,7 +134,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uSb-9T-xWf">
-                                <rect key="frame" x="15" y="35" width="345" height="568"/>
+                                <rect key="frame" x="15" y="79" width="345" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteFavoriteCell" id="Jgg-pE-V5d">
@@ -144,6 +144,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="iJw-0O-XZd" kind="show" id="wBt-YV-ZtE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -161,14 +164,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="voT-5V-JDR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" id="oCb-xU-Vgl"/>
+                    <navigationItem key="navigationItem" id="tPd-9Z-rcK"/>
                     <connections>
                         <outlet property="tableview" destination="uSb-9T-xWf" id="eb9-By-y5I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7IY-n1-ax4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474" y="949"/>
+            <point key="canvasLocation" x="1225" y="967"/>
         </scene>
         <!--Notebook View Controller-->
         <scene sceneID="DAR-3i-yXz">
@@ -368,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCB-Xs-R71" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2941" y="-398"/>
+            <point key="canvasLocation" x="2953" y="-385"/>
         </scene>
         <!--Add Notebook View Controller-->
         <scene sceneID="0tN-fp-LuT">
@@ -462,7 +465,7 @@
                         <segue destination="PL0-op-PCl" kind="relationship" relationship="viewControllers" id="DgA-cO-AkC"/>
                         <segue destination="Fwe-J2-cpi" kind="relationship" relationship="viewControllers" id="xXF-BY-6wr"/>
                         <segue destination="vR9-Og-n5N" kind="relationship" relationship="viewControllers" id="WWq-Er-aG5"/>
-                        <segue destination="zkd-vC-fiP" kind="relationship" relationship="viewControllers" id="0Zp-Q4-T2a"/>
+                        <segue destination="bwI-Dk-WqD" kind="relationship" relationship="viewControllers" id="0Zp-Q4-T2a"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzw-yd-NOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -488,5 +491,27 @@
             </objects>
             <point key="canvasLocation" x="476" y="-397.15142428785612"/>
         </scene>
+        <!--Favorite-->
+        <scene sceneID="GMf-AA-9pV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bwI-Dk-WqD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorite" id="oCb-xU-Vgl"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qx0-cr-13L">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zkd-vC-fiP" kind="relationship" relationship="rootViewController" id="c2A-n7-Q0K"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ynf-7G-Qs1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="476" y="967"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="wBt-YV-ZtE"/>
+    </inferredMetricsTieBreakers>
 </document>
