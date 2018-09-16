@@ -125,7 +125,7 @@
             </objects>
             <point key="canvasLocation" x="-476" y="613"/>
         </scene>
-        <!--Favorite View Controller-->
+        <!--Favorite-->
         <scene sceneID="L31-Ie-OF3">
             <objects>
                 <viewController id="zkd-vC-fiP" customClass="FavoriteViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
@@ -164,7 +164,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="voT-5V-JDR"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tPd-9Z-rcK"/>
+                    <navigationItem key="navigationItem" title="Favorite" id="tPd-9Z-rcK">
+                        <barButtonItem key="backBarButtonItem" title="Back to Favorite" id="8T5-c0-pBi"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableview" destination="uSb-9T-xWf" id="eb9-By-y5I"/>
                     </connections>
@@ -173,7 +175,7 @@
             </objects>
             <point key="canvasLocation" x="1225" y="967"/>
         </scene>
-        <!--Notebook View Controller-->
+        <!--NoteBook-->
         <scene sceneID="DAR-3i-yXz">
             <objects>
                 <viewController id="KuC-bY-jQR" customClass="NotebookViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
@@ -225,7 +227,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aSe-yg-Tpt"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ddI-9d-IXC"/>
+                    <navigationItem key="navigationItem" title="NoteBook" id="ddI-9d-IXC"/>
                     <connections>
                         <outlet property="tableview" destination="iZA-oz-2Qb" id="T8k-KY-Pab"/>
                     </connections>
@@ -512,6 +514,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wBt-YV-ZtE"/>
+        <segue reference="bwb-j3-1Vt"/>
     </inferredMetricsTieBreakers>
 </document>
