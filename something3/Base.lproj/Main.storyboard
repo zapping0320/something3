@@ -123,7 +123,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxJ-vB-mDp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474" y="937"/>
+            <point key="canvasLocation" x="-476" y="613"/>
+        </scene>
+        <!--Favorite-->
+        <scene sceneID="L31-Ie-OF3">
+            <objects>
+                <viewController id="zkd-vC-fiP" customClass="FavoriteViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zvo-Yx-cfl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uSb-9T-xWf">
+                                <rect key="frame" x="15" y="35" width="345" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteFavoriteCell" id="Jgg-pE-V5d">
+                                        <rect key="frame" x="0.0" y="28" width="345" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jgg-pE-V5d" id="CFw-np-7O4">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zkd-vC-fiP" id="Gbc-D4-4SW"/>
+                                    <outlet property="delegate" destination="zkd-vC-fiP" id="LK9-DJ-yLf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="voT-5V-JDR" firstAttribute="trailing" secondItem="uSb-9T-xWf" secondAttribute="trailing" constant="15" id="8Sp-i1-pNN"/>
+                            <constraint firstItem="uSb-9T-xWf" firstAttribute="leading" secondItem="voT-5V-JDR" secondAttribute="leading" constant="15" id="alL-6i-JfN"/>
+                            <constraint firstItem="voT-5V-JDR" firstAttribute="bottom" secondItem="uSb-9T-xWf" secondAttribute="bottom" constant="15" id="jEC-M8-gTP"/>
+                            <constraint firstItem="uSb-9T-xWf" firstAttribute="top" secondItem="voT-5V-JDR" secondAttribute="top" constant="15" id="wYm-tT-oIl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="voT-5V-JDR"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorite" id="oCb-xU-Vgl"/>
+                    <connections>
+                        <outlet property="tableview" destination="uSb-9T-xWf" id="eb9-By-y5I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7IY-n1-ax4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="474" y="949"/>
         </scene>
         <!--Notebook View Controller-->
         <scene sceneID="DAR-3i-yXz">
@@ -417,6 +462,7 @@
                         <segue destination="PL0-op-PCl" kind="relationship" relationship="viewControllers" id="DgA-cO-AkC"/>
                         <segue destination="Fwe-J2-cpi" kind="relationship" relationship="viewControllers" id="xXF-BY-6wr"/>
                         <segue destination="vR9-Og-n5N" kind="relationship" relationship="viewControllers" id="WWq-Er-aG5"/>
+                        <segue destination="zkd-vC-fiP" kind="relationship" relationship="viewControllers" id="0Zp-Q4-T2a"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzw-yd-NOD" userLabel="First Responder" sceneMemberID="firstResponder"/>

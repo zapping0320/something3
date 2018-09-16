@@ -20,6 +20,7 @@
 		0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB4D68B2141DC090046F7F0 /* R_Note.swift */; };
 		0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD657C0214876970037FE79 /* NoteViewController.swift */; };
 		0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */; };
+		0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */; };
 		84B8172D5632015271A3238C /* Pods_something3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		0BB4D68B2141DC090046F7F0 /* R_Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_Note.swift; sourceTree = "<group>"; };
 		0BD657C0214876970037FE79 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookContentsViewController.swift; sourceTree = "<group>"; };
+		0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_something3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9645F5EE26730D4A3299EE68 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
 		9D90EF2874F8C4A5FF794747 /* Pods-something3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.release.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				0B91D1C42145CCF2005DCCD9 /* AddNoteViewController.swift */,
 				0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */,
 				0BD657C0214876970037FE79 /* NoteViewController.swift */,
+				0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */,
 				0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */,
 				0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */,
+				0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */,
 				0B91D1C52145CCF2005DCCD9 /* AddNoteViewController.swift in Sources */,
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
 				0B9C11252143339600E4AE7D /* AddNotebookViewController.swift in Sources */,

@@ -14,7 +14,6 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var tableview: UITableView!
     let cellIdentifier: String = "noteCell"
     
-    
     fileprivate var selectedNotebookContents:[R_Note] = [R_Note]()
     //open var selectedNotebook:R_NoteBook = R_NoteBook()
     open var selectedNoteBookId: Int = 0
