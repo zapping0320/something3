@@ -13,6 +13,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var tf_title: UITextField!
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var pv_notebooks: UIPickerView!
+     @IBOutlet weak var switch_favorite: UISwitch!
     
     fileprivate var notebookArray_ = [R_NoteBook]()
     
@@ -89,6 +90,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         newnote.title = self.tf_title.text!
         newnote.content = self.tv_content.text!
         newnote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
+        newnote.isfavorite = self.switch_favorite.isOn
         newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
         
         try! realm.write {

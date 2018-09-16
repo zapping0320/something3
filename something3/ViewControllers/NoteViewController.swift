@@ -14,6 +14,7 @@ class NoteViewController: UIViewController {
     @IBOutlet weak var lb_updatedAt: UILabel!
     @IBOutlet weak var tf_title: UITextField!
     @IBOutlet weak var tv_content: UITextView!
+    @IBOutlet weak var switch_favorite: UISwitch!
     
     open var selectedNote:R_Note = R_Note()
     
@@ -22,6 +23,7 @@ class NoteViewController: UIViewController {
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
+        self.switch_favorite.isOn = selectedNote.isfavorite
         self.tf_title.text = selectedNote.title
         self.tv_content.text = selectedNote.content
         if(selectedNote.relatedNotebookId == -1){
@@ -73,7 +75,7 @@ class NoteViewController: UIViewController {
         try! realm.write {
             selectedNote.title = self.tf_title.text!
             selectedNote.content = self.tv_content.text
-            //selectedNote.isfavorite = self.switch_favorite.isOn
+            selectedNote.isfavorite = self.switch_favorite.isOn
             selectedNote.updated_at = Date()
         }
         
