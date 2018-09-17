@@ -97,4 +97,35 @@ class NoteViewController: UIViewController {
         self.navigationController?.popViewController(animated: false)
         
     }
+    @IBAction func btn_more_action(_ sender: UIButton) {
+        let alert = UIAlertController(title: title,
+                                      message: "More",
+                                      preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        let restoreAction = UIAlertAction(title: "Restore",
+                                          style: .default, handler: {result in
+            let realm = try! Realm()
+            try! realm.write {
+                self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
+                self.selectedNote.oldNotebookId = -1
+            }
+            self.navigationController?.popViewController(animated: false)
+        })
+        let deleteAction = UIAlertAction(title: "Delete Completely",
+                                         style: .default, handler: { reuslt in
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(self.selectedNote)
+            }
+            self.navigationController?.popViewController(animated: false)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel, handler: nil)
+        alert.addAction(restoreAction)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
 }

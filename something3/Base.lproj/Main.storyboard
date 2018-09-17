@@ -352,6 +352,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="MORE"/>
+                                <connections>
+                                    <action selector="btn_more_action:" destination="iJw-0O-XZd" eventType="touchUpInside" id="t22-12-JIM"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's now allowed to modify at Trash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiy-88-VaQ">
                                 <rect key="frame" x="15" y="590" width="345" height="23"/>
