@@ -16,6 +16,10 @@ class NoteViewController: UIViewController {
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var switch_favorite: UISwitch!
     
+    @IBOutlet weak var bt_save: UIButton!
+    @IBOutlet weak var bt_more: UIButton!
+    @IBOutlet weak var lb_guideTrash: UILabel!
+    
     open var selectedNote:R_Note = R_Note()
     
     override func viewDidLoad() {
@@ -29,7 +33,18 @@ class NoteViewController: UIViewController {
         if(selectedNote.relatedNotebookId == -1){
             self.tf_title.isUserInteractionEnabled = false
             self.tv_content.isEditable = false
+            self.bt_more.isHidden = false
+            self.lb_guideTrash.isHidden = false
+            self.bt_save.isHidden = true
+            self.switch_favorite.isHidden = true
         }
+        else{
+            self.bt_more.isHidden = true
+            self.lb_guideTrash.isHidden = true
+            self.bt_save.isHidden = false
+            self.switch_favorite.isHidden = false
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
