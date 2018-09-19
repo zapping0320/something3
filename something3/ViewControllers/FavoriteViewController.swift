@@ -18,7 +18,15 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let moreBtn = UIBarButtonItem(title: "Edit", style: .plain , target: self, action: #selector(toggleEditing))
+        self.navigationItem.rightBarButtonItem = moreBtn
+        
         loadNotes()
+    }
+    
+    @objc private func toggleEditing() {
+        tableview.setEditing(!tableview.isEditing, animated: true) // Set opposite value of current editing status
+        navigationItem.rightBarButtonItem?.title = tableview.isEditing ? "Done" : "Edit" // Set title depending on the editing status
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,31 +92,19 @@ extension FavoriteViewController {
         return cell
     }
     
-    /*
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if(self.selectedNoteBookId != -1)
-        {
-            return true
-        }
-        else
-        {
-            return false
-        }
-    }*/
-    /*
+        return true
+    }
+    
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             let realm = try! Realm()
             try! realm.write {
-                selectedNotebookContents[indexPath.row].relatedNotebookId = -1
-                selectedNotebookContents[indexPath.row].oldNotebookId = self.selectedNoteBookId
-                
-                /*
-                 tableView.beginUpdates()
-                 tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-                 tableView.endUpdates()*/
+                let currentNote = self.favoriteNotes[indexPath.row]
+                currentNote.isfavorite = false
             }
-            loadContents()
+            loadNotes()
         }
-    }*/
+    }
 }
