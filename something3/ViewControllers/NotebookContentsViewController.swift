@@ -21,6 +21,49 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         //loadContents()
+        let moreBtn = UIBarButtonItem(title: "More", style: .plain , target: self, action: #selector(barBtn_more_Action))
+        self.navigationItem.rightBarButtonItem = moreBtn
+    }
+    
+    @objc func barBtn_more_Action(){
+        let alert = UIAlertController(title: title,
+                                      message: "more",
+                                      preferredStyle: UIAlertControllerStyle.actionSheet)
+        //change sort way
+        /*
+        let restoreAction = UIAlertAction(title: "Restore",
+                                          style: .default, handler: {result in
+                                            let realm = try! Realm()
+                                            try! realm.write {
+                                                self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
+                                                self.selectedNote.oldNotebookId = -1
+                                            }
+                                            self.navigationController?.popViewController(animated: false)
+        })
+ */
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel, handler: nil)
+        if(self.selectedNoteBookId == -1)
+        {
+            let deleteAllAction = UIAlertAction(title: "Empty Trash",
+                                             style: .default, handler:
+                { reuslt in
+                    let realm = try! Realm()
+                    try! realm.write {
+                        let predicate = NSPredicate(format: "relatedNotebookId = -1")
+                        for note in realm.objects(R_Note.self).filter(predicate){
+                            realm.delete(note)
+                        }
+                    }
+                self.navigationController?.popViewController(animated: false)
+            })
+            
+            alert.addAction(deleteAllAction)
+        }
+        //alert.addAction(restoreAction)
+       
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func  viewDidAppear(_ animated: Bool) {
