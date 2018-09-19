@@ -110,7 +110,10 @@ extension NotebookViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let currentNotebook = notebookArray_[indexPath.section]![indexPath.row] as R_NoteBook
-        cell.textLabel?.text = currentNotebook.name
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: currentNotebook.id))
+        let results = realm.objects(R_Note.self).filter(predicate)
+        cell.textLabel?.text = currentNotebook.name + "(" + String(results.count) + ")"
         return cell
     }
     
