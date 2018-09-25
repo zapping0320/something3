@@ -250,6 +250,9 @@
                                     <constraint firstAttribute="height" constant="56" id="pDK-1i-KP8"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vVp-AU-VAa" id="uYa-88-KtT"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cb3-dk-8Yu">
                                 <rect key="frame" x="15" y="135" width="345" height="468"/>
@@ -286,6 +289,7 @@
                         <viewLayoutGuide key="safeArea" id="y3c-e6-i1w"/>
                     </view>
                     <connections>
+                        <outlet property="sb_searchBar" destination="fZH-zu-7gc" id="P3J-HR-OHP"/>
                         <outlet property="tableview" destination="cb3-dk-8Yu" id="xh7-ON-a9j"/>
                     </connections>
                 </viewController>

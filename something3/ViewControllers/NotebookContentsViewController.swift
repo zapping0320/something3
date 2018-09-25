@@ -9,14 +9,16 @@
 import UIKit
 import RealmSwift
 
-class NotebookContentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NotebookContentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
 
+    @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     let cellIdentifier: String = "noteCell"
     
     fileprivate var selectedNotebookContents:[R_Note] = [R_Note]()
     //open var selectedNotebook:R_NoteBook = R_NoteBook()
     open var selectedNoteBookId: Int = 0
+    var searchText_: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,7 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     override func  viewDidAppear(_ animated: Bool) {
+        searchText_ = ""
         loadContents()
     }
 
@@ -77,12 +80,29 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     
     func loadContents() {
         selectedNotebookContents = [R_Note]()
+        
         let realm = try! Realm()
-        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: self.selectedNoteBookId))
-        let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
+        var andPredicate:NSCompoundPredicate
+        let predicateNotebookId = NSPredicate(format: "relatedNotebookId = %@", NSNumber(value: self.selectedNoteBookId))
+        if(self.searchText_ == "")
+        {
+            andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateNotebookId])
+        }
+        else
+        {
+             let predicateSearch = NSPredicate(format: "title contains %@ OR content contains %@", self.searchText_, self.searchText_)
+            andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateNotebookId, predicateSearch])
+        }
+       
+        let results = realm.objects(R_Note.self).filter(andPredicate).sorted(byKeyPath: "updated_at", ascending: false)
         selectedNotebookContents = Array(results)
         
         self.tableview?.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchText_ = searchText
+        loadContents()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
