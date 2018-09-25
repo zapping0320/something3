@@ -1,0 +1,98 @@
+//
+//  SearchViewController.swift
+//  something3
+//
+//  Created by 김동현 on 2018. 9. 26..
+//  Copyright © 2018년 John Kim. All rights reserved.
+//
+
+import UIKit
+import RealmSwift
+
+class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var sb_searchBar: UISearchBar!
+    @IBOutlet weak var tableview: UITableView!
+    let cellIdentifier: String = "searchedNoteCell"
+    
+    
+    fileprivate var searchedNotes:[R_Note] = [R_Note]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+       loadNotes()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func loadNotes() {
+        searchedNotes = [R_Note]()
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "isfavorite = true")
+        let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
+        searchedNotes = Array(results)
+        
+        self.tableview?.reloadData()
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+extension SearchViewController {
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return searchedNotes.count
+    }
+    /*
+     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     
+     let viewController = self.storyboard?.instantiateViewController(withIdentifier: "Note View") as! NoteViewController
+     viewController.selectedNotebook = self.selectedNotebook
+     viewController.selectedNote = selectedNotebookContents[indexPath.row]
+     self.present(viewController, animated: true)
+     }
+     */
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let currentNote = searchedNotes[indexPath.row]
+        cell.textLabel?.text = currentNote.title
+        
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let realm = try! Realm()
+            try! realm.write {
+                let currentNote = self.searchedNotes[indexPath.row]
+                currentNote.isfavorite = false
+            }
+            loadNotes()
+        }
+    }
+}

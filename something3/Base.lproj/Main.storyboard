@@ -13,16 +13,68 @@
         <!--Search-->
         <scene sceneID="0px-xU-8JC">
             <objects>
-                <viewController id="Fwe-J2-cpi" sceneMemberID="viewController">
+                <viewController id="Fwe-J2-cpi" customClass="SearchViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bXZ-Du-nb1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bSL-8a-Tiv">
+                                <rect key="frame" x="5" y="20" width="365" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="83G-yW-FBR"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Fwe-J2-cpi" id="WJ4-6f-YTh"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TVi-YG-Gsd">
+                                <rect key="frame" x="15" y="91" width="345" height="512"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedNoteCell" id="ojc-pb-X7V">
+                                        <rect key="frame" x="0.0" y="28" width="345" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ojc-pb-X7V" id="h7G-qA-5ga">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Fwe-J2-cpi" id="4hA-oK-BhN"/>
+                                    <outlet property="delegate" destination="Fwe-J2-cpi" id="hSs-f6-Lk4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.9021650819" blue="0.55611881340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bSL-8a-Tiv" firstAttribute="top" secondItem="uuM-vF-nTy" secondAttribute="top" id="5Eh-nH-jRZ"/>
+                            <constraint firstItem="bSL-8a-Tiv" firstAttribute="trailing" secondItem="uuM-vF-nTy" secondAttribute="trailing" constant="-5" id="ITT-fO-XIj"/>
+                            <constraint firstItem="uuM-vF-nTy" firstAttribute="bottom" secondItem="TVi-YG-Gsd" secondAttribute="bottom" constant="15" id="UPD-hE-b6Y"/>
+                            <constraint firstItem="uuM-vF-nTy" firstAttribute="trailing" secondItem="TVi-YG-Gsd" secondAttribute="trailing" constant="15" id="Xhf-uD-oQN"/>
+                            <constraint firstItem="bSL-8a-Tiv" firstAttribute="leading" secondItem="uuM-vF-nTy" secondAttribute="leading" constant="5" id="c1n-1L-gSI"/>
+                            <constraint firstItem="TVi-YG-Gsd" firstAttribute="top" secondItem="bSL-8a-Tiv" secondAttribute="bottom" constant="15" id="lH2-tG-w2x"/>
+                            <constraint firstItem="TVi-YG-Gsd" firstAttribute="leading" secondItem="uuM-vF-nTy" secondAttribute="leading" constant="15" id="pR8-Pi-iwE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uuM-vF-nTy"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="flr-kr-sjh"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="ZMt-p8-Yjm" id="Fwe-PA-8Ew"/>
+                        <outlet property="tableview" destination="TVi-YG-Gsd" id="u2d-tz-vsu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gaj-89-bp2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ZMt-p8-Yjm">
+                    <connections>
+                        <outlet property="delegate" destination="Fwe-J2-cpi" id="aoE-SV-OZ4"/>
+                        <outlet property="searchBar" destination="bSL-8a-Tiv" id="FC0-fT-lpM"/>
+                        <outlet property="searchContentsController" destination="Fwe-J2-cpi" id="Pcj-dA-I7Z"/>
+                        <outlet property="searchResultsDataSource" destination="Fwe-J2-cpi" id="xRe-fB-HHp"/>
+                        <outlet property="searchResultsDelegate" destination="Fwe-J2-cpi" id="tL5-fG-d1E"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="476" y="268"/>
         </scene>
