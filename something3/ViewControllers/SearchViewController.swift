@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
 
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
@@ -17,6 +17,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     
     fileprivate var searchedNotes:[R_Note] = [R_Note]()
+    var searchText_: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +32,24 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func loadNotes() {
         searchedNotes = [R_Note]()
+        
+        if(self.searchText_ == "")
+        {
+            self.tableview?.reloadData()
+            return
+        }
         let realm = try! Realm()
-        let predicate = NSPredicate(format: "isfavorite = true")
-        let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
+        //let predicateSearch = NSPredicate(format: "isfavorite = true")
+        let predicateSearch = NSPredicate(format: "title contains %@ OR content contains %@", self.searchText_, self.searchText_)
+        let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
         searchedNotes = Array(results)
         
         self.tableview?.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchText_ = searchText
+        loadNotes()
     }
 
     /*
@@ -72,11 +85,12 @@ extension SearchViewController {
      */
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
+        if(indexPath.row > searchedNotes.count - 1){
+            return UITableViewCell()
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let currentNote = searchedNotes[indexPath.row]
         cell.textLabel?.text = currentNote.title
-        
         return cell
     }
     
