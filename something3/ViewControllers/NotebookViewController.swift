@@ -11,18 +11,19 @@ import RealmSwift
 
 var selectedNotebookId: Int = 0
 
-class NotebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class NotebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate {
     
     let cellIdentifier: String = "notebookCell"
     let headerSectionIdendifier: String = "headerSectionCell"
     @IBOutlet weak var tableview: UITableView!
-    
+    @IBOutlet weak var sb_searchBar: UISearchBar!
     
     fileprivate var notebookArray_:[Int:[R_NoteBook]] = [Int:[R_NoteBook]]()
+    var searchText_: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(Realm.Configuration.defaultConfiguration.fileURL!)//only for simulator
+        print(Realm.Configuration.defaultConfiguration.fileURL!)//only for simulator
         let config = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
@@ -46,6 +47,11 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
         loadNotebooks()
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchText_ = searchText
+        loadNotebooks()
+    }
+    
     func loadNotebooks() {
         notebookArray_ = [Int:[R_NoteBook]]()
         
@@ -53,21 +59,29 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
         var notebookarray_all = [R_NoteBook]()
         
         let realm = try! Realm()
-        let results = realm.objects(R_NoteBook.self).sorted(byKeyPath: "updated_at", ascending: true)
-        //print(results.count)
-        for i in 0..<results.count {
-            let item = results[i]
-            notebookarray_all.append(item)
-            if(i >= results.count - 5)//pick last modified data 5 dd
-            {
-                notebookarray_recent.insert(item, at: 0)
+        if(self.searchText_ == "")
+        {
+            let results = realm.objects(R_NoteBook.self).sorted(byKeyPath: "updated_at", ascending: true)
+            //print(results.count)
+            for i in 0..<results.count {
+                let item = results[i]
+                notebookarray_all.append(item)
+                if(i >= results.count - 5)//pick last modified data 5 dd
+                {
+                    notebookarray_recent.insert(item, at: 0)
+                }
             }
+            let trashCan = R_NoteBook()
+            trashCan.name = "Trash"
+            trashCan.id = -1
+            notebookarray_all.append(trashCan)
         }
-        
-        let trashCan = R_NoteBook()
-        trashCan.name = "Trash"
-        trashCan.id = -1
-        notebookarray_all.append(trashCan)
+        else
+        {
+            let predicateSearch = NSPredicate(format: "name contains %@", self.searchText_)
+            let results = realm.objects(R_NoteBook.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
+            notebookarray_all = Array(results)
+        }
         
         notebookArray_[0] = notebookarray_recent
         notebookArray_[1] = notebookarray_all
