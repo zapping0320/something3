@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UITextViewDelegate {
     @IBOutlet weak var tf_title: UITextField!
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var pv_notebooks: UIPickerView!
@@ -19,7 +19,25 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         loadNotebooks()
+        self.tf_title.placeholder = "Title"
+        self.tv_content.delegate = self
+        self.tv_content.text = "Content"
+        self.tv_content.textColor = UIColor.lightGray
+        loadNotebooks()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Content"
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     override func  viewDidAppear(_ animated: Bool) {
