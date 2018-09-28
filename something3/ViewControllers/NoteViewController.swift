@@ -9,39 +9,46 @@
 import UIKit
 import RealmSwift
 
-class NoteViewController: UIViewController {
+class NoteViewController: UIViewController,UITextViewDelegate {
 
     @IBOutlet weak var lb_updatedAt: UILabel!
     @IBOutlet weak var tf_title: UITextField!
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var switch_favorite: UISwitch!
     
-    @IBOutlet weak var bt_save: UIButton!
     @IBOutlet weak var bt_more: UIButton!
     @IBOutlet weak var lb_guideTrash: UILabel!
     
     open var selectedNote:R_Note = R_Note()
     
+    let dateformatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dateformatter = DateFormatter()
         dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
         self.switch_favorite.isOn = selectedNote.isfavorite
+        
         self.tf_title.text = selectedNote.title
+        self.tf_title.placeholder = "Title"
         self.tv_content.text = selectedNote.content
+        self.tv_content.delegate = self
+        if(selectedNote.content == "")
+        {
+            self.tv_content.text = "Content"
+            self.tv_content.textColor = UIColor.lightGray
+        }
+        
         if(selectedNote.relatedNotebookId == -1){
             self.tf_title.isUserInteractionEnabled = false
             self.tv_content.isEditable = false
             self.bt_more.isHidden = false
             self.lb_guideTrash.isHidden = false
-            self.bt_save.isHidden = true
             self.switch_favorite.isHidden = true
         }
         else{
             self.bt_more.isHidden = true
             self.lb_guideTrash.isHidden = true
-            self.bt_save.isHidden = false
             self.switch_favorite.isHidden = false
         }
         
@@ -127,5 +134,45 @@ class NoteViewController: UIViewController {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Content"
+            textView.textColor = UIColor.lightGray
+        }
+        else
+        {
+            saveChangedData()
+        }
+    }
+    
+    
+    @IBAction func lb_title_ValueChanged(_ sender: Any) {
+        saveChangedData()
+    }
+    
+    func saveChangedData() {
+        let realm = try! Realm()
+        
+        try! realm.write {
+            selectedNote.title = self.tf_title.text!
+            selectedNote.content = self.tv_content.text
+            selectedNote.isfavorite = self.switch_favorite.isOn
+            selectedNote.updated_at = Date()
+        }
+        
+        self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
+        
+    }
+    @IBAction func switch_ValueChanged(_ sender: UISwitch) {
+        saveChangedData()
     }
 }
