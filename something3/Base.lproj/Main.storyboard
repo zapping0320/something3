@@ -439,6 +439,9 @@
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y48-IS-eFl">
                                 <rect key="frame" x="15" y="174" width="345" height="78"/>
+                                <accessibility key="accessibilityConfiguration" identifier="3">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="78" id="80I-Nl-sy1"/>
                                 </constraints>

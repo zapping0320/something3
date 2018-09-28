@@ -51,12 +51,13 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
             self.bt_more.isHidden = true
             self.lb_guideTrash.isHidden = true
             self.switch_favorite.isHidden = false
+            self.pv_notebooks.isAccessibilityElement = true
         }
          loadNotebooks()
         if notebookArray_.count > 0 {
             for i in 0..<notebookArray_.count {
                 let notebook = notebookArray_[i]
-                if(notebook.id == selectedNotebookId)
+                if(notebook.id == self.selectedNote.relatedNotebookId)
                 {
                     self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
                     break
@@ -73,7 +74,19 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         print(results.count)
         for i in 0..<results.count {
             let item = results[i]
-            notebookArray_.append(item)
+            if(selectedNote.relatedNotebookId == -1)
+            {
+                if(item.id != self.selectedNote.oldNotebookId)
+                {
+                    continue
+                }
+                notebookArray_.append(item)
+                break
+            }
+            else
+            {
+                notebookArray_.append(item)
+            }
         }
     }
 
