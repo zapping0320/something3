@@ -13,7 +13,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var tf_title: UITextField!
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var pv_notebooks: UIPickerView!
-     @IBOutlet weak var switch_favorite: UISwitch!
+    @IBOutlet weak var switch_favorite: UISwitch!
     
     fileprivate var notebookArray_ = [R_NoteBook]()
     

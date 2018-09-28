@@ -9,18 +9,19 @@
 import UIKit
 import RealmSwift
 
-class NoteViewController: UIViewController,UITextViewDelegate {
+class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var lb_updatedAt: UILabel!
     @IBOutlet weak var tf_title: UITextField!
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var switch_favorite: UISwitch!
+    @IBOutlet weak var pv_notebooks: UIPickerView!
     
     @IBOutlet weak var bt_more: UIButton!
     @IBOutlet weak var lb_guideTrash: UILabel!
     
     open var selectedNote:R_Note = R_Note()
-    
+    fileprivate var notebookArray_ = [R_NoteBook]()
     let dateformatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -51,7 +52,29 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             self.lb_guideTrash.isHidden = true
             self.switch_favorite.isHidden = false
         }
+         loadNotebooks()
+        if notebookArray_.count > 0 {
+            for i in 0..<notebookArray_.count {
+                let notebook = notebookArray_[i]
+                if(notebook.id == selectedNotebookId)
+                {
+                    self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
+                    break
+                }
+            }
+        }
+    }
+    
+    func loadNotebooks() {
+        notebookArray_ = [R_NoteBook]()
         
+        let realm = try! Realm()
+        let results = realm.objects(R_NoteBook.self)
+        print(results.count)
+        for i in 0..<results.count {
+            let item = results[i]
+            notebookArray_.append(item)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -159,6 +182,22 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         saveChangedData()
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return notebookArray_.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return notebookArray_[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        saveChangedData()
+    }
+    
     func saveChangedData() {
         let realm = try! Realm()
         
@@ -166,12 +205,14 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             selectedNote.title = self.tf_title.text!
             selectedNote.content = self.tv_content.text
             selectedNote.isfavorite = self.switch_favorite.isOn
+            selectedNote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
             selectedNote.updated_at = Date()
         }
         
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
         
     }
+    
     @IBAction func switch_ValueChanged(_ sender: UISwitch) {
         saveChangedData()
     }
