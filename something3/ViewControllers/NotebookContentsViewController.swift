@@ -14,15 +14,19 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     let cellIdentifier: String = "noteCell"
+    let sortTypeByName : String = "ByName"
+    let sortTypeByRecent : String = "ByRecent"
     
     fileprivate var selectedNotebookContents:[R_Note] = [R_Note]()
     //open var selectedNotebook:R_NoteBook = R_NoteBook()
     open var selectedNoteBookId: Int = 0
     var searchText_: String = ""
+    var sortType_: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //loadContents()
+        self.sortType_ = self.sortTypeByRecent
         let moreBtn = UIBarButtonItem(title: "More", style: .plain , target: self, action: #selector(barBtn_more_Action))
         self.navigationItem.rightBarButtonItem = moreBtn
     }
@@ -32,17 +36,29 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
                                       message: "more",
                                       preferredStyle: UIAlertControllerStyle.actionSheet)
         //change sort way
-        /*
-        let restoreAction = UIAlertAction(title: "Restore",
+        let sortByNameAction = UIAlertAction(title: "SortByName",
                                           style: .default, handler: {result in
-                                            let realm = try! Realm()
-                                            try! realm.write {
-                                                self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
-                                                self.selectedNote.oldNotebookId = -1
-                                            }
-                                            self.navigationController?.popViewController(animated: false)
+                                            self.sortType_ = self.sortTypeByName
+                                            self.loadContents()
         })
- */
+        alert.addAction(sortByNameAction)
+        
+        let sortByRecentAction = UIAlertAction(title: "SortByRecent",
+                                               style: .default, handler: {result in
+                                                self.sortType_ = self.sortTypeByRecent
+                                                self.loadContents()
+        })
+        alert.addAction(sortByRecentAction)
+        
+        if(self.sortType_ == self.sortTypeByRecent)
+        {
+            sortByRecentAction.setValue(true, forKey: "checked")
+        }
+        else
+        {
+            sortByNameAction.setValue(true, forKey: "checked")
+        }
+        
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .cancel, handler: nil)
         if(self.selectedNoteBookId == -1)
@@ -94,7 +110,19 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
             andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateNotebookId, predicateSearch])
         }
        
-        let results = realm.objects(R_Note.self).filter(andPredicate).sorted(byKeyPath: "updated_at", ascending: false)
+        var sortField : String = ""
+        var sortAscending: Bool = false
+        if(sortType_ == self.sortTypeByName)
+        {
+            sortField = "title"
+            sortAscending = true
+        }
+        else
+        {
+            sortField = "updated_at"
+            sortAscending = false
+        }
+        let results = realm.objects(R_Note.self).filter(andPredicate).sorted(byKeyPath: sortField, ascending: sortAscending)
         selectedNotebookContents = Array(results)
         
         self.tableview?.reloadData()
