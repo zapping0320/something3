@@ -88,7 +88,10 @@ extension FavoriteViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let currentNote = favoriteNotes[indexPath.row]
         cell.textLabel?.text = currentNote.title
-        
+        if(currentNote.alarmDate != nil)
+        {
+            cell.textLabel?.text = currentNote.title + String("(alarmed)")
+        }
         return cell
     }
     
