@@ -60,6 +60,7 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBAction func tapToHideKeyboard(_ sender: UITapGestureRecognizer) {
         self.sb_searchBar.resignFirstResponder()
+        sender.cancelsTouchesInView = false
     }
     
     func loadNotebooks() {
