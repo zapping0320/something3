@@ -266,7 +266,7 @@
                                     <outlet property="delegate" destination="KuC-bY-jQR" id="JGI-ov-Asr"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="U82-yi-1JL">
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="U82-yi-1JL">
                                 <rect key="frame" x="5" y="64" width="360" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="AYY-bK-ifH"/>
@@ -291,6 +291,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.42268639460000001" green="0.74532666260000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="U82-yi-1JL" firstAttribute="leading" secondItem="aSe-yg-Tpt" secondAttribute="leading" constant="5" id="0Gu-zd-xJG"/>
                             <constraint firstItem="csw-rO-Fym" firstAttribute="leading" secondItem="aSe-yg-Tpt" secondAttribute="leading" constant="5" id="1ez-3L-I6b"/>
@@ -304,13 +305,22 @@
                             <constraint firstItem="aSe-yg-Tpt" firstAttribute="trailing" secondItem="csw-rO-Fym" secondAttribute="trailing" constant="5" id="roL-Qe-4DU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aSe-yg-Tpt"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="lDp-9r-VHw" appends="YES" id="H2p-qP-W5V"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="NoteBook" id="ddI-9d-IXC"/>
                     <connections>
+                        <outlet property="sb_searchBar" destination="U82-yi-1JL" id="5fV-Cx-T9Z"/>
                         <outlet property="tableview" destination="iZA-oz-2Qb" id="T8k-KY-Pab"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VA2-fB-DdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="lDp-9r-VHw">
+                    <connections>
+                        <action selector="tapToHideKeyboard:" destination="KuC-bY-jQR" id="qG6-R6-vPO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1415.2" y="-397.15142428785612"/>
         </scene>

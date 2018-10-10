@@ -44,12 +44,22 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func  viewDidAppear(_ animated: Bool) {
+        initSearchInfo()
         loadNotebooks()
+    }
+    
+    func initSearchInfo() {
+        self.sb_searchBar.text = ""
+        self.searchText_ = ""
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchText_ = searchText
         loadNotebooks()
+    }
+    
+    @IBAction func tapToHideKeyboard(_ sender: UITapGestureRecognizer) {
+        self.sb_searchBar.resignFirstResponder()
     }
     
     func loadNotebooks() {
