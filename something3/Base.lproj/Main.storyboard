@@ -51,6 +51,7 @@
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.9021650819" blue="0.55611881340000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Uo2-u5-Zx5" firstAttribute="top" secondItem="uuM-vF-nTy" secondAttribute="top" id="BhF-5u-SCx"/>
                             <constraint firstItem="Uo2-u5-Zx5" firstAttribute="leading" secondItem="uuM-vF-nTy" secondAttribute="leading" constant="5" id="Oxw-Lq-hUF"/>
@@ -61,6 +62,9 @@
                             <constraint firstItem="Uo2-u5-Zx5" firstAttribute="trailing" secondItem="uuM-vF-nTy" secondAttribute="trailing" constant="-5" id="xSG-Zg-QNT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uuM-vF-nTy"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="niS-vh-PeQ" appends="YES" id="9Fr-lw-kEC"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="8Dq-wb-YCb"/>
                     <connections>
@@ -78,6 +82,11 @@
                         <outlet property="searchResultsDelegate" destination="Fwe-J2-cpi" id="tL5-fG-d1E"/>
                     </connections>
                 </searchDisplayController>
+                <tapGestureRecognizer id="niS-vh-PeQ">
+                    <connections>
+                        <action selector="tapToHideKeyboard:" destination="Fwe-J2-cpi" id="niJ-Uz-Pip"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1415.2" y="267.61619190404798"/>
         </scene>
@@ -365,6 +374,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.38654898030000001" green="0.75559884430000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fZH-zu-7gc" firstAttribute="leading" secondItem="y3c-e6-i1w" secondAttribute="leading" constant="5" id="96B-Y1-a9U"/>
                             <constraint firstItem="y3c-e6-i1w" firstAttribute="trailing" secondItem="cb3-dk-8Yu" secondAttribute="trailing" constant="15" id="ACd-Wc-SnV"/>
@@ -375,6 +385,9 @@
                             <constraint firstItem="fZH-zu-7gc" firstAttribute="trailing" secondItem="y3c-e6-i1w" secondAttribute="trailing" constant="-5" id="fTy-oJ-bFf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y3c-e6-i1w"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="spN-z4-4hR" appends="YES" id="BF9-lq-GjA"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="sb_searchBar" destination="fZH-zu-7gc" id="P3J-HR-OHP"/>
@@ -382,6 +395,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VKH-Gs-2jE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="spN-z4-4hR">
+                    <connections>
+                        <action selector="tapToHideKeyboard:" destination="vVp-AU-VAa" id="aSx-Kg-5ye"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2173" y="-395"/>
         </scene>
@@ -688,6 +706,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bwb-j3-1Vt"/>
+        <segue reference="opV-oG-lvY"/>
     </inferredMetricsTieBreakers>
 </document>

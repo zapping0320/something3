@@ -30,6 +30,11 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func tapToHideKeyboard(_ sender: UITapGestureRecognizer) {
+        self.sb_searchBar.resignFirstResponder()
+        sender.cancelsTouchesInView = false
+    }
+    
     func loadNotes() {
         searchedNotes = [R_Note]()
         

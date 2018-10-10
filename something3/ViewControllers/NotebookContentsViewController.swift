@@ -31,6 +31,11 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         self.navigationItem.rightBarButtonItem = moreBtn
     }
     
+    @IBAction func tapToHideKeyboard(_ sender: UITapGestureRecognizer) {
+        self.sb_searchBar.resignFirstResponder()
+        sender.cancelsTouchesInView = false
+    }
+    
     @objc func barBtn_more_Action(){
         let alert = UIAlertController(title: title,
                                       message: "more",
