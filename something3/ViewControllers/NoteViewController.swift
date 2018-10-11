@@ -15,10 +15,11 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
     @IBOutlet weak var tf_title: UITextField!
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var switch_favorite: UISwitch!
-    @IBOutlet weak var switch_alarm: UISwitch!
     @IBOutlet weak var pv_notebooks: UIPickerView!
     
+    
     @IBOutlet weak var bt_more: UIButton!
+    @IBOutlet weak var bt_alarm: UIButton!
     @IBOutlet weak var lb_guideTrash: UILabel!
     
     open var selectedNote:R_Note = R_Note()
@@ -31,8 +32,15 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
         self.switch_favorite.isOn = selectedNote.isfavorite
-        self.switch_alarm.isOn = selectedNote.alarmDate != nil ? true : false
         self.alarmDate = selectedNote.alarmDate
+        if(self.selectedNote.alarmDate == nil)
+        {
+            self.bt_alarm.setTitle("미설정", for: .normal)
+        }
+        else
+        {
+            self.bt_alarm.setTitle("설정됨", for: .normal)
+        }
         
         self.tf_title.text = selectedNote.title
         self.tf_title.placeholder = "Title"
@@ -50,13 +58,13 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
             self.bt_more.isHidden = false
             self.lb_guideTrash.isHidden = false
             self.switch_favorite.isHidden = true
-            self.switch_alarm.isHidden = true
+            self.bt_alarm.isHidden = true
         }
         else{
             self.bt_more.isHidden = true
             self.lb_guideTrash.isHidden = true
             self.switch_favorite.isHidden = false
-            self.switch_alarm.isHidden = false
+            self.bt_alarm.isHidden = false
             self.pv_notebooks.isAccessibilityElement = true
         }
          loadNotebooks()
@@ -231,49 +239,73 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
         
+        if(self.selectedNote.alarmDate == nil)
+        {
+            self.bt_alarm.setTitle("미설정", for: .normal)
+        }
+        else
+        {
+            self.bt_alarm.setTitle("설정됨", for: .normal)
+        }
+        
     }
     
     @IBAction func switch_ValueChanged(_ sender: UISwitch) {
         if(sender.tag == 1){
             saveChangedData()
         }
-        else if(sender.tag == 2)
+        
+    }
+    
+    @IBAction func bt_alarm_action(_ sender: UIButton) {
+       
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .dateAndTime
+        if(self.selectedNote.alarmDate != nil) {
+            datePicker.setDate(self.selectedNote.alarmDate!, animated: false)
+        }
+        
+        let alert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
+        alert.view.addSubview(datePicker)
+        /*
+         datePicker.snp.makeConstraints { (make) in
+         make.centerX.equalTo(alert.view)
+         make.top.equalTo(alert.view).offset(8)
+         }*/
+        
+        let setAction = UIAlertAction(title: "설정", style: .default) { (action) in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+            let dateString = dateFormatter.string(from: datePicker.date)
+            print(dateString)
+            self.alarmDate = datePicker.date
+            self.saveChangedData()
+        }
+         alert.addAction(setAction)
+        
+        if(self.selectedNote.alarmDate != nil)
         {
-            let datePicker = UIDatePicker()
-            datePicker.datePickerMode = .dateAndTime
-            if(self.selectedNote.alarmDate != nil) {
-                datePicker.setDate(self.selectedNote.alarmDate!, animated: false)
-            }
-            
-            let alert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
-            alert.view.addSubview(datePicker)
-            /*
-             datePicker.snp.makeConstraints { (make) in
-             make.centerX.equalTo(alert.view)
-             make.top.equalTo(alert.view).offset(8)
-             }*/
-            
-            let setAction = UIAlertAction(title: "설정", style: .default) { (action) in
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
-                let dateString = dateFormatter.string(from: datePicker.date)
-                print(dateString)
+            let changeAlarmAction = UIAlertAction(title: "알람변경", style: .default) { (action) in
                 self.alarmDate = datePicker.date
                 self.saveChangedData()
             }
+            alert.addAction(changeAlarmAction)
             
             let unsetAction = UIAlertAction(title: "설정해제", style: .default) { (action) in
                 self.alarmDate = nil
                 self.saveChangedData()
             }
-            
-            let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-            
-            alert.addAction(setAction)
             alert.addAction(unsetAction)
-            alert.addAction(cancel)
-            
-            present(alert, animated: true, completion: nil)
         }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+        
     }
+    
+   
 }
