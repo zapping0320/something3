@@ -14,8 +14,11 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var pv_notebooks: UIPickerView!
     @IBOutlet weak var switch_favorite: UISwitch!
+    @IBOutlet weak var switch_alarm: UISwitch!
+    @IBOutlet weak var bt_alarm: UIButton!
     
     fileprivate var notebookArray_ = [R_NoteBook]()
+    var alarmDate:Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +113,8 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         newnote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
         newnote.isfavorite = self.switch_favorite.isOn
         newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
-        
+        newnote.alarmDate = self.alarmDate
+      
         try! realm.write {
             realm.add(newnote)
         }
@@ -119,6 +123,65 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.tv_content.text = ""
         
         self.tabBarController?.selectedIndex = 0
+    }
+    
+    @IBAction func bt_alarm_action(_ sender: UIButton) {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .dateAndTime
+        if(self.alarmDate != nil) {
+            datePicker.setDate(self.alarmDate!, animated: false)
+        }
+        
+        let alert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
+        alert.view.addSubview(datePicker)
+        /*
+         datePicker.snp.makeConstraints { (make) in
+         make.centerX.equalTo(alert.view)
+         make.top.equalTo(alert.view).offset(8)
+         }*/
+        
+        let setAction = UIAlertAction(title: "설정", style: .default) { (action) in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+            let dateString = dateFormatter.string(from: datePicker.date)
+            print(dateString)
+            self.alarmDate = datePicker.date
+            self.chekcAlarmState()
+        }
+        alert.addAction(setAction)
+        
+        if(self.alarmDate != nil)
+        {
+            let changeAlarmAction = UIAlertAction(title: "알람변경", style: .default) { (action) in
+                self.alarmDate = datePicker.date
+                self.chekcAlarmState()
+            }
+            alert.addAction(changeAlarmAction)
+            
+            let unsetAction = UIAlertAction(title: "설정해제", style: .default) { (action) in
+                self.alarmDate = nil
+                self.chekcAlarmState()
+            }
+            alert.addAction(unsetAction)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func chekcAlarmState(){
+        if(self.alarmDate == nil)
+        {
+            self.bt_alarm.setTitle("미설정", for: .normal)
+        }
+        else
+        {
+            self.bt_alarm.setTitle("설정됨", for: .normal)
+        }
     }
     
 }

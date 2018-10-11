@@ -239,6 +239,10 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
         
+        self.chekcAlarmState()
+    }
+    
+    func chekcAlarmState(){
         if(self.selectedNote.alarmDate == nil)
         {
             self.bt_alarm.setTitle("미설정", for: .normal)
@@ -247,7 +251,6 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         {
             self.bt_alarm.setTitle("설정됨", for: .normal)
         }
-        
     }
     
     @IBAction func switch_ValueChanged(_ sender: UISwitch) {
@@ -258,8 +261,6 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
     }
     
     @IBAction func bt_alarm_action(_ sender: UIButton) {
-       
-        
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .dateAndTime
         if(self.selectedNote.alarmDate != nil) {
