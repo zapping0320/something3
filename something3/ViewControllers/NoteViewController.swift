@@ -78,6 +78,61 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
                 }
             }
         }
+        
+        let moreBtn = UIBarButtonItem(title: "More", style: .plain , target: self, action: #selector(barBtn_more_Action))
+        self.navigationItem.rightBarButtonItem = moreBtn
+    }
+    
+    @objc func barBtn_more_Action(){
+        let alert = UIAlertController(title: title,
+                                      message: "more",
+                                      preferredStyle: UIAlertControllerStyle.actionSheet)
+        if(self.selectedNote.relatedNotebookId != -1)
+        {
+            let copyNoteAction = UIAlertAction(title: "Copy Note",
+                                                 style: .default, handler: {result in
+                                                    
+                                                    let realm = try! Realm()
+                                                    let newnote = R_Note()
+                                                    newnote.title = self.tf_title.text! + " copied"
+                                                    newnote.content = self.tv_content.text!
+                                                    newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
+                                                    newnote.isfavorite = self.switch_favorite.isOn
+                                                    newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
+                                                    newnote.alarmDate = self.alarmDate
+                                                    
+                                                    try! realm.write {
+                                                        realm.add(newnote)
+                                                    }
+                                                    
+                                                    self.navigationController?.popViewController(animated: false)
+            })
+            alert.addAction(copyNoteAction)
+            
+            /*
+             
+             let sendToTrashAction = UIAlertAction(title: "Send To Trash",
+             style: .default, handler: {result in
+             //self.sortType_ = self.sortTypeByRecent
+             //self.loadContents()
+             })
+             alert.addAction(sendToTrashAction)
+             
+             */
+        }
+        else
+        {
+            //restore
+            
+            //delete permanetly
+        }
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel, handler: nil)
+        
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func loadNotebooks() {
