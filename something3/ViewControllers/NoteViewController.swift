@@ -17,8 +17,6 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
     @IBOutlet weak var switch_favorite: UISwitch!
     @IBOutlet weak var pv_notebooks: UIPickerView!
     
-    
-    @IBOutlet weak var bt_more: UIButton!
     @IBOutlet weak var bt_alarm: UIButton!
     @IBOutlet weak var lb_guideTrash: UILabel!
     
@@ -55,13 +53,11 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         if(selectedNote.relatedNotebookId == -1){
             self.tf_title.isUserInteractionEnabled = false
             self.tv_content.isEditable = false
-            self.bt_more.isHidden = false
             self.lb_guideTrash.isHidden = false
             self.switch_favorite.isHidden = true
             self.bt_alarm.isHidden = true
         }
         else{
-            self.bt_more.isHidden = true
             self.lb_guideTrash.isHidden = true
             self.switch_favorite.isHidden = false
             self.bt_alarm.isHidden = false
@@ -92,39 +88,56 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
             let copyNoteAction = UIAlertAction(title: "Copy Note",
                                                  style: .default, handler: {result in
                                                     
-                                                    let realm = try! Realm()
-                                                    let newnote = R_Note()
-                                                    newnote.title = self.tf_title.text! + " copied"
-                                                    newnote.content = self.tv_content.text!
-                                                    newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
-                                                    newnote.isfavorite = self.switch_favorite.isOn
-                                                    newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
-                                                    newnote.alarmDate = self.alarmDate
-                                                    
-                                                    try! realm.write {
-                                                        realm.add(newnote)
-                                                    }
-                                                    
-                                                    self.navigationController?.popViewController(animated: false)
+                let realm = try! Realm()
+                let newnote = R_Note()
+                newnote.title = self.tf_title.text! + " copied"
+                newnote.content = self.tv_content.text!
+                newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
+                newnote.isfavorite = self.switch_favorite.isOn
+                newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
+                newnote.alarmDate = self.alarmDate
+                
+                try! realm.write {
+                    realm.add(newnote)
+                }
+                
+                self.navigationController?.popViewController(animated: false)
             })
             alert.addAction(copyNoteAction)
-            
-            /*
              
              let sendToTrashAction = UIAlertAction(title: "Send To Trash",
              style: .default, handler: {result in
-             //self.sortType_ = self.sortTypeByRecent
-             //self.loadContents()
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    self.selectedNote.oldNotebookId = self.selectedNote.relatedNotebookId
+                    self.selectedNote.relatedNotebookId = -1
+                }
+                self.navigationController?.popViewController(animated: false)
              })
              alert.addAction(sendToTrashAction)
-             
-             */
         }
         else
         {
-            //restore
-            
-            //delete permanetly
+            let restoreAction = UIAlertAction(title: "Restore",
+                                              style: .default, handler: {result in
+                let realm = try! Realm()
+                try! realm.write {
+                    self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
+                    self.selectedNote.oldNotebookId = -1
+                }
+                self.navigationController?.popViewController(animated: false)
+            })
+            alert.addAction(restoreAction)
+            let deleteAction = UIAlertAction(title: "Delete Completely",
+                                             style: .default, handler: { reuslt in
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.delete(self.selectedNote)
+                }
+                self.navigationController?.popViewController(animated: false)
+            })
+            alert.addAction(deleteAction)
         }
         
         
@@ -166,79 +179,6 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
     
     func closeViewController() {
         self.dismiss(animated: false, completion: nil)
-    }
-    
-    @IBAction func btn_save_action(_ sender: UIButton) {
-        if(self.selectedNote.relatedNotebookId == -1)
-        {
-            let alert = UIAlertController(title: title,
-                                          message: "It's not allowed to modify notes at TrashCan. Please try after restoring this",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            
-            let cancelAction = UIAlertAction(title: "OK",
-                                             style: .cancel, handler: nil)
-            
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        
-        if(self.tf_title.text == "" && self.tv_content.text == "")
-        {
-            let alert = UIAlertController(title: title,
-                                          message: "you entered no text, please check",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            
-            let cancelAction = UIAlertAction(title: "OK",
-                                             style: .cancel, handler: nil)
-            
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        
-        let realm = try! Realm()
-        
-        try! realm.write {
-            selectedNote.title = self.tf_title.text!
-            selectedNote.content = self.tv_content.text
-            selectedNote.isfavorite = self.switch_favorite.isOn
-            selectedNote.updated_at = Date()
-        }
-        
-        self.navigationController?.popViewController(animated: false)
-        
-    }
-    @IBAction func btn_more_action(_ sender: UIButton) {
-        let alert = UIAlertController(title: title,
-                                      message: "More",
-                                      preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        let restoreAction = UIAlertAction(title: "Restore",
-                                          style: .default, handler: {result in
-            let realm = try! Realm()
-            try! realm.write {
-                self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
-                self.selectedNote.oldNotebookId = -1
-            }
-            self.navigationController?.popViewController(animated: false)
-        })
-        let deleteAction = UIAlertAction(title: "Delete Completely",
-                                         style: .default, handler: { reuslt in
-            let realm = try! Realm()
-            try! realm.write {
-                realm.delete(self.selectedNote)
-            }
-            self.navigationController?.popViewController(animated: false)
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel, handler: nil)
-        alert.addAction(restoreAction)
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
-        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
