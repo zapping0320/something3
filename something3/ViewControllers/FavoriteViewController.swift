@@ -9,12 +9,14 @@
 import UIKit
 import RealmSwift
 
-class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
 
+    @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     let cellIdentifier: String = "noteFavoriteCell"
     
     fileprivate var favoriteNotes:[R_Note] = [R_Note]()
+    var searchText_: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +39,26 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     func loadNotes() {
         favoriteNotes = [R_Note]()
         let realm = try! Realm()
-        let predicate = NSPredicate(format: "isfavorite = true")
-        let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
-        favoriteNotes = Array(results)
+        if(self.searchText_ == "")
+        {
+            let predicate = NSPredicate(format: "isfavorite = true")
+            let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
+            favoriteNotes = Array(results)
+        }
+        else
+        {
+            let predicateSearch = NSPredicate(format: "isfavorite = true AND (title contains %@ OR content contains %@)", self.searchText_,self.searchText_)
+            
+            let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
+            favoriteNotes = Array(results)
+        }
         
         self.tableview?.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchText_ = searchText
+        loadNotes()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

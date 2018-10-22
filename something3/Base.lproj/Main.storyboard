@@ -225,7 +225,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uSb-9T-xWf">
-                                <rect key="frame" x="15" y="79" width="345" height="524"/>
+                                <rect key="frame" x="15" y="135" width="345" height="468"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteFavoriteCell" id="Jgg-pE-V5d">
@@ -245,13 +245,26 @@
                                     <outlet property="delegate" destination="zkd-vC-fiP" id="LK9-DJ-yLf"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6ZZ-Sg-cav">
+                                <rect key="frame" x="0.0" y="64" width="370" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="hiU-vT-jbD"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zkd-vC-fiP" id="b8l-SO-y0I"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="voT-5V-JDR" firstAttribute="trailing" secondItem="uSb-9T-xWf" secondAttribute="trailing" constant="15" id="8Sp-i1-pNN"/>
+                            <constraint firstItem="uSb-9T-xWf" firstAttribute="top" secondItem="6ZZ-Sg-cav" secondAttribute="bottom" constant="15" id="Avo-QR-66v"/>
+                            <constraint firstItem="voT-5V-JDR" firstAttribute="trailing" secondItem="6ZZ-Sg-cav" secondAttribute="trailing" constant="5" id="BGw-Ob-mcu"/>
+                            <constraint firstItem="6ZZ-Sg-cav" firstAttribute="leading" secondItem="zvo-Yx-cfl" secondAttribute="leading" id="BvV-ka-hqj"/>
+                            <constraint firstItem="6ZZ-Sg-cav" firstAttribute="top" secondItem="voT-5V-JDR" secondAttribute="top" id="OTQ-eE-nrQ"/>
                             <constraint firstItem="uSb-9T-xWf" firstAttribute="leading" secondItem="voT-5V-JDR" secondAttribute="leading" constant="15" id="alL-6i-JfN"/>
                             <constraint firstItem="voT-5V-JDR" firstAttribute="bottom" secondItem="uSb-9T-xWf" secondAttribute="bottom" constant="15" id="jEC-M8-gTP"/>
-                            <constraint firstItem="uSb-9T-xWf" firstAttribute="top" secondItem="voT-5V-JDR" secondAttribute="top" constant="15" id="wYm-tT-oIl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="voT-5V-JDR"/>
                     </view>
@@ -259,12 +272,13 @@
                         <barButtonItem key="backBarButtonItem" title="Back to Favorite" id="8T5-c0-pBi"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="sb_searchBar" destination="6ZZ-Sg-cav" id="eYQ-eC-LqR"/>
                         <outlet property="tableview" destination="uSb-9T-xWf" id="eb9-By-y5I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7IY-n1-ax4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="967"/>
+            <point key="canvasLocation" x="1224.8" y="966.56671664167925"/>
         </scene>
         <!--NoteBook-->
         <scene sceneID="DAR-3i-yXz">
@@ -715,6 +729,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="opV-oG-lvY"/>
+        <segue reference="wBt-YV-ZtE"/>
     </inferredMetricsTieBreakers>
 </document>
