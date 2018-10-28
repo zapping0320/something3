@@ -224,6 +224,8 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         let realm = try! Realm()
         
         try! realm.write {
+            notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
+            
             selectedNote.title = self.tf_title.text!
             selectedNote.content = self.tv_content.text
             selectedNote.isfavorite = self.switch_favorite.isOn

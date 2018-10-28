@@ -117,6 +117,9 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
       
         try! realm.write {
             realm.add(newnote)
+            
+            notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
+            
         }
         
         self.tf_title.text = ""
