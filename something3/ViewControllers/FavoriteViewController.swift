@@ -26,6 +26,16 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         loadNotes()
     }
     
+    func initSearchInfo() {
+        self.sb_searchBar.text = ""
+        self.searchText_ = ""
+    }
+    
+    override func  viewDidAppear(_ animated: Bool) {
+        self.initSearchInfo()
+        self.loadNotes()
+    }
+    
     @objc private func toggleEditing() {
         tableview.setEditing(!tableview.isEditing, animated: true) // Set opposite value of current editing status
         navigationItem.rightBarButtonItem?.title = tableview.isEditing ? "Done" : "Edit" // Set title depending on the editing status
