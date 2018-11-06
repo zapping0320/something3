@@ -15,7 +15,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableview: UITableView!
     let cellIdentifier: String = "noteFavoriteCell"
     
-    fileprivate var favoriteNotes:[R_Note] = [R_Note]()
+    fileprivate var favoriteNotes:[Int:[R_Note]] = [Int:[R_Note]]()
     var searchText_: String = ""
     
     override func viewDidLoad() {
@@ -47,21 +47,34 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadNotes() {
-        favoriteNotes = [R_Note]()
+        favoriteNotes = [Int:[R_Note]]()
+        
+        var notearray_all = [R_Note]()
+        
         let realm = try! Realm()
+        
+        let recentPredicate = NSPredicate(format: "isfavorite = true")
+        let recentResults = realm.objects(R_Note.self).filter(recentPredicate).sorted(byKeyPath: "updated_at", ascending: false)
+        let itemCount = recentResults.count > 4 ? 3 : recentResults.count - 1
+        let notearray_recent = Array(recentResults[0...itemCount])
+        
+        
         if(self.searchText_ == "")
         {
             let predicate = NSPredicate(format: "isfavorite = true")
             let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
-            favoriteNotes = Array(results)
+            notearray_all = Array(results)
         }
         else
         {
             let predicateSearch = NSPredicate(format: "isfavorite = true AND (title contains %@ OR content contains %@)", self.searchText_,self.searchText_)
             
             let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
-            favoriteNotes = Array(results)
+            notearray_all = Array(results)
         }
+        
+        favoriteNotes[0] = notearray_recent
+        favoriteNotes[1] = notearray_all
         
         self.tableview?.reloadData()
     }
@@ -85,7 +98,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
             return
         }
         
-        noteVC.selectedNote = favoriteNotes[index.row]
+        noteVC.selectedNote = favoriteNotes[index.section]![index.row]
     }
 
 }
@@ -93,13 +106,32 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
 extension FavoriteViewController {
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 1
+        return 2
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return favoriteNotes.count
+        if (section > 1 || section < 0){
+            return 0
+        }else{
+            let datalist = favoriteNotes[section] as [R_Note]?
+            if datalist != nil {
+                return datalist!.count
+            }
+            else{
+                return 0
+            }
+        }
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var title:String = "Favorite Notes"
+        if section == 0 {
+            title = "Recent Notes"
+        }
+        return title
+    }
+    
     /*
      public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
@@ -113,7 +145,7 @@ extension FavoriteViewController {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let currentNote = favoriteNotes[indexPath.row]
+        let currentNote = favoriteNotes[indexPath.section]![indexPath.row]
         cell.textLabel?.text = currentNote.title
         if(currentNote.alarmDate != nil)
         {
@@ -131,7 +163,7 @@ extension FavoriteViewController {
         if editingStyle == UITableViewCellEditingStyle.delete {
             let realm = try! Realm()
             try! realm.write {
-                let currentNote = self.favoriteNotes[indexPath.row]
+                let currentNote = self.favoriteNotes[indexPath.section]![indexPath.row]
                 currentNote.isfavorite = false
             }
             loadNotes()
