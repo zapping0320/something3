@@ -85,6 +85,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 notebookArray_.append(item)
             }
         }
+        self.pv_notebooks.reloadAllComponents()
     }
 
     override func didReceiveMemoryWarning() {
