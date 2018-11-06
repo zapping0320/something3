@@ -21,8 +21,17 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
        loadNotes()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //self.initSearchInfo()
+        self.loadNotes()
+    }
+    
+    func initSearchInfo() {
+        self.sb_searchBar.text = ""
+        self.searchText_ = ""
     }
 
     override func didReceiveMemoryWarning() {
