@@ -64,9 +64,26 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let realm = try! Realm()
         let results = realm.objects(R_NoteBook.self)
         print(results.count)
-        for i in 0..<results.count {
-            let item = results[i]
-            notebookArray_.append(item)
+        if(results.count ==  0)
+        {
+            let newid = (realm.objects(R_NoteBook.self).max(ofProperty: "id") as Int? ?? 0) + 1
+            
+            let newnotebook = R_NoteBook()
+            newnotebook.name = "Anonymous"
+            newnotebook.id = newid
+            
+            try! realm.write {
+                realm.add(newnotebook)
+            }
+            
+            notebookArray_.append(newnotebook)
+        }
+        else
+        {
+            for i in 0..<results.count {
+                let item = results[i]
+                notebookArray_.append(item)
+            }
         }
     }
 
