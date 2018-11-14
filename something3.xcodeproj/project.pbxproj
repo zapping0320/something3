@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2B3CB3219CD65C00A0FF14 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */; };
 		0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */; };
 		0B2B43B2213DE73E00DFD4A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B43B0213DE73E00DFD4A9 /* Main.storyboard */; };
 		0B2B43B4213DE74000DFD4A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B43B3213DE74000DFD4A9 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		0B2B43A9213DE73D00DFD4A9 /* something3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = something3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B2B43B1213DE73E00DFD4A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2B3CB1219CD64300A0FF14 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		0B2B43A0213DE73D00DFD4A9 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 		0B2B43AB213DE73D00DFD4A9 /* something3 */ = {
 			isa = PBXGroup;
 			children = (
+				0B2B3CB1219CD64300A0FF14 /* Helper */,
 				0BB4D6882141D5980046F7F0 /* Model */,
 				0B502124213F3D48009C3510 /* ViewControllers */,
 				0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */,
@@ -366,6 +377,7 @@
 			files = (
 				0B78D6C5215AEF0D008A2E46 /* SearchViewController.swift in Sources */,
 				0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */,
+				0B2B3CB3219CD65C00A0FF14 /* StringHelper.swift in Sources */,
 				0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */,
 				0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */,
 				0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */,
@@ -548,6 +560,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZSYAXC2PYL;
 				INFOPLIST_FILE = something3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -566,6 +579,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZSYAXC2PYL;
 				INFOPLIST_FILE = something3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
