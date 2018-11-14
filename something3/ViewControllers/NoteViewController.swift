@@ -90,7 +90,8 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
                                                     
                 let realm = try! Realm()
                 let newnote = R_Note()
-                newnote.title = self.tf_title.text! + " copied"
+                //newnote.title = self.tf_title.text! + " copied"
+                newnote.title = StringHelper.makeHeaderStringCopied(title: self.tf_title.text!)
                 newnote.content = self.tv_content.text!
                 newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
                 newnote.isfavorite = self.switch_favorite.isOn
