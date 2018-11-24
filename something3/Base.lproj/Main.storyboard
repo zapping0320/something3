@@ -724,10 +724,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbd-i6-ZfE" userLabel="Account View">
-                                <rect key="frame" x="10" y="30" width="355" height="308.5"/>
+                                <rect key="frame" x="10" y="74" width="355" height="262"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jeC-Dc-UPx">
-                                        <rect key="frame" x="245" y="267.5" width="102" height="31"/>
+                                        <rect key="frame" x="245" y="221" width="102" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="UX2-M2-EV4"/>
                                         </constraints>
@@ -736,7 +736,7 @@
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwe-eo-deh">
-                                        <rect key="frame" x="10" y="267" width="123" height="31.5"/>
+                                        <rect key="frame" x="10" y="220.5" width="123" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -754,7 +754,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK1-nZ-BfL" userLabel="Management View">
-                                <rect key="frame" x="10" y="348.5" width="355" height="308.5"/>
+                                <rect key="frame" x="10" y="346" width="355" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -808,7 +808,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Dz0-Nc-DA7" kind="show" id="hp3-BK-AZ8"/>
+                        <segue destination="Dz0-Nc-DA7" kind="relationship" relationship="rootViewController" id="ujS-iw-rdm"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6h-yH-03W" userLabel="First Responder" sceneMemberID="firstResponder"/>
