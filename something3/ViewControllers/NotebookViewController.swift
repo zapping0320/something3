@@ -46,6 +46,7 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
     override func  viewDidAppear(_ animated: Bool) {
         initSearchInfo()
         loadNotebooks()
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
     }
     
     func initSearchInfo() {

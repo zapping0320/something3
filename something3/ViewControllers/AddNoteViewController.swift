@@ -55,6 +55,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 }
             }
         }
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
     }
     
     

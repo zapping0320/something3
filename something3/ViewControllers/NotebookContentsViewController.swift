@@ -31,6 +31,10 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         self.navigationItem.rightBarButtonItem = moreBtn
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+    }
+    
     @IBAction func tapToHideKeyboard(_ sender: UITapGestureRecognizer) {
         self.sb_searchBar.resignFirstResponder()
         sender.cancelsTouchesInView = false

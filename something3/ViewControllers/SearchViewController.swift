@@ -27,6 +27,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         //self.initSearchInfo()
         self.loadNotes()
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
     }
     
     func initSearchInfo() {

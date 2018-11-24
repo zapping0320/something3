@@ -34,6 +34,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     override func  viewDidAppear(_ animated: Bool) {
         self.initSearchInfo()
         self.loadNotes()
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
     }
     
     @objc private func toggleEditing() {

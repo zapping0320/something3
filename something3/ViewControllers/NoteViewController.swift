@@ -79,6 +79,10 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         self.navigationItem.rightBarButtonItem = moreBtn
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+    }
+    
     @objc func barBtn_more_Action(){
         let alert = UIAlertController(title: title,
                                       message: "more",

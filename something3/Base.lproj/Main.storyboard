@@ -721,7 +721,33 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbd-i6-ZfE" userLabel="Account View">
                                 <rect key="frame" x="10" y="30" width="355" height="308.5"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jeC-Dc-UPx">
+                                        <rect key="frame" x="245" y="267.5" width="102" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="UX2-M2-EV4"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="changeDarkModeChange:" destination="Dz0-Nc-DA7" eventType="valueChanged" id="CXL-pE-Lzi"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwe-eo-deh">
+                                        <rect key="frame" x="10" y="267" width="123" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fwe-eo-deh" firstAttribute="leading" secondItem="mbd-i6-ZfE" secondAttribute="leading" constant="10" id="Lh7-wu-ZyZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="fwe-eo-deh" secondAttribute="bottom" constant="10" id="MpO-1P-kKX"/>
+                                    <constraint firstItem="jeC-Dc-UPx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fwe-eo-deh" secondAttribute="trailing" constant="8" symbolic="YES" id="Ptl-u9-7Xa"/>
+                                    <constraint firstAttribute="bottom" secondItem="jeC-Dc-UPx" secondAttribute="bottom" constant="10" id="bY2-9G-8CU"/>
+                                    <constraint firstAttribute="trailing" secondItem="jeC-Dc-UPx" secondAttribute="trailing" constant="10" id="iV2-NY-hwh"/>
+                                    <constraint firstAttribute="bottom" secondItem="fwe-eo-deh" secondAttribute="bottom" constant="10" id="mzQ-Ig-GwC"/>
+                                    <constraint firstItem="fwe-eo-deh" firstAttribute="leading" secondItem="mbd-i6-ZfE" secondAttribute="leading" constant="10" id="n0z-c0-mk6"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK1-nZ-BfL" userLabel="Management View">
                                 <rect key="frame" x="10" y="348.5" width="355" height="308.5"/>
