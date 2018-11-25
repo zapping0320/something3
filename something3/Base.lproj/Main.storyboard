@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="1415.2" y="267.61619190404798"/>
         </scene>
-        <!--ADD-->
+        <!--AddNote-->
         <scene sceneID="pOm-LV-Aq2">
             <objects>
-                <viewController id="vR9-Og-n5N" customClass="AddNoteViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vR9-Og-n5N" userLabel="AddNote" customClass="AddNoteViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R4T-Yq-j6Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,6 +206,7 @@
                     <tabBarItem key="tabBarItem" title="ADD" id="6tn-Ad-Md3"/>
                     <connections>
                         <outlet property="bt_alarm" destination="yLB-Ee-ge3" id="QSH-TV-zdN"/>
+                        <outlet property="btn_SaveNote" destination="eUj-0X-RZf" id="4Gv-o3-HdO"/>
                         <outlet property="pv_notebooks" destination="PQz-qC-YeO" id="ZuJ-lC-kl3"/>
                         <outlet property="switch_favorite" destination="yeC-1b-zP7" id="9Zf-qE-j3M"/>
                         <outlet property="tf_title" destination="FNf-at-LeS" id="yE9-kq-Zzu"/>
@@ -358,6 +359,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="NoteBook" id="ddI-9d-IXC"/>
                     <connections>
+                        <outlet property="btn_AddNotebook" destination="csw-rO-Fym" id="jBF-eG-dfY"/>
                         <outlet property="sb_searchBar" destination="U82-yi-1JL" id="5fV-Cx-T9Z"/>
                         <outlet property="tableview" destination="iZA-oz-2Qb" id="T8k-KY-Pab"/>
                     </connections>
@@ -648,6 +650,7 @@
                         <viewLayoutGuide key="safeArea" id="bic-hb-Rrw"/>
                     </view>
                     <connections>
+                        <outlet property="btn_SaveNotebook" destination="nze-ur-6gG" id="t61-bo-egY"/>
                         <outlet property="tf_notebookName" destination="H8d-dU-cZr" id="xv0-H0-tEc"/>
                     </connections>
                 </viewController>
@@ -758,7 +761,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.6845327819" blue="0.19650800609999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.55830100579999997" blue="0.34201681719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="v28-jH-2J8" firstAttribute="bottom" secondItem="zK1-nZ-BfL" secondAttribute="bottom" constant="10" id="B38-1j-xma"/>
                             <constraint firstItem="v28-jH-2J8" firstAttribute="trailing" secondItem="zK1-nZ-BfL" secondAttribute="trailing" constant="10" id="LZt-g8-d0v"/>

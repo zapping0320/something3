@@ -13,6 +13,7 @@ var selectedNotebookId: Int = 0
 
 class NotebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate {
     
+    @IBOutlet weak var btn_AddNotebook: UIButton!
     let cellIdentifier: String = "notebookCell"
     let headerSectionIdendifier: String = "headerSectionCell"
     @IBOutlet weak var tableview: UITableView!
@@ -46,8 +47,14 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
     override func  viewDidAppear(_ animated: Bool) {
         initSearchInfo()
         loadNotebooks()
-        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        applyCurrentColor()
     }
+    
+    func applyCurrentColor(){
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        self.btn_AddNotebook.backgroundColor = ColorHelper.getCurrentMainButtonColor()
+    }
+    
     
     func initSearchInfo() {
         self.sb_searchBar.text = ""

@@ -38,11 +38,11 @@ class ColorHelper {
         let darkmode = defaults.bool(forKey: "darkMode")
         if(darkmode == true)
         {
-            return darkTextColor
+            return darkButtonBackgroundColor
         }
         else
         {
-            return mainTextColor
+            return mainButtonBackgroundColor
         }
     }
     
@@ -51,11 +51,11 @@ class ColorHelper {
         let darkmode = defaults.bool(forKey: "darkMode")
         if(darkmode == true)
         {
-            return darkButtonBackgroundColor
+            return darkTextColor
         }
         else
         {
-            return mainButtonBackgroundColor
+            return mainTextColor
         }
     }
     

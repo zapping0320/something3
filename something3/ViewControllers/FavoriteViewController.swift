@@ -34,6 +34,10 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     override func  viewDidAppear(_ animated: Bool) {
         self.initSearchInfo()
         self.loadNotes()
+        applyCurrentColor()
+    }
+    
+    func applyCurrentColor(){
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
     }
     

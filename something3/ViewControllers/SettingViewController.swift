@@ -17,9 +17,12 @@ class SettingViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        applyCurrentColor()
     }
     
+    func applyCurrentColor(){
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+    }
 
     @IBAction func changeDarkModeChange(_ sender: UISwitch) {
         ColorHelper.changeCurrentAppBackground()

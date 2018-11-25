@@ -35,6 +35,10 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
     }
     
+    func applyCurrentColor(){
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+    }
+    
     @IBAction func tapToHideKeyboard(_ sender: UITapGestureRecognizer) {
         self.sb_searchBar.resignFirstResponder()
         sender.cancelsTouchesInView = false

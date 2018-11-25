@@ -16,6 +16,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var switch_favorite: UISwitch!
     @IBOutlet weak var switch_alarm: UISwitch!
     @IBOutlet weak var bt_alarm: UIButton!
+    @IBOutlet weak var btn_SaveNote: UIButton!
     
     fileprivate var notebookArray_ = [R_NoteBook]()
     var alarmDate:Date?
@@ -55,9 +56,13 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 }
             }
         }
-        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        applyCurrentColor()
     }
     
+    func applyCurrentColor(){
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        self.btn_SaveNote.backgroundColor = ColorHelper.getCurrentMainButtonColor()
+    }
     
     func loadNotebooks() {
         notebookArray_ = [R_NoteBook]()

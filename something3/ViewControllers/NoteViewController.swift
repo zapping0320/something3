@@ -80,6 +80,10 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        applyCurrentColor()
+    }
+    
+    func applyCurrentColor(){
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
     }
     
