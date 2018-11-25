@@ -20,6 +20,14 @@ class ColorHelper {
     static let darkButtonBackgroundColor = UIColor.gray
     static let darkTextColor = UIColor.white
     
+    static func getIdentityColor() -> UIColor {
+        return mainAppBackgroundColor
+    }
+    
+    static func getCancelColor() -> UIColor {
+        return UIColor.lightGray
+    }
+    
     static func getCurrentAppBackground() -> UIColor {
         let defaults = UserDefaults.standard
         let darkmode = defaults.bool(forKey: "darkMode")

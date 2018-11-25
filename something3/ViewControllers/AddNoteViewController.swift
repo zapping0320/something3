@@ -62,6 +62,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func applyCurrentColor(){
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
         self.btn_SaveNote.backgroundColor = ColorHelper.getCurrentMainButtonColor()
+        self.bt_alarm.tintColor = ColorHelper.getIdentityColor()
     }
     
     func loadNotebooks() {
@@ -175,6 +176,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             self.alarmDate = datePicker.date
             self.chekcAlarmState()
         }
+        setAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
         alert.addAction(setAction)
         
         if(self.alarmDate != nil)
@@ -183,18 +185,20 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 self.alarmDate = datePicker.date
                 self.chekcAlarmState()
             }
+            changeAlarmAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(changeAlarmAction)
             
             let unsetAction = UIAlertAction(title: "설정해제", style: .default) { (action) in
                 self.alarmDate = nil
                 self.chekcAlarmState()
             }
+            unsetAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(unsetAction)
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        
-        alert.addAction(cancel)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        cancelAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
+        alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
         

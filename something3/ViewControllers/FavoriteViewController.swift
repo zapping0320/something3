@@ -39,6 +39,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     
     func applyCurrentColor(){
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+         self.navigationItem.rightBarButtonItem?.tintColor = ColorHelper.getIdentityColor()
     }
     
     @objc private func toggleEditing() {
