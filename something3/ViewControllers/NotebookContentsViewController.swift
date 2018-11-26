@@ -33,13 +33,13 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
-        //self.navigationItem.leftBarButtonItem?.tintColor = ColorHelper.getIdentityColor()
-        self.navigationItem.rightBarButtonItem?.tintColor = ColorHelper.getIdentityColor()
+        applyCurrentColor()
     }
     
     func applyCurrentColor(){
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        self.navigationController?.navigationBar.tintColor = ColorHelper.getIdentityColor()
+        self.navigationItem.rightBarButtonItem?.tintColor = ColorHelper.getIdentityColor()
     }
     
     @IBAction func tapToHideKeyboard(_ sender: UITapGestureRecognizer) {
