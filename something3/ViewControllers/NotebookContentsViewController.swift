@@ -11,6 +11,7 @@ import RealmSwift
 
 class NotebookContentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
 
+    @IBOutlet weak var lb_searchResult: UILabel!
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     let cellIdentifier: String = "noteCell"
@@ -25,7 +26,7 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadContents()
+        self.lb_searchResult.isHidden = true
         self.sortType_ = self.sortTypeByRecent
         let moreBtn = UIBarButtonItem(title: "More", style: .plain , target: self, action: #selector(barBtn_more_Action))
         self.navigationItem.rightBarButtonItem = moreBtn
@@ -112,6 +113,8 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     func loadContents() {
         selectedNotebookContents = [R_Note]()
         
+        self.lb_searchResult.isHidden = true
+        
         let realm = try! Realm()
         var andPredicate:NSCompoundPredicate
         let predicateNotebookId = NSPredicate(format: "relatedNotebookId = %@", NSNumber(value: self.selectedNoteBookId))
@@ -141,6 +144,11 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         selectedNotebookContents = Array(results)
         
         self.tableview?.reloadData()
+        
+        if(results.count == 0)
+        {
+            self.lb_searchResult.isHidden = false
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
