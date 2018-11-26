@@ -137,7 +137,7 @@
                                 <color key="backgroundColor" red="1" green="0.55830100579999997" blue="0.34201681719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="OTu-GB-RTQ"/>
-                                    <constraint firstAttribute="width" constant="200" id="dPt-Bc-YBN"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="dPt-Bc-YBN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Save">
@@ -147,14 +147,14 @@
                                     <action selector="btn_save_action:" destination="vR9-Og-n5N" eventType="touchUpInside" id="ZFA-hK-ZzD"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeC-1b-zP7">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeC-1b-zP7">
                                 <rect key="frame" x="309" y="83" width="52" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Y4N-kq-uYd"/>
                                 </constraints>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Favorite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ce3-Tl-nAB">
-                                <rect key="frame" x="222" y="88" width="76" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ce3-Tl-nAB">
+                                <rect key="frame" x="230.5" y="88" width="67.5" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -193,6 +193,7 @@
                             <constraint firstItem="N9m-lt-Pan" firstAttribute="bottom" secondItem="yLB-Ee-ge3" secondAttribute="bottom" id="fHa-Bm-YQg"/>
                             <constraint firstItem="yLB-Ee-ge3" firstAttribute="bottom" secondItem="Ce3-Tl-nAB" secondAttribute="bottom" constant="-4" id="iP8-eB-TLY"/>
                             <constraint firstItem="opc-Hg-oi0" firstAttribute="trailing" secondItem="eUj-0X-RZf" secondAttribute="trailing" constant="15" id="meR-mm-RzP"/>
+                            <constraint firstItem="Ce3-Tl-nAB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yLB-Ee-ge3" secondAttribute="trailing" constant="8" symbolic="YES" id="qyn-cy-uft"/>
                             <constraint firstItem="yeC-1b-zP7" firstAttribute="bottom" secondItem="Ce3-Tl-nAB" secondAttribute="bottom" id="ryR-ks-4Ti"/>
                             <constraint firstItem="N9m-lt-Pan" firstAttribute="leading" secondItem="opc-Hg-oi0" secondAttribute="leading" constant="16" id="sKt-iU-zDL"/>
                             <constraint firstItem="FNf-at-LeS" firstAttribute="leading" secondItem="opc-Hg-oi0" secondAttribute="leading" constant="15" id="shP-33-oiM"/>
