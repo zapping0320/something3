@@ -11,6 +11,7 @@ import RealmSwift
 
 class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
 
+    @IBOutlet weak var lb_searchResult: UILabel!
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     let cellIdentifier: String = "searchedNoteCell"
@@ -52,6 +53,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func loadNotes() {
         searchedNotes = [R_Note]()
         
+        lb_searchResult.isHidden = true
+        
         if(self.searchText_ == "")
         {
             self.tableview?.reloadData()
@@ -64,6 +67,11 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         searchedNotes = Array(results)
         
         self.tableview?.reloadData()
+        
+        if(results.count == 0)
+        {
+            lb_searchResult.isHidden = false
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
