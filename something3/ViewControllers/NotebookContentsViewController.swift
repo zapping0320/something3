@@ -53,10 +53,11 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
                                       preferredStyle: UIAlertControllerStyle.actionSheet)
         //change sort way
         let sortByNameAction = UIAlertAction(title: "SortByName",
-                                          style: .default, handler: {result in
-                                            self.sortType_ = self.sortTypeByName
-                                            self.loadContents()
+                                             style: .default, handler: {result in
+                                                self.sortType_ = self.sortTypeByName
+                                                self.loadContents()
         })
+        sortByNameAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
         alert.addAction(sortByNameAction)
         
         let sortByRecentAction = UIAlertAction(title: "SortByRecent",
@@ -64,6 +65,7 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
                                                 self.sortType_ = self.sortTypeByRecent
                                                 self.loadContents()
         })
+        sortByRecentAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
         alert.addAction(sortByRecentAction)
         
         if(self.sortType_ == self.sortTypeByRecent)
@@ -80,7 +82,7 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         if(self.selectedNoteBookId == -1)
         {
             let deleteAllAction = UIAlertAction(title: "Empty Trash",
-                                             style: .default, handler:
+                                                style: .default, handler:
                 { reuslt in
                     let realm = try! Realm()
                     try! realm.write {
@@ -89,19 +91,20 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
                             realm.delete(note)
                         }
                     }
-                self.navigationController?.popViewController(animated: false)
+                    self.navigationController?.popViewController(animated: false)
             })
-            
+            deleteAllAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
             alert.addAction(deleteAllAction)
         }
-        //alert.addAction(restoreAction)
-       
+        
+        cancelAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
     
     override func  viewDidAppear(_ animated: Bool) {
         searchText_ = ""
+        self.sb_searchBar.placeholder = "Search Note"
         loadContents()
     }
 

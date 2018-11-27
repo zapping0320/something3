@@ -24,6 +24,15 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setRealmInfo()
+        
+        self.sb_searchBar.placeholder = "Search Notebook"
+        
+        loadNotebooks()
+    }
+    
+    func setRealmInfo() {
         print(Realm.Configuration.defaultConfiguration.fileURL!)//only for simulator
         let config = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
@@ -41,7 +50,6 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
         })
         // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config
-        loadNotebooks()
     }
     
     override func  viewDidAppear(_ animated: Bool) {

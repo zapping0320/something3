@@ -22,7 +22,8 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       loadNotes()
+        self.sb_searchBar.placeholder = "Search Note"
+        loadNotes()
     }
     
     override func viewDidAppear(_ animated: Bool) {
