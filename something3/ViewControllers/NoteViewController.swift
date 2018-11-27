@@ -85,6 +85,7 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
     
     func applyCurrentColor(){
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        self.bt_alarm.tintColor = ColorHelper.getCurrentDeepTextColor()
     }
     
     @objc func barBtn_more_Action(){
@@ -94,65 +95,69 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         if(self.selectedNote.relatedNotebookId != -1)
         {
             let copyNoteAction = UIAlertAction(title: "Copy Note",
-                                                 style: .default, handler: {result in
-                                                    
-                let realm = try! Realm()
-                let newnote = R_Note()
-                //newnote.title = self.tf_title.text! + " copied"
-                newnote.title = StringHelper.makeHeaderStringCopied(title: self.tf_title.text!)
-                newnote.content = self.tv_content.text!
-                newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
-                newnote.isfavorite = self.switch_favorite.isOn
-                newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
-                newnote.alarmDate = self.alarmDate
-                
-                try! realm.write {
-                    realm.add(newnote)
-                }
-                
-                self.navigationController?.popViewController(animated: false)
+                                               style: .default, handler: {result in
+                                                
+                                                let realm = try! Realm()
+                                                let newnote = R_Note()
+                                                //newnote.title = self.tf_title.text! + " copied"
+                                                newnote.title = StringHelper.makeHeaderStringCopied(title: self.tf_title.text!)
+                                                newnote.content = self.tv_content.text!
+                                                newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
+                                                newnote.isfavorite = self.switch_favorite.isOn
+                                                newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
+                                                newnote.alarmDate = self.alarmDate
+                                                
+                                                try! realm.write {
+                                                    realm.add(newnote)
+                                                }
+                                                
+                                                self.navigationController?.popViewController(animated: false)
             })
+            copyNoteAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(copyNoteAction)
-             
-             let sendToTrashAction = UIAlertAction(title: "Send To Trash",
-             style: .default, handler: {result in
-                let realm = try! Realm()
-                
-                try! realm.write {
-                    self.selectedNote.oldNotebookId = self.selectedNote.relatedNotebookId
-                    self.selectedNote.relatedNotebookId = -1
-                }
-                self.navigationController?.popViewController(animated: false)
-             })
-             alert.addAction(sendToTrashAction)
+            
+            let sendToTrashAction = UIAlertAction(title: "Send To Trash",
+                                                  style: .default, handler: {result in
+                                                    let realm = try! Realm()
+                                                    
+                                                    try! realm.write {
+                                                        self.selectedNote.oldNotebookId = self.selectedNote.relatedNotebookId
+                                                        self.selectedNote.relatedNotebookId = -1
+                                                    }
+                                                    self.navigationController?.popViewController(animated: false)
+            })
+            sendToTrashAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
+            alert.addAction(sendToTrashAction)
         }
         else
         {
             let restoreAction = UIAlertAction(title: "Restore",
                                               style: .default, handler: {result in
-                let realm = try! Realm()
-                try! realm.write {
-                    self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
-                    self.selectedNote.oldNotebookId = -1
-                }
-                self.navigationController?.popViewController(animated: false)
+                                                let realm = try! Realm()
+                                                try! realm.write {
+                                                    self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
+                                                    self.selectedNote.oldNotebookId = -1
+                                                }
+                                                self.navigationController?.popViewController(animated: false)
             })
+            restoreAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(restoreAction)
             let deleteAction = UIAlertAction(title: "Delete Completely",
                                              style: .default, handler: { reuslt in
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.delete(self.selectedNote)
-                }
-                self.navigationController?.popViewController(animated: false)
+                                                let realm = try! Realm()
+                                                try! realm.write {
+                                                    realm.delete(self.selectedNote)
+                                                }
+                                                self.navigationController?.popViewController(animated: false)
             })
+            deleteAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(deleteAction)
         }
         
         
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .cancel, handler: nil)
-        
+        cancelAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
@@ -289,7 +294,8 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
             self.alarmDate = datePicker.date
             self.saveChangedData()
         }
-         alert.addAction(setAction)
+        setAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
+        alert.addAction(setAction)
         
         if(self.selectedNote.alarmDate != nil)
         {
@@ -297,18 +303,20 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
                 self.alarmDate = datePicker.date
                 self.saveChangedData()
             }
+            changeAlarmAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(changeAlarmAction)
             
             let unsetAction = UIAlertAction(title: "설정해제", style: .default) { (action) in
                 self.alarmDate = nil
                 self.saveChangedData()
             }
+            unsetAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(unsetAction)
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        
-        alert.addAction(cancel)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        cancelAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
+        alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
         

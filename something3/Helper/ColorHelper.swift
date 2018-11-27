@@ -67,6 +67,19 @@ class ColorHelper {
         }
     }
     
+    static func getCurrentDeepTextColor() -> UIColor {
+        let defaults = UserDefaults.standard
+        let darkmode = defaults.bool(forKey: "darkMode")
+        if(darkmode == true)
+        {
+            return mainButtonBackgroundColor
+        }
+        else
+        {
+            return UIColor.white
+        }
+    }
+    
     static func changeCurrentAppBackground() {
         let defaults = UserDefaults.standard
         let darkmode = defaults.bool(forKey: "darkMode")

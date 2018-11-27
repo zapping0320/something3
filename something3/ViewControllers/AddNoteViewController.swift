@@ -62,7 +62,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func applyCurrentColor(){
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
         self.btn_SaveNote.backgroundColor = ColorHelper.getCurrentMainButtonColor()
-        self.bt_alarm.tintColor = ColorHelper.getIdentityColor()
+        self.bt_alarm.tintColor = ColorHelper.getCurrentDeepTextColor()
     }
     
     func loadNotebooks() {
