@@ -88,16 +88,19 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
         let realm = try! Realm()
         if(self.searchText_ == "")
         {
-            let results = realm.objects(R_NoteBook.self).sorted(byKeyPath: "updated_at", ascending: true)
-            //print(results.count)
-            for i in 0..<results.count {
-                let item = results[i]
-                notebookarray_all.append(item)
-                if(i >= results.count - 5)//pick last modified data 5 dd
-                {
-                    notebookarray_recent.insert(item, at: 0)
-                }
+            let recentResults = realm.objects(R_NoteBook.self).sorted(byKeyPath: "updated_at", ascending: true)
+            let recentCount = recentResults.count > 5 ? 4 : recentResults.count
+            for i in 0..<recentCount {
+                let item = recentResults[i]
+                notebookarray_recent.insert(item, at: 0)
             }
+            
+            let allResults = realm.objects(R_NoteBook.self).sorted(byKeyPath: "name", ascending: true)
+            for i in 0..<allResults.count {
+                let item = allResults[i]
+                notebookarray_all.append(item)
+            }
+            
             let trashCan = R_NoteBook()
             trashCan.name = "Trash"
             trashCan.id = -1
