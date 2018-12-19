@@ -8,16 +8,20 @@
 
 import UIKit
 import RealmSwift
+import EventKit
 
 var selectedNotebookId: Int = 0
 
 class NotebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate {
     
     @IBOutlet weak var btn_AddNotebook: UIButton!
-    let cellIdentifier: String = "notebookCell"
-    let headerSectionIdendifier: String = "headerSectionCell"
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var sb_searchBar: UISearchBar!
+    
+    let cellIdentifier: String = "notebookCell"
+    let headerSectionIdendifier: String = "headerSectionCell"
+    
+    var eventStore: EKEventStore?
     
     fileprivate var notebookArray_:[Int:[R_NoteBook]] = [Int:[R_NoteBook]]()
     var searchText_: String = ""
@@ -26,6 +30,8 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         setRealmInfo()
+        
+        requestReminderAccess()
         
         self.sb_searchBar.placeholder = "Search Notebook"
         
@@ -50,6 +56,13 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
         })
         // Tell Realm to use this new configuration object for the default Realm
         Realm.Configuration.defaultConfiguration = config
+    }
+    
+    func requestReminderAccess() {
+        if self.eventStore == nil {
+            self.eventStore = EKEventStore()
+            self.eventStore!.requestAccess(to: EKEntityType.reminder, completion: { (isAccessible, errors) in })
+        }
     }
     
     override func  viewDidAppear(_ animated: Bool) {
