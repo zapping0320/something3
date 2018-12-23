@@ -22,6 +22,7 @@
 		0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB4D6892141D5B70046F7F0 /* R_NoteBook.swift */; };
 		0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB4D68B2141DC090046F7F0 /* R_Note.swift */; };
 		0BB69B8B21A8E1A2003B64C0 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB69B8A21A8E1A2003B64C0 /* ColorHelper.swift */; };
+		0BBEC59B21CDABD4005BAB45 /* EventHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEC59A21CDABD4005BAB45 /* EventHelper.swift */; };
 		0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD657C0214876970037FE79 /* NoteViewController.swift */; };
 		0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */; };
 		0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */; };
@@ -67,6 +68,7 @@
 		0BB4D6892141D5B70046F7F0 /* R_NoteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_NoteBook.swift; sourceTree = "<group>"; };
 		0BB4D68B2141DC090046F7F0 /* R_Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_Note.swift; sourceTree = "<group>"; };
 		0BB69B8A21A8E1A2003B64C0 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
+		0BBEC59A21CDABD4005BAB45 /* EventHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHelper.swift; sourceTree = "<group>"; };
 		0BD657C0214876970037FE79 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookContentsViewController.swift; sourceTree = "<group>"; };
 		0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */,
 				0BB69B8A21A8E1A2003B64C0 /* ColorHelper.swift */,
+				0BBEC59A21CDABD4005BAB45 /* EventHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				0BB69B8B21A8E1A2003B64C0 /* ColorHelper.swift in Sources */,
 				0B9C11252143339600E4AE7D /* AddNotebookViewController.swift in Sources */,
 				0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */,
+				0BBEC59B21CDABD4005BAB45 /* EventHelper.swift in Sources */,
 				0B2B3CB5219CDC6100A0FF14 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

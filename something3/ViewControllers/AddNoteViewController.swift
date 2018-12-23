@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import EventKit
 
 class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UITextViewDelegate {
     @IBOutlet weak var tf_title: UITextField!
@@ -18,11 +19,16 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var bt_alarm: UIButton!
     @IBOutlet weak var btn_SaveNote: UIButton!
     
+    var eventHelper:EventHelper?
+    
     fileprivate var notebookArray_ = [R_NoteBook]()
     var alarmDate:Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if self.eventHelper == nil {
+            self.eventHelper = EventHelper()
+        }
         self.tf_title.placeholder = "Title"
         self.tv_content.delegate = self
         self.tv_content.text = "Content"
@@ -169,6 +175,11 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
          }*/
         
         let setAction = UIAlertAction(title: "설정", style: .default) { (action) in
+            
+            if self.eventHelper?.addEvent(title: self.tf_title.text!, date: datePicker.date).result == false {
+                
+            }
+            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
             let dateString = dateFormatter.string(from: datePicker.date)
@@ -182,6 +193,11 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if(self.alarmDate != nil)
         {
             let changeAlarmAction = UIAlertAction(title: "알람변경", style: .default) { (action) in
+                let identifierValue = "123"
+                if self.eventHelper?.removeEvent(identifier: identifierValue) == false {
+                    
+                }
+                
                 self.alarmDate = datePicker.date
                 self.chekcAlarmState()
             }
