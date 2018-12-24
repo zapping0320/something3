@@ -12,6 +12,21 @@ import RealmSwift
 class AddNotebookViewController : UIViewController {
 
     @IBOutlet weak var tf_notebookName: UITextField!
+    @IBOutlet weak var btn_SaveNotebook: UIButton!
+    
+    override func viewDidLoad() {
+        applyCurrentColor()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        applyCurrentColor()
+    }
+    
+    func applyCurrentColor(){
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        self.btn_SaveNotebook.backgroundColor = ColorHelper.getCurrentMainButtonColor()
+        
+    }
     
     func closeViewController() {
         self.dismiss(animated: false, completion: nil)
