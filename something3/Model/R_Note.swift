@@ -15,11 +15,11 @@ class R_Note: Object  {
     @objc dynamic var title = ""
     @objc dynamic var relatedNotebookId = 0 //for trashcan : -1 /
     @objc dynamic var oldNotebookId = 0 //for trashcan
-    //dynamic var relatedNotebook: R_Notebook?
     @objc dynamic var updated_at = Date()
     @objc dynamic var created_at = Date()
     @objc dynamic var deleted_at:Date? = nil
     @objc dynamic var alarmDate:Date? = nil
+    @objc dynamic var alarmIdentifier = ""
     override static func primaryKey() -> String? {
         return "id"
     }
