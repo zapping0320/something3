@@ -23,6 +23,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     fileprivate var notebookArray_ = [R_NoteBook]()
     var alarmDate:Date?
+    var alarmIdentifier:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,57 +167,92 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             datePicker.setDate(self.alarmDate!, animated: false)
         }
         
-        let alert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
-        alert.view.addSubview(datePicker)
+        let alarmAlert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
+        alarmAlert.view.addSubview(datePicker)
         /*
          datePicker.snp.makeConstraints { (make) in
          make.centerX.equalTo(alert.view)
          make.top.equalTo(alert.view).offset(8)
          }*/
         
-        let setAction = UIAlertAction(title: "설정", style: .default) { (action) in
-            
-            if self.eventHelper?.addEvent(title: self.tf_title.text!, date: datePicker.date).result == false {
-                
-            }
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
-            let dateString = dateFormatter.string(from: datePicker.date)
-            print(dateString)
-            self.alarmDate = datePicker.date
-            self.chekcAlarmState()
-        }
-        setAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
-        alert.addAction(setAction)
         
-        if(self.alarmDate != nil)
+        
+        if(self.alarmDate == nil)
         {
-            let changeAlarmAction = UIAlertAction(title: "알람변경", style: .default) { (action) in
-                let identifierValue = "123"
-                if self.eventHelper?.removeEvent(identifier: identifierValue) == false {
+            let setAction = UIAlertAction(title: "설정", style: .default) { (action) in
+                
+                let addResult = self.eventHelper?.addEvent(title: self.tf_title.text!, date: datePicker.date)
+                if addResult?.result == false {
+                    let alert = UIAlertController(title: self.title,
+                                                  message: "some problems occurs when registering new alarm.\nplease try again",
+                                                  preferredStyle: UIAlertControllerStyle.alert)
                     
+                    let cancelAction = UIAlertAction(title: "OK",
+                                                     style: .cancel, handler: nil)
+                    
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true, completion: nil)
+                    return
                 }
                 
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+                //let dateString = dateFormatter.string(from: datePicker.date)
+                //print(dateString)
                 self.alarmDate = datePicker.date
+                self.alarmIdentifier = addResult?.identifier
+                self.chekcAlarmState()
+            }
+            setAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
+            alarmAlert.addAction(setAction)
+        }else{
+            let changeAlarmAction = UIAlertAction(title: "알람변경", style: .default) { (action) in
+                let changeResult = self.eventHelper?.changeAlarm(title: self.tf_title.text!, date: datePicker.date, identifier: self.alarmIdentifier!)
+                if changeResult?.result == false {
+                    let alert = UIAlertController(title: self.title,
+                                                  message: "some problems occurs when modifying this alarm.\nplease try again",
+                                                  preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK",
+                                                     style: .cancel, handler: nil)
+                    
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                self.alarmDate = datePicker.date
+                self.alarmIdentifier = changeResult?.identifier
                 self.chekcAlarmState()
             }
             changeAlarmAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
-            alert.addAction(changeAlarmAction)
+            alarmAlert.addAction(changeAlarmAction)
             
             let unsetAction = UIAlertAction(title: "설정해제", style: .default) { (action) in
+                if self.eventHelper?.removeEvent(identifier: self.alarmIdentifier!) == false {
+                    let alert = UIAlertController(title: self.title,
+                                                  message: "some problems occurs when removing this alarm.\nplease try again",
+                                                  preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK",
+                                                     style: .cancel, handler: nil)
+                    
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
                 self.alarmDate = nil
+                self.alarmIdentifier = ""
                 self.chekcAlarmState()
             }
             unsetAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
-            alert.addAction(unsetAction)
+            alarmAlert.addAction(unsetAction)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         cancelAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
-        alert.addAction(cancelAction)
+        alarmAlert.addAction(cancelAction)
         
-        present(alert, animated: true, completion: nil)
+        present(alarmAlert, animated: true, completion: nil)
         
     }
     

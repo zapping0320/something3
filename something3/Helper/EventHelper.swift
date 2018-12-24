@@ -55,4 +55,13 @@ class EventHelper {
         
         return true
     }
+    
+    func changeAlarm(title:String, date:Date, identifier:String) -> (result:Bool, identifier:String) {
+        if(removeEvent(identifier: identifier) == false)
+        {
+            return (false, "")
+        }
+        return addEvent(title: title, date: date)
+        
+    }
 }
