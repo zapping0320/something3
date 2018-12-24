@@ -146,6 +146,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         newnote.isfavorite = self.switch_favorite.isOn
         newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
         newnote.alarmDate = self.alarmDate
+        newnote.alarmIdentifier = self.alarmIdentifier!
       
         try! realm.write {
             realm.add(newnote)
@@ -194,11 +195,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                     self.present(alert, animated: true, completion: nil)
                     return
                 }
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
-                //let dateString = dateFormatter.string(from: datePicker.date)
-                //print(dateString)
+               
                 self.alarmDate = datePicker.date
                 self.alarmIdentifier = addResult?.identifier
                 self.chekcAlarmState()
