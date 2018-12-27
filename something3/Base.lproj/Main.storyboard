@@ -803,7 +803,26 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK1-nZ-BfL" userLabel="Management View">
                                 <rect key="frame" x="10" y="346" width="355" height="262"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ML4-f0-fdQ">
+                                        <rect key="frame" x="10" y="10" width="91" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="eay-UL-37d"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="의견 보내기">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="6vw-Y7-ux9" kind="show" id="40P-bP-8sy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ML4-f0-fdQ" firstAttribute="top" secondItem="zK1-nZ-BfL" secondAttribute="top" constant="10" id="HBD-i5-jUI"/>
+                                    <constraint firstItem="ML4-f0-fdQ" firstAttribute="leading" secondItem="zK1-nZ-BfL" secondAttribute="leading" constant="10" id="VaB-Oq-lhj"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.55830100579999997" blue="0.34201681719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -821,12 +840,28 @@
                     </view>
                     <navigationItem key="navigationItem" id="arr-uz-rdj"/>
                     <connections>
+                        <outlet property="buttonSendMail" destination="ML4-f0-fdQ" id="3fL-Pb-MKG"/>
                         <outlet property="labelVersion" destination="1fX-eM-nHL" id="cuL-CB-k27"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUW-MO-QHY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="260" y="1628"/>
+        </scene>
+        <!--Send Mail View Controller-->
+        <scene sceneID="AwD-F2-bAW">
+            <objects>
+                <viewController id="6vw-Y7-ux9" customClass="SendMailViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VtS-D1-wOK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="L0t-Hr-0N7"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nA4-wX-qCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="988" y="1628"/>
         </scene>
         <!--Search-->
         <scene sceneID="980-d7-1Gq">

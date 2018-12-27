@@ -10,6 +10,7 @@ import UIKit
 
 class SettingViewController: UIViewController {
     @IBOutlet weak var labelVersion: UILabel!
+    @IBOutlet weak var buttonSendMail: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,5 +33,6 @@ class SettingViewController: UIViewController {
     @IBAction func changeDarkModeChange(_ sender: UISwitch) {
         ColorHelper.changeCurrentAppBackground()
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        //self.buttonSendMail.backgroundColor = ColorHelper.getCurrentMainButtonColor()
     }
 }
