@@ -9,11 +9,16 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-
+    @IBOutlet weak var labelVersion: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        self.labelVersion.text = appVersion
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
