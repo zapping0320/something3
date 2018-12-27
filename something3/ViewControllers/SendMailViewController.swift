@@ -9,7 +9,9 @@
 import UIKit
 
 class SendMailViewController: UIViewController {
-
+    @IBOutlet weak var tf_senderAddress: UITextField!
+    
+    @IBOutlet weak var tv_sendContents: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 

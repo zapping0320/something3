@@ -855,9 +855,56 @@
                     <view key="view" contentMode="scaleToFill" id="VtS-D1-wOK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="보내는 사람 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJX-zU-t60">
+                                <rect key="frame" x="10" y="79" width="87" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bo7-XW-iDA">
+                                <rect key="frame" x="107" y="74" width="258" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QIf-np-ffk">
+                                <rect key="frame" x="10" y="114" width="355" height="424"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제공해주신 정보는 개인 정보처리방침 및 서비스 약관에 따라 기술적인 문제를 해결하고 서비스를 개선하는 데 사용됩니다." textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EC-3X-Wxv">
+                                <rect key="frame" x="10" y="548" width="355" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="n6u-EV-wvY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QIf-np-ffk" firstAttribute="leading" secondItem="L0t-Hr-0N7" secondAttribute="leading" constant="10" id="3s1-Ua-Xcw"/>
+                            <constraint firstItem="1EC-3X-Wxv" firstAttribute="top" secondItem="QIf-np-ffk" secondAttribute="bottom" constant="10" id="4FN-Gr-ITV"/>
+                            <constraint firstItem="QIf-np-ffk" firstAttribute="top" secondItem="bo7-XW-iDA" secondAttribute="bottom" constant="10" id="FsG-Uw-olJ"/>
+                            <constraint firstItem="gJX-zU-t60" firstAttribute="leading" secondItem="L0t-Hr-0N7" secondAttribute="leading" constant="10" id="L8F-El-hVr"/>
+                            <constraint firstItem="1EC-3X-Wxv" firstAttribute="leading" secondItem="L0t-Hr-0N7" secondAttribute="leading" constant="10" id="P2P-lo-7kZ"/>
+                            <constraint firstItem="bo7-XW-iDA" firstAttribute="top" secondItem="L0t-Hr-0N7" secondAttribute="top" constant="10" id="Q6B-lf-7bX"/>
+                            <constraint firstItem="L0t-Hr-0N7" firstAttribute="trailing" secondItem="QIf-np-ffk" secondAttribute="trailing" constant="10" id="Qtk-tS-iVo"/>
+                            <constraint firstItem="gJX-zU-t60" firstAttribute="top" secondItem="L0t-Hr-0N7" secondAttribute="top" constant="15" id="UKm-rf-90b"/>
+                            <constraint firstItem="L0t-Hr-0N7" firstAttribute="trailing" secondItem="bo7-XW-iDA" secondAttribute="trailing" constant="10" id="cR4-1C-8QA"/>
+                            <constraint firstItem="L0t-Hr-0N7" firstAttribute="trailing" secondItem="1EC-3X-Wxv" secondAttribute="trailing" constant="10" id="coP-MZ-9BM"/>
+                            <constraint firstItem="L0t-Hr-0N7" firstAttribute="bottom" secondItem="1EC-3X-Wxv" secondAttribute="bottom" constant="10" id="kXO-OS-Ndv"/>
+                            <constraint firstItem="bo7-XW-iDA" firstAttribute="leading" secondItem="gJX-zU-t60" secondAttribute="trailing" constant="10" id="vDl-yx-X6Q"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="L0t-Hr-0N7"/>
                     </view>
+                    <connections>
+                        <outlet property="tf_senderAddress" destination="bo7-XW-iDA" id="Wal-XV-cuX"/>
+                        <outlet property="tv_sendContents" destination="QIf-np-ffk" id="d1S-76-FE7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nA4-wX-qCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
