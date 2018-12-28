@@ -17,9 +17,14 @@ class SendMailViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tf_senderAddress.placeholder = "private@address"
+        
         self.tv_sendContents.delegate = self
         self.tv_sendContents.text = self.contentPlaceHolder
         self.tv_sendContents.textColor = UIColor.lightGray
+        
+        let sendButton = UIBarButtonItem(barButtonSystemItem: .action , target: self, action: #selector(sendEmailToAppAdministrator))
+        self.navigationItem.rightBarButtonItem = sendButton
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -33,6 +38,23 @@ class SendMailViewController: UIViewController, UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = self.contentPlaceHolder
             textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    @objc func sendEmailToAppAdministrator() {
+        if self.tv_sendContents.text == "" ||
+        (self.tf_senderAddress.text == "" )
+        {
+            let alert = UIAlertController(title: title,
+                                          message: "It needs to fill form(email, contents) , please check",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            
+            let cancelAction = UIAlertAction(title: "OK",
+                                             style: .cancel, handler: nil)
+            
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
         }
     }
    
