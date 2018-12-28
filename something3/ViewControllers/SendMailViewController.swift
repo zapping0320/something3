@@ -42,11 +42,20 @@ class SendMailViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func sendEmailToAppAdministrator() {
-        if self.tv_sendContents.text == "" ||
-        (self.tf_senderAddress.text == "" )
+        var alertMessage = ""
+        if (self.tv_sendContents.text == "" || self.tf_senderAddress.text == "")
+        {
+            alertMessage = "It needs to fill form(email, contents) , please check"
+        }
+        
+        if self.tf_senderAddress.text?.isValidEmail() == false {
+            alertMessage = "please chekc your email format"
+        }
+        
+        if(alertMessage != "")
         {
             let alert = UIAlertController(title: title,
-                                          message: "It needs to fill form(email, contents) , please check",
+                                          message: alertMessage,
                                           preferredStyle: UIAlertControllerStyle.alert)
             
             let cancelAction = UIAlertAction(title: "OK",
@@ -56,7 +65,16 @@ class SendMailViewController: UIViewController, UITextViewDelegate {
             self.present(alert, animated: true, completion: nil)
             return
         }
+        
+        
     }
-   
 
+}
+
+extension String {
+    func isValidEmail() -> Bool {
+        // here, `try!` will always succeed because the pattern is valid
+        let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
 }
