@@ -7,17 +7,28 @@
 //
 
 import UIKit
+import MessageUI
 
-class SendMailViewController: UIViewController, UITextViewDelegate {
+class SendMailViewController: UIViewController, UITextViewDelegate, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var tf_senderAddress: UITextField!
     @IBOutlet weak var tv_sendContents: UITextView!
     
     let contentPlaceHolder:String = "문제를 설명하거나 아이디어를 공유하세요"
     
+    var composeVC:MFMailComposeViewController? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.composeVC = MFMailComposeViewController()
+        if(self.composeVC == nil ){
+            self.navigationController?.popViewController(animated: false)
+        }
+        else {
+            self.composeVC!.mailComposeDelegate = self
+        }
 
-        self.tf_senderAddress.placeholder = "private@address"
+        self.tf_senderAddress.placeholder = "address@example.com"
         
         self.tv_sendContents.delegate = self
         self.tv_sendContents.text = self.contentPlaceHolder
@@ -25,6 +36,8 @@ class SendMailViewController: UIViewController, UITextViewDelegate {
         
         let sendButton = UIBarButtonItem(barButtonSystemItem: .action , target: self, action: #selector(sendEmailToAppAdministrator))
         self.navigationItem.rightBarButtonItem = sendButton
+        
+        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -42,31 +55,36 @@ class SendMailViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func sendEmailToAppAdministrator() {
-        var alertMessage = ""
+        if !MFMailComposeViewController.canSendMail() {
+            popupMessaage(alertMessage: "Mail services are not available")
+        }
+        
         if (self.tv_sendContents.text == "" || self.tf_senderAddress.text == "")
         {
-            alertMessage = "It needs to fill form(email, contents) , please check"
+            popupMessaage(alertMessage: "It needs to fill form(email, contents) , please check")
         }
         
         if self.tf_senderAddress.text?.isValidEmail() == false {
-            alertMessage = "please chekc your email format"
+            popupMessaage(alertMessage: "please chekc your email format")
         }
         
-        if(alertMessage != "")
-        {
-            let alert = UIAlertController(title: title,
-                                          message: alertMessage,
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            
-            let cancelAction = UIAlertAction(title: "OK",
-                                             style: .cancel, handler: nil)
-            
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
+        self.composeVC!.setToRecipients(["zappingtest@gmail.com"])
+        self.composeVC!.setSubject("Customer's opinion" + self.tf_senderAddress.text!)
+        self.composeVC!.setMessageBody(self.tv_sendContents.text, isHTML: false)
+        self.present(self.composeVC!, animated: true, completion: {self.dismiss(animated: false, completion: nil)})
+    }
+    
+    func popupMessaage(alertMessage:String) {
+        let alert = UIAlertController(title: title,
+                                      message: alertMessage,
+                                      preferredStyle: UIAlertControllerStyle.alert)
         
+        let cancelAction = UIAlertAction(title: "OK",
+                                         style: .cancel, handler: nil)
         
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        return
     }
 
 }
