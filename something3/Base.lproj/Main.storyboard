@@ -874,9 +874,35 @@
                     <view key="view" contentMode="scaleToFill" id="VyW-QD-IkE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ehP-rp-95m">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="2QO-iZ-dKA"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uiu-CF-gK7">
+                                <rect key="frame" x="10" y="120" width="355" height="488"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ehP-rp-95m" firstAttribute="leading" secondItem="IPe-5T-SNC" secondAttribute="leading" id="KQF-Qz-gmn"/>
+                            <constraint firstAttribute="trailing" secondItem="ehP-rp-95m" secondAttribute="trailing" id="RGK-GU-z62"/>
+                            <constraint firstItem="Uiu-CF-gK7" firstAttribute="top" secondItem="ehP-rp-95m" secondAttribute="bottom" id="b2d-3z-jy2"/>
+                            <constraint firstItem="Uiu-CF-gK7" firstAttribute="leading" secondItem="IPe-5T-SNC" secondAttribute="leading" constant="10" id="dJ2-4N-Zdo"/>
+                            <constraint firstItem="IPe-5T-SNC" firstAttribute="trailing" secondItem="Uiu-CF-gK7" secondAttribute="trailing" constant="10" id="rdl-Bm-W6l"/>
+                            <constraint firstItem="IPe-5T-SNC" firstAttribute="bottom" secondItem="Uiu-CF-gK7" secondAttribute="bottom" constant="10" id="s4l-fg-OUy"/>
+                            <constraint firstItem="ehP-rp-95m" firstAttribute="top" secondItem="IPe-5T-SNC" secondAttribute="top" id="xrY-SF-CT8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IPe-5T-SNC"/>
                     </view>
+                    <connections>
+                        <outlet property="sb_searchBar" destination="ehP-rp-95m" id="SDQ-sL-kxN"/>
+                        <outlet property="tableview" destination="Uiu-CF-gK7" id="TAd-Y5-oGC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQm-XO-GMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -984,6 +1010,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bwb-j3-1Vt"/>
+        <segue reference="opV-oG-lvY"/>
     </inferredMetricsTieBreakers>
 </document>
