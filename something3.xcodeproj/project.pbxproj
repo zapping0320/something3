@@ -15,6 +15,7 @@
 		0B2B43B7213DE74000DFD4A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B43B5213DE74000DFD4A9 /* LaunchScreen.storyboard */; };
 		0B2B43C2213DE74000DFD4A9 /* something3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43C1213DE74000DFD4A9 /* something3Tests.swift */; };
 		0B2B43CD213DE74100DFD4A9 /* something3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43CC213DE74100DFD4A9 /* something3UITests.swift */; };
+		0B4626EB21DC237F00268F79 /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4626EA21DC237E00268F79 /* TagManager.swift */; };
 		0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B502125213F3D7D009C3510 /* NotebookViewController.swift */; };
 		0B78D6C5215AEF0D008A2E46 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B78D6C4215AEF0D008A2E46 /* SearchViewController.swift */; };
 		0B91D1C52145CCF2005DCCD9 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B91D1C42145CCF2005DCCD9 /* AddNoteViewController.swift */; };
@@ -26,6 +27,10 @@
 		0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD657C0214876970037FE79 /* NoteViewController.swift */; };
 		0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */; };
 		0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */; };
+		0BF9DA7B21D5852400C20167 /* SendMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */; };
+		0BF9DA7D21D982AE00C20167 /* ManageTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */; };
+		0BF9DA7F21DAE17400C20167 /* R_Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9DA7E21DAE17400C20167 /* R_Tag.swift */; };
+		0BF9DA8121DC1C7D00C20167 /* R_NoteTagRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9DA8021DC1C7D00C20167 /* R_NoteTagRelations.swift */; };
 		84B8172D5632015271A3238C /* Pods_something3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +66,7 @@
 		0B2B43C8213DE74000DFD4A9 /* something3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = something3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B2B43CC213DE74100DFD4A9 /* something3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = something3UITests.swift; sourceTree = "<group>"; };
 		0B2B43CE213DE74100DFD4A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B4626EA21DC237E00268F79 /* TagManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
 		0B502125213F3D7D009C3510 /* NotebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookViewController.swift; sourceTree = "<group>"; };
 		0B78D6C4215AEF0D008A2E46 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0B91D1C42145CCF2005DCCD9 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +78,10 @@
 		0BD657C0214876970037FE79 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookContentsViewController.swift; sourceTree = "<group>"; };
 		0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMailViewController.swift; sourceTree = "<group>"; };
+		0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTagsViewController.swift; sourceTree = "<group>"; };
+		0BF9DA7E21DAE17400C20167 /* R_Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_Tag.swift; sourceTree = "<group>"; };
+		0BF9DA8021DC1C7D00C20167 /* R_NoteTagRelations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_NoteTagRelations.swift; sourceTree = "<group>"; };
 		3AAB89EDF1D22EF156BDCFAD /* Pods_something3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_something3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9645F5EE26730D4A3299EE68 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
 		9D90EF2874F8C4A5FF794747 /* Pods-something3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.release.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +148,7 @@
 		0B2B43AB213DE73D00DFD4A9 /* something3 */ = {
 			isa = PBXGroup;
 			children = (
+				0B4626E921DC236A00268F79 /* Managers */,
 				0B2B3CB1219CD64300A0FF14 /* Helper */,
 				0BB4D6882141D5980046F7F0 /* Model */,
 				0B502124213F3D48009C3510 /* ViewControllers */,
@@ -168,6 +179,14 @@
 			path = something3UITests;
 			sourceTree = "<group>";
 		};
+		0B4626E921DC236A00268F79 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0B4626EA21DC237E00268F79 /* TagManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		0B502124213F3D48009C3510 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +198,8 @@
 				0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */,
 				0B78D6C4215AEF0D008A2E46 /* SearchViewController.swift */,
 				0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */,
+				0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */,
+				0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -188,6 +209,8 @@
 			children = (
 				0BB4D6892141D5B70046F7F0 /* R_NoteBook.swift */,
 				0BB4D68B2141DC090046F7F0 /* R_Note.swift */,
+				0BF9DA7E21DAE17400C20167 /* R_Tag.swift */,
+				0BF9DA8021DC1C7D00C20167 /* R_NoteTagRelations.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,6 +407,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B4626EB21DC237F00268F79 /* TagManager.swift in Sources */,
+				0BF9DA7F21DAE17400C20167 /* R_Tag.swift in Sources */,
+				0BF9DA8121DC1C7D00C20167 /* R_NoteTagRelations.swift in Sources */,
+				0BF9DA7D21D982AE00C20167 /* ManageTagsViewController.swift in Sources */,
 				0B78D6C5215AEF0D008A2E46 /* SearchViewController.swift in Sources */,
 				0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */,
 				0B2B3CB3219CD65C00A0FF14 /* StringHelper.swift in Sources */,
@@ -395,6 +422,7 @@
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
 				0BB69B8B21A8E1A2003B64C0 /* ColorHelper.swift in Sources */,
 				0B9C11252143339600E4AE7D /* AddNotebookViewController.swift in Sources */,
+				0BF9DA7B21D5852400C20167 /* SendMailViewController.swift in Sources */,
 				0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */,
 				0BBEC59B21CDABD4005BAB45 /* EventHelper.swift in Sources */,
 				0B2B3CB5219CDC6100A0FF14 /* SettingViewController.swift in Sources */,

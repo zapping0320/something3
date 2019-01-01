@@ -12,6 +12,7 @@ import EventKit
 
 class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UITextViewDelegate {
     @IBOutlet weak var tf_title: UITextField!
+    @IBOutlet weak var tf_tags: UITextField!
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var pv_notebooks: UIPickerView!
     @IBOutlet weak var switch_favorite: UISwitch!
@@ -31,6 +32,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             self.eventHelper = EventHelper()
         }
         self.tf_title.placeholder = "Title"
+        self.tf_tags.placeholder = "add Tag like #Tag"
         self.tv_content.delegate = self
         self.tv_content.text = "Content"
         self.tv_content.textColor = UIColor.lightGray
@@ -150,9 +152,8 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
       
         try! realm.write {
             realm.add(newnote)
-            
+            //add tags noteid, tags
             notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
-            
         }
         
         self.tf_title.text = ""
