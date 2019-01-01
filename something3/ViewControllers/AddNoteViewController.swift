@@ -146,7 +146,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         newnote.isfavorite = self.switch_favorite.isOn
         newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
         newnote.alarmDate = self.alarmDate
-        newnote.alarmIdentifier = self.alarmIdentifier!
+        newnote.alarmIdentifier = self.alarmIdentifier
       
         try! realm.write {
             realm.add(newnote)

@@ -19,7 +19,7 @@ class R_Note: Object  {
     @objc dynamic var created_at = Date()
     @objc dynamic var deleted_at:Date? = nil
     @objc dynamic var alarmDate:Date? = nil
-    @objc dynamic var alarmIdentifier = ""
+    @objc dynamic var alarmIdentifier:String? = ""
     override static func primaryKey() -> String? {
         return "id"
     }

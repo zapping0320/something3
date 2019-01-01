@@ -255,7 +255,7 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
             selectedNote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
             selectedNote.updated_at = Date()
             selectedNote.alarmDate = self.alarmDate
-            selectedNote.alarmIdentifier = self.alarmIdentifier!
+            selectedNote.alarmIdentifier = self.alarmIdentifier
         }
         
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
