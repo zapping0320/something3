@@ -11,7 +11,7 @@ import RealmSwift
 
 class TagManager {
     static func addTagsToNote(noteid:Int, tagString:String?) -> Bool {
-        //clearTagInfos(noteid: noteid)
+        clearTagInfos(noteid: noteid)
         if tagString == "" {
             return false
         }
@@ -34,12 +34,13 @@ class TagManager {
     }
     
     static func storeTagInfo(noteid:Int, tag:String) -> Bool {
-        if tag == ""  {
+        let trimmedTag = tag.trimmingCharacters(in: .whitespaces)
+        if trimmedTag == ""  {
             return true
         }
         
         let realm = try! Realm()
-        let predicateSearch = NSPredicate(format: "content = %@ ", tag)
+        let predicateSearch = NSPredicate(format: "content = %@ ", trimmedTag)
         let results = realm.objects(R_Tag.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
         
         var tagId:Int = -1
@@ -50,7 +51,7 @@ class TagManager {
             tagId = (realm.objects(R_Tag.self).max(ofProperty: "id") as Int? ?? 0) + 1
             
             let newTag = R_Tag()
-            newTag.content = tag
+            newTag.content = trimmedTag
             newTag.id = tagId
             
             try! realm.write {
@@ -79,7 +80,7 @@ class TagManager {
         
         let realm = try! Realm()
         try! realm.write {
-            let predicate = NSPredicate(format: "noteId = %@ ", noteid)
+            let predicate = NSPredicate(format: "noteId = %@ ", NSNumber(value: noteid))
             for tagInfo in realm.objects(R_NoteTagRelations.self).filter(predicate){
                 realm.delete(tagInfo)
             }

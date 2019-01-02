@@ -176,7 +176,6 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         
         let realm = try! Realm()
         let results = realm.objects(R_NoteBook.self)
-        print(results.count)
         for i in 0..<results.count {
             let item = results[i]
             if(selectedNote.relatedNotebookId == -1)

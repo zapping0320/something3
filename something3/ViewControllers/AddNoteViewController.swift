@@ -54,6 +54,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     override func  viewDidAppear(_ animated: Bool) {
+        clearInputFields()
         loadNotebooks()
         if notebookArray_.count > 0 {
             for i in 0..<notebookArray_.count {
@@ -66,6 +67,12 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             }
         }
         applyCurrentColor()
+    }
+    
+    func clearInputFields() {
+        self.tf_title.text = ""
+        self.tf_tags.text = ""
+        self.tv_content.text = ""
     }
     
     func applyCurrentColor(){
@@ -149,6 +156,8 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
         newnote.alarmDate = self.alarmDate
         newnote.alarmIdentifier = self.alarmIdentifier
+        
+        selectedNotebookId = newnote.relatedNotebookId
       
         try! realm.write {
             realm.add(newnote)
@@ -156,10 +165,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
         //add tags noteid, tags
         _ = TagManager.addTagsToNote(noteid: newnote.id, tagString: self.tf_tags.text)
-        
-        self.tf_title.text = ""
-        self.tv_content.text = ""
-        
+       
         self.tabBarController?.selectedIndex = 0
     }
     
