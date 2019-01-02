@@ -152,9 +152,10 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
       
         try! realm.write {
             realm.add(newnote)
-            //add tags noteid, tags
             notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
         }
+        //add tags noteid, tags
+        _ = TagManager.addTagsToNote(noteid: newnote.id, tagString: self.tf_tags.text)
         
         self.tf_title.text = ""
         self.tv_content.text = ""
