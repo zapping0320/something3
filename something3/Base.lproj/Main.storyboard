@@ -575,6 +575,10 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="tf_tag_EndEditing:" destination="iJw-0O-XZd" eventType="editingDidEnd" id="Y2U-eh-YPB"/>
+                                    <outlet property="delegate" destination="iJw-0O-XZd" id="hNH-hD-1PP"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.68453278192233258" blue="0.19650800607564967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

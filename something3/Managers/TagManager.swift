@@ -92,9 +92,25 @@ class TagManager {
     }
     
     static func makeTagString(noteid:Int) -> String {
+        if noteid < 1 {
+            return ""
+        }
         
+        var tagString = ""
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "noteId = %@ ", NSNumber(value: noteid))
+        for tagInfo in realm.objects(R_NoteTagRelations.self).filter(predicate) {
+            if tagInfo.tagId < 1 {
+                continue
+            }
+            let tagPredicate = NSPredicate(format: "id = %@ ", NSNumber(value: tagInfo.tagId))
+            for tag in realm.objects(R_Tag.self).filter(tagPredicate){
+                tagString += "#"
+                tagString += tag.content
+            }
+        }
         
-        return ""
+        return tagString
     }
     
 }

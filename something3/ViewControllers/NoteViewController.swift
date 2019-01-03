@@ -229,6 +229,10 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
          saveChangedData()
     }
     
+    @IBAction func tf_tag_EndEditing(_ sender: Any) {
+        saveChangedData()
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
