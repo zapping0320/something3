@@ -10,6 +10,9 @@ import Foundation
 import RealmSwift
 
 class TagManager {
+    
+    static let tagPlaceHolderString = "add Tag like #Tag"
+    
     static func addTagsToNote(noteid:Int, tagString:String?) -> Bool {
         clearTagInfos(noteid: noteid)
         if tagString == "" {
@@ -86,6 +89,12 @@ class TagManager {
             }
         }
        
+    }
+    
+    static func makeTagString(noteid:Int) -> String {
+        
+        
+        return ""
     }
     
 }

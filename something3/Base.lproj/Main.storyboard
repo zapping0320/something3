@@ -509,7 +509,7 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WGi-rt-HXC">
-                                <rect key="frame" x="15" y="296" width="345" height="282"/>
+                                <rect key="frame" x="15" y="331" width="345" height="247"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -570,6 +570,12 @@
                                     <action selector="bt_alarm_action:" destination="iJw-0O-XZd" eventType="touchUpInside" id="OHu-G0-kyH"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="koM-QX-YpB">
+                                <rect key="frame" x="15" y="291" width="345" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.68453278192233258" blue="0.19650800607564967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -582,11 +588,14 @@
                             <constraint firstItem="Y48-IS-eFl" firstAttribute="trailing" secondItem="8ZP-Ef-mwm" secondAttribute="trailing" constant="-15" id="CC7-u4-zYI"/>
                             <constraint firstItem="a2F-Qq-c88" firstAttribute="leading" secondItem="8ZP-Ef-mwm" secondAttribute="leading" constant="15" id="M6X-3X-RTw"/>
                             <constraint firstItem="a2F-Qq-c88" firstAttribute="top" secondItem="8v7-yf-zlT" secondAttribute="bottom" constant="90" id="U0T-Xv-Jv4"/>
+                            <constraint firstItem="koM-QX-YpB" firstAttribute="top" secondItem="a2F-Qq-c88" secondAttribute="bottom" constant="10" id="UC5-wx-jY4"/>
                             <constraint firstItem="xiy-88-VaQ" firstAttribute="leading" secondItem="8ZP-Ef-mwm" secondAttribute="leading" constant="15" id="UFA-Gh-Ll6"/>
                             <constraint firstItem="WGi-rt-HXC" firstAttribute="leading" secondItem="8ZP-Ef-mwm" secondAttribute="leading" constant="15" id="UJC-hz-R1K"/>
+                            <constraint firstItem="koM-QX-YpB" firstAttribute="leading" secondItem="8ZP-Ef-mwm" secondAttribute="leading" constant="15" id="Vby-Dh-dSz"/>
                             <constraint firstItem="Ahz-QR-u3b" firstAttribute="leading" secondItem="8ZP-Ef-mwm" secondAttribute="leading" constant="15" id="ZMP-eE-ZMB"/>
                             <constraint firstItem="iGh-A9-FEc" firstAttribute="leading" secondItem="8ZP-Ef-mwm" secondAttribute="leading" constant="16" id="aVd-JW-R6v"/>
-                            <constraint firstItem="WGi-rt-HXC" firstAttribute="top" secondItem="a2F-Qq-c88" secondAttribute="bottom" constant="15" id="bgQ-Rr-A4B"/>
+                            <constraint firstItem="8ZP-Ef-mwm" firstAttribute="trailing" secondItem="koM-QX-YpB" secondAttribute="trailing" constant="15" id="abs-bA-7jx"/>
+                            <constraint firstItem="WGi-rt-HXC" firstAttribute="top" secondItem="koM-QX-YpB" secondAttribute="bottom" constant="10" id="bgQ-Rr-A4B"/>
                             <constraint firstItem="8ZP-Ef-mwm" firstAttribute="bottom" secondItem="xiy-88-VaQ" secondAttribute="bottom" constant="5" id="fwM-tl-RNO"/>
                             <constraint firstItem="04L-63-RqL" firstAttribute="leading" secondItem="iGh-A9-FEc" secondAttribute="trailing" constant="10" id="g59-lE-fOz"/>
                             <constraint firstItem="8ZP-Ef-mwm" firstAttribute="trailing" secondItem="xiy-88-VaQ" secondAttribute="trailing" constant="15" id="gAu-1e-xFe"/>
@@ -607,6 +616,7 @@
                         <outlet property="lb_updatedAt" destination="Ahz-QR-u3b" id="vCD-lK-Gan"/>
                         <outlet property="pv_notebooks" destination="Y48-IS-eFl" id="Ixy-nC-NEU"/>
                         <outlet property="switch_favorite" destination="8v7-yf-zlT" id="4rq-QX-flA"/>
+                        <outlet property="tf_tags" destination="koM-QX-YpB" id="ANp-R0-lUi"/>
                         <outlet property="tf_title" destination="a2F-Qq-c88" id="UoN-PK-ENW"/>
                         <outlet property="tv_content" destination="WGi-rt-HXC" id="8uy-Kk-cfq"/>
                     </connections>

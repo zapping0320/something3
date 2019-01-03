@@ -32,7 +32,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             self.eventHelper = EventHelper()
         }
         self.tf_title.placeholder = "Title"
-        self.tf_tags.placeholder = "add Tag like #Tag"
+        self.tf_tags.placeholder = TagManager.tagPlaceHolderString
         self.tv_content.delegate = self
         self.tv_content.text = "Content"
         self.tv_content.textColor = UIColor.lightGray

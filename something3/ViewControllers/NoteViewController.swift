@@ -13,6 +13,7 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
 
     @IBOutlet weak var lb_updatedAt: UILabel!
     @IBOutlet weak var tf_title: UITextField!
+    @IBOutlet weak var tf_tags: UITextField!
     @IBOutlet weak var tv_content: UITextView!
     @IBOutlet weak var switch_favorite: UISwitch!
     @IBOutlet weak var pv_notebooks: UIPickerView!
@@ -51,6 +52,8 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         
         self.tf_title.text = selectedNote.title
         self.tf_title.placeholder = "Title"
+        self.tf_tags.placeholder = TagManager.tagPlaceHolderString
+        self.tf_tags.text = TagManager.makeTagString(noteid: selectedNote.id)
         self.tv_content.text = selectedNote.content
         self.tv_content.delegate = self
         if(selectedNote.content == "")
@@ -258,6 +261,8 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         }
         
         self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
+        
+        _ = TagManager.addTagsToNote(noteid: selectedNote.id, tagString: self.tf_tags.text)
         
         self.chekcAlarmState()
     }
