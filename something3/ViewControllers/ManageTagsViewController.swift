@@ -16,6 +16,8 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     let cellIdentifier: String = "tagCell"
     var searchText_: String = ""
     
+    //fileprivate var tagArray_:[String:[R_Tag]] = [String:[R_Tag]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +44,53 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     func loadTags() {
         
+        var tagArray_ = [[String:[R_Tag]]]()
+        
+        let realm = try! Realm()
+        if(self.searchText_ == "")
+        {
+            let allResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
+            var lastTagHeader = ""
+            //var eachTagList:[String:[R_Tag]] = [String:[R_Tag]]()
+            var tagList:[R_Tag] = [R_Tag]()
+            for i in 0..<allResults.count {
+                let item = allResults[i]
+                
+                let tagFirst = item.content[item.content.startIndex]
+                let thisTagHeader = String(tagFirst)
+                
+                if(lastTagHeader == "" || lastTagHeader != thisTagHeader)
+                {
+                    if(tagList.count > 0)
+                    {
+                        let eachTagList = [lastTagHeader: tagList]
+                        tagArray_.append(eachTagList)
+                    }
+                    
+                    lastTagHeader = thisTagHeader
+                    
+                    //eachTagList = [String:[R_Tag]]()
+                    tagList = [R_Tag]()
+                    tagList.append(item)
+                }
+                else {
+                    tagList.append(item)
+                }
+            }
+            
+          
+        }
+        else
+        {
+//            let predicateSearch = NSPredicate(format: "name contains %@", self.searchText_)
+//            let results = realm.objects(R_NoteBook.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
+//            notebookarray_all = Array(results)
+        }
+        
+        //notebookArray_[0] = notebookarray_recent
+        //notebookArray_[1] = notebookarray_all
+        
+        self.tableview.reloadData()
     }
     
     @objc func addTag_Action() {
