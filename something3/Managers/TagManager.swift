@@ -36,7 +36,7 @@ class TagManager {
         }
     }
     
-    static func storeTagInfo(noteid:Int, tag:String) -> Bool {
+    static func storeTagInfo(noteid:Int = -1, tag:String) -> Bool {
         let trimmedTag = tag.trimmingCharacters(in: .whitespaces)
         if trimmedTag == ""  {
             return true
@@ -60,6 +60,11 @@ class TagManager {
             try! realm.write {
                 realm.add(newTag)
             }
+        }
+        
+        if(noteid < 1)
+        {
+            return true
         }
         
         let newRelationId = (realm.objects(R_NoteTagRelations.self).max(ofProperty: "id") as Int? ?? 0) + 1

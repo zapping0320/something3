@@ -106,7 +106,16 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
     
     @objc func addTag_Action() {
-        //_ = TagManager.storeTagInfo(tag: <#T##String#>)
+        let alert = UIAlertController(title: "", message: "Add Tag", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { (textField) in
+            textField.text = ""
+        })
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (updateAction) in
+            _ = TagManager.storeTagInfo(tag: alert.textFields!.first!.text!)
+            self.loadTags()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: false)
     }
 }
 
@@ -164,7 +173,6 @@ extension ManageTagsViewController {
                 try! realm.write {
                     currentTag.tag.content = alert.textFields!.first!.text!
                 }
-                //self.tableview.reloadRows(at: [indexPath], with: .fade)
                 self.loadTags()
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
