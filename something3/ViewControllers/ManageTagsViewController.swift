@@ -12,7 +12,12 @@ import RealmSwift
 
 struct TagSectionInfos {
     var title:String
-    var tagList:[R_Tag]
+    var tagList:[TagUI]
+}
+
+struct TagUI {
+    var tag:R_Tag
+    var count:Int
 }
 
 class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -57,12 +62,19 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
         {
             let allResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
             var lastTagHeader = ""
-            var tagList:[R_Tag] = [R_Tag]()
+            var tagList:[TagUI] = [TagUI]()
             for i in 0..<allResults.count {
                 let item = allResults[i]
                 
                 let tagFirst = item.content[item.content.startIndex]
                 let thisTagHeader = String(tagFirst)
+                
+                let tagPredicate = NSPredicate(format: "tagId = %@ ", NSNumber(value: item.id))
+                let taggedNotes = realm.objects(R_NoteTagRelations.self).filter(tagPredicate)
+                //item.relatedNotes = taggedNotes.count
+                //print(taggedNotes.count)
+                
+                let tatUI = TagUI(tag: item, count: taggedNotes.count)
                 
                 if(lastTagHeader == "" || lastTagHeader != thisTagHeader)
                 {
@@ -72,11 +84,11 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
                     }
                     
                     lastTagHeader = thisTagHeader
-                    tagList = [R_Tag]()
-                    tagList.append(item)
+                    tagList = [TagUI]()
+                    tagList.append(tatUI)
                 }
                 else {
-                    tagList.append(item)
+                    tagList.append(tatUI)
                 }
             }
             
@@ -129,7 +141,8 @@ extension ManageTagsViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let currentTagSection = self.tagArray_[indexPath.section]
         let currentTag = currentTagSection.tagList[indexPath.row]
-        cell.textLabel?.text = currentTag.content
+        cell.textLabel?.text = currentTag.tag.content + "(" +  String(currentTag.count) + ")"
+        
         return cell
     }
     
