@@ -57,7 +57,6 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
         {
             let allResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
             var lastTagHeader = ""
-            //var eachTagList:[String:[R_Tag]] = [String:[R_Tag]]()
             var tagList:[R_Tag] = [R_Tag]()
             for i in 0..<allResults.count {
                 let item = allResults[i]
@@ -90,8 +89,6 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
 //            notebookarray_all = Array(results)
         }
         
-        //notebookArray_[0] = notebookarray_recent
-        //notebookArray_[1] = notebookarray_all
         
         self.tableview.reloadData()
     }
@@ -130,12 +127,9 @@ extension ManageTagsViewController {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-//        let currentNote = favoriteNotes[indexPath.section]![indexPath.row]
-//        cell.textLabel?.text = currentNote.title
-//        if(currentNote.alarmDate != nil)
-//        {
-//            cell.textLabel?.text = currentNote.title + String("(alarmed)")
-//        }
+        let currentTagSection = self.tagArray_[indexPath.section]
+        let currentTag = currentTagSection.tagList[indexPath.row]
+        cell.textLabel?.text = currentTag.content
         return cell
     }
     
