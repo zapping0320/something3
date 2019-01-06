@@ -106,7 +106,7 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
     
     @objc func addTag_Action() {
-        
+        //_ = TagManager.storeTagInfo(tag: <#T##String#>)
     }
 }
 
@@ -147,18 +147,63 @@ extension ManageTagsViewController {
     }
     
     
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//    
-//    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == UITableViewCellEditingStyle.delete {
-//            let realm = try! Realm()
-//            try! realm.write {
-//                let currentNote = self.favoriteNotes[indexPath.section]![indexPath.row]
-//                currentNote.isfavorite = false
-//            }
-//            loadNotes()
-//        }
-//    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: { (action, indexPath) in
+            let currentTagSection = self.tagArray_[indexPath.section]
+            let currentTag = currentTagSection.tagList[indexPath.row]
+            let alert = UIAlertController(title: "", message: "Edit Tag", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.text = currentTag.tag.content
+            })
+            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
+                let realm = try! Realm()
+                try! realm.write {
+                    currentTag.tag.content = alert.textFields!.first!.text!
+                }
+                //self.tableview.reloadRows(at: [indexPath], with: .fade)
+                self.loadTags()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: false)
+        })
+        
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+            let alert = UIAlertController(title: "Delete",
+                                          message: "Are you sure want to delete this notebook?",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            
+            let yesAction = UIAlertAction(title: "YES",
+                                          style: .default, handler:
+                { action in
+//                    let currentNotebook = self.notebookArray_[indexPath.section]![indexPath.row] as R_NoteBook
+//                    let realm = try! Realm()
+//                    try! realm.write {
+//
+//                        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: currentNotebook.id))
+//                        for note in realm.objects(R_Note.self).filter(predicate){
+//                            note.relatedNotebookId = -1
+//                            note.oldNotebookId = currentNotebook.id
+//                        }
+//                        realm.delete(currentNotebook)
+//                    }
+//                    self.loadNotebooks()
+            }
+            )
+            
+            let cancelAction = UIAlertAction(title: "No",
+                                             style: .cancel, handler: nil)
+            
+            alert.addAction(cancelAction)
+            alert.addAction(yesAction)
+            self.present(alert, animated: true, completion: nil)
+            
+            tableView.reloadData()
+        })
+        
+        return [deleteAction, editAction]
+    }
 }
