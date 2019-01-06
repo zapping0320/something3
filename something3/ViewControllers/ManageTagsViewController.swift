@@ -9,6 +9,12 @@
 import UIKit
 import RealmSwift
 
+
+struct TagSectionInfos {
+    var title:String
+    var tagList:[R_Tag]
+}
+
 class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var sb_searchBar: UISearchBar!
@@ -16,7 +22,7 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     let cellIdentifier: String = "tagCell"
     var searchText_: String = ""
     
-    //fileprivate var tagArray_:[String:[R_Tag]] = [String:[R_Tag]]()
+    fileprivate var tagArray_ = [TagSectionInfos]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +50,7 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     func loadTags() {
         
-        var tagArray_ = [[String:[R_Tag]]]()
+        tagArray_ = [TagSectionInfos]()
         
         let realm = try! Realm()
         if(self.searchText_ == "")
@@ -63,13 +69,10 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
                 {
                     if(tagList.count > 0)
                     {
-                        let eachTagList = [lastTagHeader: tagList]
-                        tagArray_.append(eachTagList)
+                        tagArray_.append(TagSectionInfos(title: lastTagHeader, tagList: tagList))
                     }
                     
                     lastTagHeader = thisTagHeader
-                    
-                    //eachTagList = [String:[R_Tag]]()
                     tagList = [R_Tag]()
                     tagList.append(item)
                 }
@@ -101,32 +104,26 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
 extension ManageTagsViewController {
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 2
+        return tagArray_.count
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1
-//        if (section > 1 || section < 0){
-//            return 0
-//        }else{
-//            let datalist = favoriteNotes[section] as [R_Note]?
-//            if datalist != nil {
-//                return datalist!.count
-//            }
-//            else{
-//                return 0
-//            }
-//        }
+        if (section > tagArray_.count || section < 0){
+            return 0
+        }else{
+            let tagSectionInfos = tagArray_[section]
+            return tagSectionInfos.tagList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        var title:String = "Favorite Notes"
-//        if section == 0 {
-//            title = "Recent Notes"
-//        }
-//        return title
-        return "temp"
+        if (section > tagArray_.count || section < 0){
+            return "error"
+        }else{
+            let tagSectionInfos = tagArray_[section]
+            return tagSectionInfos.title
+        }
     }
    
     
