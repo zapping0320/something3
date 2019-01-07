@@ -93,6 +93,7 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
     
     override func viewWillAppear(_ animated: Bool) {
         applyCurrentColor()
+        self.tf_tags.text = TagManager.makeTagString(noteid: selectedNote.id)
     }
     
     func applyCurrentColor(){

@@ -118,4 +118,24 @@ class TagManager {
         return tagString
     }
     
+    static func removeTagNTagInfo(tagId:Int)  {
+        if tagId < 1 {
+            return
+        }
+        
+        let realm = try! Realm()
+        try! realm.write {
+            let predicate = NSPredicate(format: "tagId = %@ ", NSNumber(value: tagId))
+            for tagInfo in realm.objects(R_NoteTagRelations.self).filter(predicate){
+                realm.delete(tagInfo)
+            }
+            
+            let tagPredicate = NSPredicate(format: "id = %@ ", NSNumber(value: tagId))
+            for tag in realm.objects(R_Tag.self).filter(tagPredicate){
+                realm.delete(tag)
+            }
+        }
+        
+    }
+    
 }

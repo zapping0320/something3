@@ -181,24 +181,16 @@ extension ManageTagsViewController {
         
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             let alert = UIAlertController(title: "Delete",
-                                          message: "Are you sure want to delete this notebook?",
+                                          message: "Are you sure want to delete this tag?",
                                           preferredStyle: UIAlertControllerStyle.alert)
             
             let yesAction = UIAlertAction(title: "YES",
                                           style: .default, handler:
                 { action in
-//                    let currentNotebook = self.notebookArray_[indexPath.section]![indexPath.row] as R_NoteBook
-//                    let realm = try! Realm()
-//                    try! realm.write {
-//
-//                        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: currentNotebook.id))
-//                        for note in realm.objects(R_Note.self).filter(predicate){
-//                            note.relatedNotebookId = -1
-//                            note.oldNotebookId = currentNotebook.id
-//                        }
-//                        realm.delete(currentNotebook)
-//                    }
-//                    self.loadNotebooks()
+                    let currentTagSection = self.tagArray_[indexPath.section]
+                    let currentTag = currentTagSection.tagList[indexPath.row]
+                    TagManager.removeTagNTagInfo(tagId: currentTag.tag.id)
+                    self.loadTags()
             }
             )
             
