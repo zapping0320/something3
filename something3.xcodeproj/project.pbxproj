@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B27BEA021E55D4E00656B5E /* TagFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27BE9F21E55D4E00656B5E /* TagFilterViewController.swift */; };
 		0B2B3CB3219CD65C00A0FF14 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */; };
 		0B2B3CB5219CDC6100A0FF14 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */; };
 		0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B27BE9F21E55D4E00656B5E /* TagFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterViewController.swift; sourceTree = "<group>"; };
 		0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0B2B43A9213DE73D00DFD4A9 /* something3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = something3.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +202,7 @@
 				0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */,
 				0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */,
 				0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */,
+				0B27BE9F21E55D4E00656B5E /* TagFilterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */,
 				0B91D1C52145CCF2005DCCD9 /* AddNoteViewController.swift in Sources */,
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
+				0B27BEA021E55D4E00656B5E /* TagFilterViewController.swift in Sources */,
 				0BB69B8B21A8E1A2003B64C0 /* ColorHelper.swift in Sources */,
 				0B9C11252143339600E4AE7D /* AddNotebookViewController.swift in Sources */,
 				0BF9DA7B21D5852400C20167 /* SendMailViewController.swift in Sources */,
