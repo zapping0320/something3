@@ -32,6 +32,8 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.sb_searchBar.delegate = self
+        
         let addButton = UIBarButtonItem(title: "Add", style: .plain , target: self, action: #selector(addTag_Action))
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -41,6 +43,12 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         self.initSearchInfo()
         self.loadTags()
+        self.applyCurrentColor()
+    }
+    
+    func applyCurrentColor(){
+        self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        self.navigationItem.rightBarButtonItem?.tintColor = ColorHelper.getIdentityColor()
     }
     
     func initSearchInfo() {
@@ -49,7 +57,7 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchText_ = searchText
+        self.searchText_ = searchText
         self.loadTags()
     }
     
@@ -58,49 +66,51 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
         tagArray_ = [TagSectionInfos]()
         
         let realm = try! Realm()
-        if(self.searchText_ == "")
+        var allResults: Results<R_Tag>
+        if(self.searchText_ != "")
         {
-            let allResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
-            var lastTagHeader = ""
-            var tagList:[TagUI] = [TagUI]()
-            for i in 0..<allResults.count {
-                let item = allResults[i]
-                
-                let tagFirst = item.content[item.content.startIndex]
-                let thisTagHeader = String(tagFirst)
-                
-                let tagPredicate = NSPredicate(format: "tagId = %@ ", NSNumber(value: item.id))
-                let taggedNotes = realm.objects(R_NoteTagRelations.self).filter(tagPredicate)
-                //item.relatedNotes = taggedNotes.count
-                //print(taggedNotes.count)
-                
-                let tatUI = TagUI(tag: item, count: taggedNotes.count)
-                
-                if(lastTagHeader == "" || lastTagHeader != thisTagHeader)
-                {
-                    if(tagList.count > 0)
-                    {
-                        tagArray_.append(TagSectionInfos(title: lastTagHeader, tagList: tagList))
-                    }
-                    
-                    lastTagHeader = thisTagHeader
-                    tagList = [TagUI]()
-                    tagList.append(tatUI)
-                }
-                else {
-                    tagList.append(tatUI)
-                }
-            }
-            
-          
+            let predicateSearch = NSPredicate(format: "content CONTAINS[c] %@", self.searchText_)
+            allResults = realm.objects(R_Tag.self).filter(predicateSearch).sorted(byKeyPath: "content", ascending: true)
         }
         else
         {
-//            let predicateSearch = NSPredicate(format: "name contains %@", self.searchText_)
-//            let results = realm.objects(R_NoteBook.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
-//            notebookarray_all = Array(results)
+            allResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
         }
         
+        var lastTagHeader = ""
+        var thisTagHeader = ""
+        var tagList:[TagUI] = [TagUI]()
+        for i in 0..<allResults.count {
+            let item = allResults[i]
+            
+            let tagFirst = item.content[item.content.startIndex]
+            thisTagHeader = String(tagFirst)
+            
+            let tagPredicate = NSPredicate(format: "tagId = %@ ", NSNumber(value: item.id))
+            let taggedNotes = realm.objects(R_NoteTagRelations.self).filter(tagPredicate)
+            
+            let tatUI = TagUI(tag: item, count: taggedNotes.count)
+            
+            if(lastTagHeader == "" || lastTagHeader != thisTagHeader)
+            {
+                if(tagList.count > 0)
+                {
+                    tagArray_.append(TagSectionInfos(title: lastTagHeader, tagList: tagList))
+                }
+                
+                lastTagHeader = thisTagHeader
+                tagList = [TagUI]()
+                tagList.append(tatUI)
+            }
+            else {
+                tagList.append(tatUI)
+            }
+        }
+        
+        if(lastTagHeader != "" && tagList.count > 0)
+        {
+            tagArray_.append(TagSectionInfos(title: lastTagHeader, tagList: tagList))
+        }
         
         self.tableview.reloadData()
     }
