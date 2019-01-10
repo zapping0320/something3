@@ -407,7 +407,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fZH-zu-7gc">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="64" width="263" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="pDK-1i-KP8"/>
                                 </constraints>
@@ -446,20 +446,50 @@
                                 <color key="textColor" red="1" green="0.55830100579999997" blue="0.34201681719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLs-8H-tO3">
+                                <rect key="frame" x="263" y="64" width="56" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="Wka-bz-2wM"/>
+                                    <constraint firstAttribute="height" constant="56" id="jbu-bU-oAA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="T"/>
+                                <connections>
+                                    <segue destination="3MZ-GV-g2h" kind="presentation" id="lNj-V9-kvH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a88-MK-BnJ">
+                                <rect key="frame" x="319" y="64" width="56" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="QPU-ky-KL3"/>
+                                    <constraint firstAttribute="height" constant="56" id="efu-3Z-cKG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="A"/>
+                                <connections>
+                                    <action selector="button_FilterAlarmNotes:" destination="vVp-AU-VAa" eventType="touchUpInside" id="6ya-u2-1QA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.68453278192233258" blue="0.19650800607564967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="y3c-e6-i1w" firstAttribute="trailing" secondItem="fZH-zu-7gc" secondAttribute="trailing" id="4mL-hm-EFf"/>
+                            <constraint firstItem="a88-MK-BnJ" firstAttribute="top" secondItem="y3c-e6-i1w" secondAttribute="top" id="5IO-BM-CcC"/>
                             <constraint firstItem="cb3-dk-8Yu" firstAttribute="top" secondItem="fZH-zu-7gc" secondAttribute="bottom" id="6vY-C4-YMe"/>
                             <constraint firstItem="y3c-e6-i1w" firstAttribute="trailing" secondItem="cb3-dk-8Yu" secondAttribute="trailing" constant="10" id="84h-fk-WNh"/>
                             <constraint firstItem="fZH-zu-7gc" firstAttribute="top" secondItem="y3c-e6-i1w" secondAttribute="top" id="BYR-x4-6fV"/>
                             <constraint firstItem="sMb-9P-b87" firstAttribute="top" secondItem="cb3-dk-8Yu" secondAttribute="top" constant="150" id="KPt-kI-wYC"/>
+                            <constraint firstItem="a88-MK-BnJ" firstAttribute="leading" secondItem="KLs-8H-tO3" secondAttribute="trailing" id="Nhi-9Z-TWs"/>
                             <constraint firstItem="fZH-zu-7gc" firstAttribute="leading" secondItem="y3c-e6-i1w" secondAttribute="leading" id="RMp-jH-G5i"/>
                             <constraint firstItem="y3c-e6-i1w" firstAttribute="trailing" secondItem="sMb-9P-b87" secondAttribute="trailing" constant="10" id="f60-2t-jIS"/>
                             <constraint firstItem="sMb-9P-b87" firstAttribute="leading" secondItem="y3c-e6-i1w" secondAttribute="leading" constant="10" id="flh-zu-PBP"/>
                             <constraint firstItem="cb3-dk-8Yu" firstAttribute="leading" secondItem="y3c-e6-i1w" secondAttribute="leading" constant="10" id="gAe-Fu-7FE"/>
+                            <constraint firstItem="a88-MK-BnJ" firstAttribute="leading" secondItem="KLs-8H-tO3" secondAttribute="trailing" id="h2i-Qp-M4Y"/>
                             <constraint firstItem="y3c-e6-i1w" firstAttribute="bottom" secondItem="cb3-dk-8Yu" secondAttribute="bottom" constant="10" id="kMe-2v-Uau"/>
+                            <constraint firstItem="KLs-8H-tO3" firstAttribute="top" secondItem="y3c-e6-i1w" secondAttribute="top" id="lRS-vY-7R3"/>
+                            <constraint firstItem="KLs-8H-tO3" firstAttribute="leading" secondItem="fZH-zu-7gc" secondAttribute="trailing" id="lXy-0N-1B3"/>
+                            <constraint firstItem="cb3-dk-8Yu" firstAttribute="top" secondItem="a88-MK-BnJ" secondAttribute="bottom" id="mGq-pG-R9T"/>
+                            <constraint firstItem="y3c-e6-i1w" firstAttribute="trailing" secondItem="a88-MK-BnJ" secondAttribute="trailing" id="zTc-rq-z5T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y3c-e6-i1w"/>
                         <connections>
@@ -467,6 +497,8 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="button_searchByAlarm" destination="a88-MK-BnJ" id="G8n-NX-Dj8"/>
+                        <outlet property="button_searchByTag" destination="KLs-8H-tO3" id="cdG-Ms-PeX"/>
                         <outlet property="lb_searchResult" destination="sMb-9P-b87" id="f8W-l6-Kkg"/>
                         <outlet property="sb_searchBar" destination="fZH-zu-7gc" id="P3J-HR-OHP"/>
                         <outlet property="tableview" destination="cb3-dk-8Yu" id="xh7-ON-a9j"/>
@@ -479,7 +511,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2173" y="-395"/>
+            <point key="canvasLocation" x="2172" y="-395.35232383808096"/>
         </scene>
         <!--Note View Controller-->
         <scene sceneID="ihJ-03-osF">
@@ -1094,6 +1126,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wBt-YV-ZtE"/>
+        <segue reference="bwb-j3-1Vt"/>
     </inferredMetricsTieBreakers>
 </document>

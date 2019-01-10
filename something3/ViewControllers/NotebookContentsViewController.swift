@@ -18,6 +18,8 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     let sortTypeByName : String = "ByName"
     let sortTypeByRecent : String = "ByRecent"
     
+    @IBOutlet weak var button_searchByAlarm: UIButton!
+    @IBOutlet weak var button_searchByTag: UIButton!
     fileprivate var selectedNotebookContents:[R_Note] = [R_Note]()
     //open var selectedNotebook:R_NoteBook = R_NoteBook()
     open var selectedNoteBookId: Int = 0
@@ -174,6 +176,10 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         noteVC.selectedNote = selectedNotebookContents[index.row]
+    }
+    
+    @IBAction func button_FilterAlarmNotes(_ sender: Any) {
+        
     }
 }
 
