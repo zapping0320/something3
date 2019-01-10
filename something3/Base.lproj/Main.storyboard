@@ -1004,6 +1004,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nk-od-YiS">
+                                <rect key="frame" x="327" y="25" width="33" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="zc6-wT-UJQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="닫기"/>
+                                <connections>
+                                    <action selector="action_CloseVC:" destination="3MZ-GV-g2h" eventType="touchUpInside" id="8xe-z5-TC4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1013,12 +1024,17 @@
                             <constraint firstItem="dLF-EE-U2w" firstAttribute="trailing" secondItem="for-Cs-Eqs" secondAttribute="trailing" constant="10" id="IS7-DA-sgL"/>
                             <constraint firstItem="bLm-4W-J74" firstAttribute="leading" secondItem="dLF-EE-U2w" secondAttribute="leading" id="QXz-SH-59d"/>
                             <constraint firstItem="bLm-4W-J74" firstAttribute="top" secondItem="dLF-EE-U2w" secondAttribute="top" constant="50" id="XVE-b9-abu"/>
+                            <constraint firstItem="dLF-EE-U2w" firstAttribute="trailing" secondItem="8nk-od-YiS" secondAttribute="trailing" constant="15" id="XZD-2P-fK1"/>
                             <constraint firstItem="bLm-4W-J74" firstAttribute="trailing" secondItem="dLF-EE-U2w" secondAttribute="trailing" id="YZQ-HO-SjO"/>
+                            <constraint firstItem="8nk-od-YiS" firstAttribute="top" secondItem="dLF-EE-U2w" secondAttribute="top" constant="5" id="eYB-Yz-Lgp"/>
                             <constraint firstItem="dLF-EE-U2w" firstAttribute="bottom" secondItem="for-Cs-Eqs" secondAttribute="bottom" constant="10" id="xOR-wz-j8V"/>
                             <constraint firstItem="Jkn-sv-dKP" firstAttribute="centerX" secondItem="tOu-lb-zDx" secondAttribute="centerX" id="zy3-2k-w7b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dLF-EE-U2w"/>
                     </view>
+                    <connections>
+                        <outlet property="button_CloseVC" destination="8nk-od-YiS" id="M6B-P5-o5O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7P-81-Rw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
