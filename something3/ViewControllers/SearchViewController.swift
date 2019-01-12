@@ -23,13 +23,13 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sb_searchBar.placeholder = "Search Note"
-        loadNotes()
+        self.loadNotes()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //self.initSearchInfo()
         self.loadNotes()
-       applyCurrentColor()
+        self.applyCurrentColor()
     }
     
     func applyCurrentColor(){
@@ -40,11 +40,6 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         self.sb_searchBar.text = ""
         self.searchText_ = ""
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func tapToHideKeyboard(_ sender: UITapGestureRecognizer) {
         self.sb_searchBar.resignFirstResponder()
@@ -52,9 +47,12 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
     
     func loadNotes() {
-        searchedNotes = [R_Note]()
         
-        lb_searchResult.isHidden = true
+        let keywordlist = SearchKeywordelper.getKeywordList()
+        
+        self.searchedNotes = [R_Note]()
+        
+        self.lb_searchResult.isHidden = true
         
         if(self.searchText_ == "")
         {
@@ -62,10 +60,9 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
             return
         }
         let realm = try! Realm()
-        //let predicateSearch = NSPredicate(format: "isfavorite = true")
         let predicateSearch = NSPredicate(format: "title contains %@ OR content contains %@", self.searchText_, self.searchText_)
         let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
-        searchedNotes = Array(results)
+        self.searchedNotes = Array(results)
         
         self.tableview?.reloadData()
         
@@ -76,8 +73,13 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchText_ = searchText
-        loadNotes()
+        self.searchText_ = searchText
+        self.loadNotes()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        SearchKeywordelper.updateKeywordList(keyword: self.sb_searchBar.text!)
+        //move result view
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
