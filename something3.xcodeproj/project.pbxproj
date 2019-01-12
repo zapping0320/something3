@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B27BEA021E55D4E00656B5E /* TagFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27BE9F21E55D4E00656B5E /* TagFilterViewController.swift */; };
+		0B27BEC421E97A2600656B5E /* SearchKeywordHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27BEC321E97A2600656B5E /* SearchKeywordHelper.swift */; };
+		0B27BEC621E97F8E00656B5E /* SearchedResultUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27BEC521E97F8E00656B5E /* SearchedResultUIViewController.swift */; };
 		0B2B3CB3219CD65C00A0FF14 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */; };
 		0B2B3CB5219CDC6100A0FF14 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */; };
 		0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */; };
@@ -54,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		0B27BE9F21E55D4E00656B5E /* TagFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterViewController.swift; sourceTree = "<group>"; };
+		0B27BEC321E97A2600656B5E /* SearchKeywordHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHelper.swift; sourceTree = "<group>"; };
+		0B27BEC521E97F8E00656B5E /* SearchedResultUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedResultUIViewController.swift; sourceTree = "<group>"; };
 		0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0B2B43A9213DE73D00DFD4A9 /* something3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = something3.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,7 @@
 				0B2B3CB2219CD65C00A0FF14 /* StringHelper.swift */,
 				0BB69B8A21A8E1A2003B64C0 /* ColorHelper.swift */,
 				0BBEC59A21CDABD4005BAB45 /* EventHelper.swift */,
+				0B27BEC321E97A2600656B5E /* SearchKeywordHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				0BD657C0214876970037FE79 /* NoteViewController.swift */,
 				0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */,
 				0B78D6C4215AEF0D008A2E46 /* SearchViewController.swift */,
+				0B27BEC521E97F8E00656B5E /* SearchedResultUIViewController.swift */,
 				0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */,
 				0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */,
 				0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */,
@@ -416,11 +422,13 @@
 				0BF9DA7D21D982AE00C20167 /* ManageTagsViewController.swift in Sources */,
 				0B78D6C5215AEF0D008A2E46 /* SearchViewController.swift in Sources */,
 				0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */,
+				0B27BEC421E97A2600656B5E /* SearchKeywordHelper.swift in Sources */,
 				0B2B3CB3219CD65C00A0FF14 /* StringHelper.swift in Sources */,
 				0B2B43AD213DE73E00DFD4A9 /* AppDelegate.swift in Sources */,
 				0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */,
 				0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */,
 				0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */,
+				0B27BEC621E97F8E00656B5E /* SearchedResultUIViewController.swift in Sources */,
 				0B91D1C52145CCF2005DCCD9 /* AddNoteViewController.swift in Sources */,
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
 				0B27BEA021E55D4E00656B5E /* TagFilterViewController.swift in Sources */,

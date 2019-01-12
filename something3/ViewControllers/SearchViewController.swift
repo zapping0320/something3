@@ -17,18 +17,18 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     let cellIdentifier: String = "searchedNoteCell"
     
     
-    fileprivate var searchedNotes:[R_Note] = [R_Note]()
+    var searchedNotes:[R_Note] = [R_Note]()
+    var keywordList:[String] = [String]()
     var searchText_: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sb_searchBar.placeholder = "Search Note"
-        self.loadNotes()
+        self.loadContents()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //self.initSearchInfo()
-        self.loadNotes()
+        self.loadContents()
         self.applyCurrentColor()
     }
     
@@ -46,25 +46,37 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
         sender.cancelsTouchesInView = false
     }
     
-    func loadNotes() {
-        
-        let keywordlist = SearchKeywordelper.getKeywordList()
-        
-        self.searchedNotes = [R_Note]()
-        
+    func loadContents()
+    {
         self.lb_searchResult.isHidden = true
         
         if(self.searchText_ == "")
         {
-            self.tableview?.reloadData()
-            return
+           self.loadKeywords()
         }
+        else
+        {
+            self.loadNotes()
+        }
+        
+        self.tableview?.reloadData()
+    }
+    
+    func loadKeywords() {
+        self.keywordList = SearchKeywordelper.getKeywordList()
+        
+        if self.keywordList.count == 0 {
+            lb_searchResult.isHidden = false
+        }
+    }
+    
+    func loadNotes() {
+        self.searchedNotes = [R_Note]()
+        
         let realm = try! Realm()
         let predicateSearch = NSPredicate(format: "title contains %@ OR content contains %@", self.searchText_, self.searchText_)
         let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
         self.searchedNotes = Array(results)
-        
-        self.tableview?.reloadData()
         
         if(results.count == 0)
         {
@@ -74,7 +86,7 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText_ = searchText
-        self.loadNotes()
+        self.loadContents()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -83,20 +95,26 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let noteVC : NoteViewController = segue.destination as? NoteViewController
-            else {
+        if self.searchText_ == "" {
+            
+        }
+        else {
+            
+            guard let noteVC : NoteViewController = segue.destination as? NoteViewController
+                else {
+                    return
+            }
+            
+            guard let cell:UITableViewCell = sender as? UITableViewCell else {
                 return
+            }
+            
+            guard  let index:IndexPath = self.tableview?.indexPath(for: cell)  else {
+                return
+            }
+            
+            noteVC.selectedNote = searchedNotes[index.row]
         }
-        
-        guard let cell:UITableViewCell = sender as? UITableViewCell else {
-            return
-        }
-        
-        guard  let index:IndexPath = self.tableview?.indexPath(for: cell)  else {
-            return
-        }
-        
-        noteVC.selectedNote = searchedNotes[index.row]
     }
 
 }
@@ -109,28 +127,42 @@ extension SearchViewController {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return searchedNotes.count
+        if self.searchText_ == "" {
+            return self.keywordList.count
+        } else {
+            return searchedNotes.count
+        }
     }
-    /*
-     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
-     let viewController = self.storyboard?.instantiateViewController(withIdentifier: "Note View") as! NoteViewController
-     viewController.selectedNotebook = self.selectedNotebook
-     viewController.selectedNote = selectedNotebookContents[indexPath.row]
-     self.present(viewController, animated: true)
-     }
-     */
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.searchText_ == "" {
+                return "Keywords"
+        } else {
+            return "Notes"
+        }
+    }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        if(indexPath.row > searchedNotes.count - 1){
-            return UITableViewCell()
-        }
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let currentNote = searchedNotes[indexPath.row]
-        cell.textLabel?.text = currentNote.title
-        if(currentNote.alarmDate != nil)
-        {
-            cell.textLabel?.text = currentNote.title + String("(alarmed)")
+        if self.searchText_ == "" {
+            if(indexPath.row > self.keywordList.count - 1){
+                return UITableViewCell()
+            }
+            cell.textLabel?.text = self.keywordList[indexPath.row]
+        }
+        else {
+            
+            if(indexPath.row > searchedNotes.count - 1){
+                return UITableViewCell()
+            }
+            
+            let currentNote = searchedNotes[indexPath.row]
+            cell.textLabel?.text = currentNote.title
+            if(currentNote.alarmDate != nil)
+            {
+                cell.textLabel?.text = currentNote.title + String("(alarmed)")
+            }
+            
         }
         return cell
     }
