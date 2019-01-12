@@ -121,18 +121,26 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         self.lb_searchResult.isHidden = true
         
         let realm = try! Realm()
-        var andPredicate:NSCompoundPredicate
+        
         let predicateNotebookId = NSPredicate(format: "relatedNotebookId = %@", NSNumber(value: self.selectedNoteBookId))
-        if(self.searchText_ == "")
-        {
-            andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateNotebookId])
-        }
-        else
+        var predicateList = [NSPredicate]()
+        predicateList.append(predicateNotebookId)
+
+        if(self.searchText_ != "")
         {
              let predicateSearch = NSPredicate(format: "title contains %@ OR content contains %@", self.searchText_, self.searchText_)
-            andPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicateNotebookId, predicateSearch])
+
+             predicateList.append(predicateSearch)
         }
-       
+        
+        if(self.button_searchByAlarm.isSelected == true)
+        {
+            let predicateAlarm = NSPredicate(format: "alarmDate != nil ")
+            predicateList.append(predicateAlarm)
+        }
+        
+        let andPredicate:NSCompoundPredicate = NSCompoundPredicate(type: .and, subpredicates: predicateList)
+        
         var sortField : String = ""
         var sortAscending: Bool = false
         if(sortType_ == self.sortTypeByName)
@@ -179,7 +187,8 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @IBAction func button_FilterAlarmNotes(_ sender: Any) {
-        
+        self.button_searchByAlarm.isSelected = !self.button_searchByAlarm.isSelected
+        self.loadContents()
     }
 }
 
