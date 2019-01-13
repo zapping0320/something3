@@ -11,7 +11,7 @@ import RealmSwift
 
 class TagManager {
     
-    static let tagPlaceHolderString = "add Tag like #Tag"
+    static let tagPlaceHolderString = NSLocalizedString("add Tag like #Tag", comment: "")
     
     static func addTagsToNote(noteid:Int, tagString:String?) -> Bool {
         clearTagInfos(noteid: noteid)
