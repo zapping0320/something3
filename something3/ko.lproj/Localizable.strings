@@ -6,3 +6,7 @@
   Copyright © 2019 John Kim. All rights reserved.
 */
 "add Tag like #Tag" = "다음처럼 태그 추가하기 #태그";
+
+"%@-Copied" = "%@-복사됨";
+
+"%@(alarmed)" = "%@(알람)";

@@ -155,7 +155,7 @@ extension FavoriteViewController {
         cell.textLabel?.text = currentNote.title
         if(currentNote.alarmDate != nil)
         {
-            cell.textLabel?.text = currentNote.title + String("(alarmed)")
+            cell.textLabel?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
         }
         return cell
     }

@@ -10,6 +10,10 @@ import Foundation
 
 class StringHelper {
     static func makeHeaderStringCopied(title : String) -> String {
-        return title + " Copied"
+        return String.localizedStringWithFormat(NSLocalizedString("%@-Copied", comment: ""), title)
+    }
+    
+    static func makeHeaderStringAlarmed(title : String) -> String {
+        return String.localizedStringWithFormat(NSLocalizedString("%@(alarmed)", comment: ""), title)
     }
 }
