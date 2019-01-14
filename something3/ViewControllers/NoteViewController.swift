@@ -64,6 +64,7 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         
         if(selectedNote.relatedNotebookId == -1){
             self.tf_title.isUserInteractionEnabled = false
+            self.tf_tags.isEnabled = false
             self.tv_content.isEditable = false
             self.lb_guideTrash.isHidden = false
             self.switch_favorite.isHidden = true
