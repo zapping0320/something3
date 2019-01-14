@@ -3,10 +3,10 @@
 "01J-yV-HbW.title" = "Setting";
 
 /* Class = "UIButton"; normalTitle = "미설정"; ObjectID = "04L-63-RqL"; */
-"04L-63-RqL.normalTitle" = "미설정";
+"04L-63-RqL.normalTitle" = "None";
 
 /* Class = "UILabel"; text = "제공해주신 정보는 개인 정보처리방침 및 서비스 약관에 따라 기술적인 문제를 해결하고 서비스를 개선하는 데 사용됩니다."; ObjectID = "1EC-3X-Wxv"; */
-"1EC-3X-Wxv.text" = "제공해주신 정보는 개인 정보처리방침 및 서비스 약관에 따라 기술적인 문제를 해결하고 서비스를 개선하는 데 사용됩니다.";
+"1EC-3X-Wxv.text" = "The information you provide is used to resolve technical issues and improve our services in accordance with our Privacy Policy and Terms of Service.";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "1fX-eM-nHL"; */
 "1fX-eM-nHL.text" = "Label";
@@ -24,7 +24,7 @@
 "8T5-c0-pBi.title" = "Back to Favorite";
 
 /* Class = "UIButton"; normalTitle = "닫기"; ObjectID = "8nk-od-YiS"; */
-"8nk-od-YiS.normalTitle" = "닫기";
+"8nk-od-YiS.normalTitle" = "Close";
 
 /* Class = "UISwitch"; accessibilityLabel = "Favorite"; ObjectID = "8v7-yf-zlT"; */
 "8v7-yf-zlT.accessibilityLabel" = "Favorite";
@@ -42,10 +42,10 @@
 "GGC-Z6-vIX.title" = "NoteBooks";
 
 /* Class = "UIButton"; normalTitle = "Tag관리"; ObjectID = "HhD-5z-oVd"; */
-"HhD-5z-oVd.normalTitle" = "Tag관리";
+"HhD-5z-oVd.normalTitle" = "Manage tags";
 
 /* Class = "UILabel"; text = "필터"; ObjectID = "Jkn-sv-dKP"; */
-"Jkn-sv-dKP.text" = "필터";
+"Jkn-sv-dKP.text" = "Filter";
 
 /* Class = "UIButton"; normalTitle = "T"; ObjectID = "KLs-8H-tO3"; */
 "KLs-8H-tO3.normalTitle" = "T";
@@ -54,7 +54,7 @@
 "LfB-Nv-Ydo.text" = "No Results";
 
 /* Class = "UIButton"; normalTitle = "의견 보내기"; ObjectID = "ML4-f0-fdQ"; */
-"ML4-f0-fdQ.normalTitle" = "의견 보내기";
+"ML4-f0-fdQ.normalTitle" = "Send feedback";
 
 /* Class = "UILabel"; text = "Alarm"; ObjectID = "N9m-lt-Pan"; */
 "N9m-lt-Pan.text" = "Alarm";
@@ -81,7 +81,7 @@
 "fwe-eo-deh.text" = "Dark Mode";
 
 /* Class = "UILabel"; text = "보내는 사람 :"; ObjectID = "gJX-zU-t60"; */
-"gJX-zU-t60.text" = "보내는 사람 :";
+"gJX-zU-t60.text" = "Sender :";
 
 /* Class = "UILabel"; text = "Favorite"; ObjectID = "hnL-AY-Qxc"; */
 "hnL-AY-Qxc.text" = "Favorite";
@@ -102,7 +102,7 @@
 "tPd-9Z-rcK.title" = "Favorite";
 
 /* Class = "UILabel"; text = "It's now allowed to modify at Trash"; ObjectID = "xiy-88-VaQ"; */
-"xiy-88-VaQ.text" = "It's now allowed to modify at Trash";
+"xiy-88-VaQ.text" = "It's not allowed to modify at Trash";
 
 /* Class = "UIButton"; normalTitle = "미설정"; ObjectID = "yLB-Ee-ge3"; */
-"yLB-Ee-ge3.normalTitle" = "미설정";
+"yLB-Ee-ge3.normalTitle" = "None";

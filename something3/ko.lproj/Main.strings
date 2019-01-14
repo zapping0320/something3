@@ -1,6 +1,6 @@
 
 /* Class = "UITabBarItem"; title = "Setting"; ObjectID = "01J-yV-HbW"; */
-"01J-yV-HbW.title" = "Setting";
+"01J-yV-HbW.title" = "설정";
 
 /* Class = "UIButton"; normalTitle = "미설정"; ObjectID = "04L-63-RqL"; */
 "04L-63-RqL.normalTitle" = "미설정";
@@ -12,34 +12,34 @@
 "1fX-eM-nHL.text" = "Label";
 
 /* Class = "UILabel"; text = "Insert Note"; ObjectID = "1tX-B0-qaO"; */
-"1tX-B0-qaO.text" = "Insert Note";
+"1tX-B0-qaO.text" = "노트 작성";
 
 /* Class = "UILabel"; text = "Application Version"; ObjectID = "379-34-5sJ"; */
-"379-34-5sJ.text" = "Application Version";
+"379-34-5sJ.text" = "앱 버전";
 
 /* Class = "UITabBarItem"; title = "ADD"; ObjectID = "6tn-Ad-Md3"; */
-"6tn-Ad-Md3.title" = "ADD";
+"6tn-Ad-Md3.title" = "추가";
 
 /* Class = "UIBarButtonItem"; title = "Back to Favorite"; ObjectID = "8T5-c0-pBi"; */
-"8T5-c0-pBi.title" = "Back to Favorite";
+"8T5-c0-pBi.title" = "즐겨찾기로 가기";
 
 /* Class = "UIButton"; normalTitle = "닫기"; ObjectID = "8nk-od-YiS"; */
 "8nk-od-YiS.normalTitle" = "닫기";
 
 /* Class = "UISwitch"; accessibilityLabel = "Favorite"; ObjectID = "8v7-yf-zlT"; */
-"8v7-yf-zlT.accessibilityLabel" = "Favorite";
+"8v7-yf-zlT.accessibilityLabel" = "즐겨찾기";
 
 /* Class = "UILabel"; text = "Insert New Notebook"; ObjectID = "9vj-sR-bHc"; */
-"9vj-sR-bHc.text" = "Insert New Notebook";
+"9vj-sR-bHc.text" = "새로운 노트북 작성";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Ahz-QR-u3b"; */
 "Ahz-QR-u3b.text" = "Label";
 
 /* Class = "UILabel"; text = "Favorite"; ObjectID = "Ce3-Tl-nAB"; */
-"Ce3-Tl-nAB.text" = "Favorite";
+"Ce3-Tl-nAB.text" = "즐겨찾기";
 
 /* Class = "UITabBarItem"; title = "NoteBooks"; ObjectID = "GGC-Z6-vIX"; */
-"GGC-Z6-vIX.title" = "NoteBooks";
+"GGC-Z6-vIX.title" = "노트북";
 
 /* Class = "UIButton"; normalTitle = "Tag관리"; ObjectID = "HhD-5z-oVd"; */
 "HhD-5z-oVd.normalTitle" = "Tag관리";
@@ -51,58 +51,58 @@
 "KLs-8H-tO3.normalTitle" = "T";
 
 /* Class = "UILabel"; text = "No Results"; ObjectID = "LfB-Nv-Ydo"; */
-"LfB-Nv-Ydo.text" = "No Results";
+"LfB-Nv-Ydo.text" = "결과 없음";
 
 /* Class = "UIButton"; normalTitle = "의견 보내기"; ObjectID = "ML4-f0-fdQ"; */
 "ML4-f0-fdQ.normalTitle" = "의견 보내기";
 
 /* Class = "UILabel"; text = "Alarm"; ObjectID = "N9m-lt-Pan"; */
-"N9m-lt-Pan.text" = "Alarm";
+"N9m-lt-Pan.text" = "알람";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "Q2D-rp-faQ"; */
-"Q2D-rp-faQ.normalTitle" = "Cancel";
+"Q2D-rp-faQ.normalTitle" = "취소";
 
 /* Class = "UIButton"; normalTitle = "A"; ObjectID = "a88-MK-BnJ"; */
 "a88-MK-BnJ.normalTitle" = "A";
 
 /* Class = "UIButton"; normalTitle = "Add Notebook"; ObjectID = "csw-rO-Fym"; */
-"csw-rO-Fym.normalTitle" = "Add Notebook";
+"csw-rO-Fym.normalTitle" = "노트북 추가";
 
 /* Class = "UINavigationItem"; title = "NoteBook"; ObjectID = "ddI-9d-IXC"; */
-"ddI-9d-IXC.title" = "NoteBook";
+"ddI-9d-IXC.title" = "노트북";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "eUj-0X-RZf"; */
-"eUj-0X-RZf.normalTitle" = "Save";
+"eUj-0X-RZf.normalTitle" = "저장";
 
 /* Class = "UITabBarItem"; title = "Search"; ObjectID = "flr-kr-sjh"; */
-"flr-kr-sjh.title" = "Search";
+"flr-kr-sjh.title" = "검색";
 
 /* Class = "UILabel"; text = "Dark Mode"; ObjectID = "fwe-eo-deh"; */
-"fwe-eo-deh.text" = "Dark Mode";
+"fwe-eo-deh.text" = "다크 모드";
 
 /* Class = "UILabel"; text = "보내는 사람 :"; ObjectID = "gJX-zU-t60"; */
 "gJX-zU-t60.text" = "보내는 사람 :";
 
 /* Class = "UILabel"; text = "Favorite"; ObjectID = "hnL-AY-Qxc"; */
-"hnL-AY-Qxc.text" = "Favorite";
+"hnL-AY-Qxc.text" = "즐겨찾기";
 
 /* Class = "UILabel"; text = "Alarm"; ObjectID = "iGh-A9-FEc"; */
-"iGh-A9-FEc.text" = "Alarm";
+"iGh-A9-FEc.text" = "알람";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "nze-ur-6gG"; */
-"nze-ur-6gG.normalTitle" = "Save";
+"nze-ur-6gG.normalTitle" = "저장";
 
 /* Class = "UITabBarItem"; title = "Favorite"; ObjectID = "oCb-xU-Vgl"; */
-"oCb-xU-Vgl.title" = "Favorite";
+"oCb-xU-Vgl.title" = "즐겨찾기";
 
 /* Class = "UILabel"; text = "No search result"; ObjectID = "sMb-9P-b87"; */
-"sMb-9P-b87.text" = "No search result";
+"sMb-9P-b87.text" = "검색 결과 없음";
 
 /* Class = "UINavigationItem"; title = "Favorite"; ObjectID = "tPd-9Z-rcK"; */
-"tPd-9Z-rcK.title" = "Favorite";
+"tPd-9Z-rcK.title" = "즐겨찾기";
 
 /* Class = "UILabel"; text = "It's now allowed to modify at Trash"; ObjectID = "xiy-88-VaQ"; */
-"xiy-88-VaQ.text" = "It's now allowed to modify at Trash";
+"xiy-88-VaQ.text" = "휴지통에선 수정할 수 없습니다.";
 
 /* Class = "UIButton"; normalTitle = "미설정"; ObjectID = "yLB-Ee-ge3"; */
 "yLB-Ee-ge3.normalTitle" = "미설정";
