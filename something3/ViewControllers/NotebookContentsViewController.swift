@@ -170,11 +170,6 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let noteVC : NoteViewController = segue.destination as? NoteViewController
-            else {
-                return
-        }
-        
         guard let cell:UITableViewCell = sender as? UITableViewCell else {
             return
         }
@@ -183,7 +178,20 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
             return
         }
         
-        noteVC.selectedNote = selectedNotebookContents[index.row]
+        if segue.identifier == "NoteDetail" {
+            guard let noteVC : NoteViewController = segue.destination as? NoteViewController
+                else {
+                    return
+            }
+            noteVC.selectedNote = selectedNotebookContents[index.row]
+        }
+        else if segue.identifier == "TagFilter" {
+            guard let tagFilterVC : TagFilterViewController = segue.destination as? TagFilterViewController
+                else {
+                    return
+            }
+            tagFilterVC.selectedNoteBookId = self.selectedNoteBookId
+        }
     }
     
     @IBAction func button_FilterAlarmNotes(_ sender: Any) {

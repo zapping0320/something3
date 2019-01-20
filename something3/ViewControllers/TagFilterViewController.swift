@@ -9,11 +9,23 @@
 import UIKit
 
 class TagFilterViewController: UIViewController {
-
+    open var selectedNoteBookId: Int = 0
+    
+    
+    
     @IBOutlet weak var button_CloseVC: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        self.applyCurrentColor()
+    }
+    
+    func applyCurrentColor(){
+        //self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
+        //self.button_CloseVC.backgroundColor = ColorHelper.getCurrentMainButtonColor()
     }
 
     @IBAction func action_CloseVC(_ sender: Any) {

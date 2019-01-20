@@ -443,7 +443,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="iJw-0O-XZd" kind="show" id="bwb-j3-1Vt"/>
+                                            <segue destination="iJw-0O-XZd" kind="show" identifier="NoteDetail" id="bwb-j3-1Vt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -470,7 +470,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="T"/>
                                 <connections>
-                                    <segue destination="3MZ-GV-g2h" kind="presentation" id="lNj-V9-kvH"/>
+                                    <segue destination="3MZ-GV-g2h" kind="presentation" identifier="TagFilter" id="mKx-JU-5B0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a88-MK-BnJ">
@@ -1157,6 +1157,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="opV-oG-lvY"/>
+        <segue reference="bwb-j3-1Vt"/>
     </inferredMetricsTieBreakers>
 </document>
