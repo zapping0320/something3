@@ -470,7 +470,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="T"/>
                                 <connections>
-                                    <segue destination="3MZ-GV-g2h" kind="presentation" identifier="TagFilter" id="mKx-JU-5B0"/>
+                                    <segue destination="3MZ-GV-g2h" kind="showDetail" identifier="TagFilter" id="xJo-Yd-gxd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a88-MK-BnJ">
@@ -1022,6 +1022,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3MZ-GV-g2h" id="QY1-uA-QHE"/>
+                                    <outlet property="delegate" destination="3MZ-GV-g2h" id="x43-r1-hAo"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="필터" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkn-sv-dKP">
                                 <rect key="frame" x="166.5" y="30" width="42" height="29"/>
@@ -1030,7 +1034,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nk-od-YiS">
-                                <rect key="frame" x="327" y="25" width="33" height="40"/>
+                                <rect key="frame" x="318.5" y="25" width="41.5" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="zc6-wT-UJQ"/>
                                 </constraints>
@@ -1053,6 +1057,7 @@
                             <constraint firstItem="bLm-4W-J74" firstAttribute="trailing" secondItem="dLF-EE-U2w" secondAttribute="trailing" id="YZQ-HO-SjO"/>
                             <constraint firstItem="8nk-od-YiS" firstAttribute="top" secondItem="dLF-EE-U2w" secondAttribute="top" constant="5" id="eYB-Yz-Lgp"/>
                             <constraint firstItem="dLF-EE-U2w" firstAttribute="bottom" secondItem="for-Cs-Eqs" secondAttribute="bottom" constant="10" id="xOR-wz-j8V"/>
+                            <constraint firstItem="8nk-od-YiS" firstAttribute="leading" secondItem="Jkn-sv-dKP" secondAttribute="trailing" constant="110" id="y54-cN-hDX"/>
                             <constraint firstItem="Jkn-sv-dKP" firstAttribute="centerX" secondItem="tOu-lb-zDx" secondAttribute="centerX" id="zy3-2k-w7b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dLF-EE-U2w"/>

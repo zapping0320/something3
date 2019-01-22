@@ -170,15 +170,15 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let cell:UITableViewCell = sender as? UITableViewCell else {
-            return
-        }
-        
-        guard  let index:IndexPath = self.tableview?.indexPath(for: cell)  else {
-            return
-        }
-        
         if segue.identifier == "NoteDetail" {
+            guard let cell:UITableViewCell = sender as? UITableViewCell else {
+                return
+            }
+            
+            guard  let index:IndexPath = self.tableview?.indexPath(for: cell)  else {
+                return
+            }
+            
             guard let noteVC : NoteViewController = segue.destination as? NoteViewController
                 else {
                     return

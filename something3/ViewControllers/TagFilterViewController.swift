@@ -12,6 +12,7 @@ import RealmSwift
 class TagFilterViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     open var selectedNoteBookId: Int = 0
     var selectedNotebook:R_NoteBook = R_NoteBook()
+    var tagArray_:[Int:[R_Tag]] = [Int:[R_Tag]]()
     
     @IBOutlet weak var button_CloseVC: UIButton!
     @IBOutlet weak var sb_searchBar: UISearchBar!
@@ -43,66 +44,88 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
     func loadTags() {
         let realm = try! Realm()
         let predicateNotebookId = NSPredicate(format: "id = %@", NSNumber(value: self.selectedNoteBookId))
-        let results = realm.objects(R_NoteBook.self).filter(predicateNotebookId)
-        if results.count > 0 {
-            self.selectedNotebook = results[0]
-        }
-        
-        let tagString = self.selectedNotebook.searchTags
-        
-        if tagString == "" {
+        let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebookId)
+        if notebookResults.count == 0 {
             return
         }
         
-        var tags:[String] = []
-        if tagString.contains(",") {
-            tags = tagString.components(separatedBy: ",")
+        tagArray_ = [Int:[R_Tag]]()
+        
+        self.selectedNotebook = notebookResults[0]
+        
+        
+        
+        var allTagResults: Results<R_Tag>
+        if(self.searchText_ != "")
+        {
+            let predicateSearch = NSPredicate(format: "content CONTAINS[c] %@", self.searchText_)
+            allTagResults = realm.objects(R_Tag.self).filter(predicateSearch).sorted(byKeyPath: "content", ascending: true)
+        }
+        else
+        {
+            allTagResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
         }
         
-        if tags.count > 1 {
-            for tag in tags {
+        let tagString = self.selectedNotebook.searchTags
+        var notebooksTags:[String] = []
+        if tagString.contains(",") {
+            notebooksTags = tagString.components(separatedBy: ",")
+        }
+        
+        if notebooksTags.count > 1 {
+            for selectTag in notebooksTags {
                 //_ = storeTagInfo(noteid: noteid, tag: tag)
             }
           
         }
+        else {
+            tagArray_[1] = Array(allTagResults)
+        }
+        
+        self.tableview.reloadData()
     }
 }
 
 extension TagFilterViewController {
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 1//tagArray_.count
+        return 2
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-//        if (section > tagArray_.count || section < 0){
-//            return 0
-//        }else{
-//            let tagSectionInfos = tagArray_[section]
-//            return tagSectionInfos.tagList.count
-//        }
-        return 1
+        if (section > 1 || section < 0){
+            return 0
+        }else{
+            let datalist = tagArray_[section] as [R_Tag]?
+            if datalist != nil {
+                return datalist!.count
+            }
+            else{
+                return 0
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if (section > tagArray_.count || section < 0){
-//            return "error"
-//        }else{
-//            let tagSectionInfos = tagArray_[section]
-//            return tagSectionInfos.title
-//        }
-        return "temp"
+        if (section > 1 || section < 0){
+            return "error"
+        }else{
+            if section == 0 {
+                return "Selected"
+            }
+            else{
+                return "Others"
+            }
+        }
     }
     
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        //let currentTagSection = self.tagArray_[indexPath.section]
-        //let currentTag = currentTagSection.tagList[indexPath.row]
-        //cell.textLabel?.text = currentTag.tag.content + "(" +  String(currentTag.count) + ")"
-        cell.textLabel?.text = "1"
+        let currentTag = self.tagArray_[indexPath.section]![indexPath.row] as R_Tag
+        cell.textLabel?.text = currentTag.content
         return cell
     }
 }
