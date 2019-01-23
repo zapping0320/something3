@@ -53,8 +53,6 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
         
         self.selectedNotebook = notebookResults[0]
         
-        
-        
         var allTagResults: Results<R_Tag>
         if(self.searchText_ != "")
         {
@@ -73,12 +71,32 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
         }
         
         if notebooksTags.count > 1 {
-            for selectTag in notebooksTags {
-                //_ = storeTagInfo(noteid: noteid, tag: tag)
+            var selectedTags = [R_Tag]()
+            var otherTags = [R_Tag]()
+            
+            for i in 0..<allTagResults.count {
+                var foundTag = false
+                let item = allTagResults[i]
+                for selectedTag in notebooksTags {
+                    if tagString == "" {
+                        continue
+                    }
+                    if Int(selectedTag) == item.id {
+                        foundTag = true
+                        selectedTags.append(item)
+                        break
+                    }
+                }
+                if(foundTag == false){
+                    otherTags.append(item)
+                }
+
             }
-          
+            tagArray_[0] = selectedTags
+            tagArray_[1] = otherTags
         }
         else {
+            tagArray_[0] = [R_Tag]()
             tagArray_[1] = Array(allTagResults)
         }
         
@@ -127,6 +145,18 @@ extension TagFilterViewController {
         let currentTag = self.tagArray_[indexPath.section]![indexPath.row] as R_Tag
         cell.textLabel?.text = currentTag.content
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let currentTag = self.tagArray_[indexPath.section]![indexPath.row] as R_Tag
+        let sourceSection = indexPath.section
+        let targetSection = indexPath.section == 1 ? 0 : 1
+        
+        self.tagArray_[sourceSection]?.remove(at: indexPath.row)
+        self.tagArray_[targetSection]?.insert(currentTag, at: 0)
+        
+        self.tableview.reloadData()
     }
 }
 
