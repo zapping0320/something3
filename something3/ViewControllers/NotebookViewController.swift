@@ -101,11 +101,11 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
         let realm = try! Realm()
         if(self.searchText_ == "")
         {
-            let recentResults = realm.objects(R_NoteBook.self).sorted(byKeyPath: "updated_at", ascending: true)
+            let recentResults = realm.objects(R_NoteBook.self).sorted(byKeyPath: "updated_at", ascending: false)
             let recentCount = recentResults.count > 5 ? 4 : recentResults.count
             for i in 0..<recentCount {
                 let item = recentResults[i]
-                notebookarray_recent.insert(item, at: 0)
+                notebookarray_recent.append(item)
             }
             
             let allResults = realm.objects(R_NoteBook.self).sorted(byKeyPath: "name", ascending: true)
@@ -222,8 +222,9 @@ extension NotebookViewController {
                 let realm = try! Realm()
                 try! realm.write {
                     currentNotebook.name = alert.textFields!.first!.text!
+                    currentNotebook.updated_at = Date()
                 }
-                self.tableview.reloadRows(at: [indexPath], with: .fade)
+                self.loadNotebooks()
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: false)
