@@ -21,7 +21,6 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var button_searchByAlarm: UIButton!
     @IBOutlet weak var button_searchByTag: UIButton!
     fileprivate var selectedNotebookContents:[R_Note] = [R_Note]()
-    //open var selectedNotebook:R_NoteBook = R_NoteBook()
     open var selectedNoteBookId: Int = 0
     var searchText_: String = ""
     var sortType_: String = ""
@@ -154,6 +153,23 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
             sortAscending = false
         }
         let results = realm.objects(R_Note.self).filter(andPredicate).sorted(byKeyPath: sortField, ascending: sortAscending)
+        
+        if(self.button_searchByTag.isSelected == true)
+        {
+            let predicateNotebook = NSPredicate(format: "id = %@", NSNumber(value:self.selectedNoteBookId))
+            let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebook)
+            if(notebookResults.count > 0)
+            {
+                let currentNotebook = notebookResults[0]
+                if(currentNotebook.searchTags != "")
+                {
+                    let predicateTag = NSPredicate(format: "tagId in { %@ } ", currentNotebook.searchTags)
+ //                   let relationResults = realm.objects(R_NoteTagRelations.self).filter(predicateTag)
+                }
+            }
+            
+        }
+        
         selectedNotebookContents = Array(results)
         
         self.tableview?.reloadData()
@@ -198,6 +214,10 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         self.button_searchByAlarm.isSelected = !self.button_searchByAlarm.isSelected
         self.loadContents()
     }
+    @IBAction func buutonFilterTag(_ sender: UIButton) {
+        self.button_searchByTag.isSelected = !self.button_searchByTag.isSelected
+        self.loadContents()
+    }
 }
 
 extension NotebookContentsViewController {
@@ -211,37 +231,7 @@ extension NotebookContentsViewController {
         return selectedNotebookContents.count
     }
     
-    /*
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
-    }*/
-    
-    /*
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "Note View") as! NoteViewController
-        viewController.selectedNotebook = self.selectedNotebook
-        viewController.selectedNote = selectedNotebookContents[indexPath.row]
-        self.present(viewController, animated: true)
-    }
-    */
-    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
-        /*
-        let cell:NoteContentCell = self.tableview.dequeueReusableCell(withIdentifier: "NoteContentCell", for: indexPath) as! NoteContentCell
-        
-        let currentitem = selectedNotebookContents[indexPath.row]
-        //print(indexPath.row)
-        //print(currentitem.name)
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "yyyy-MM-dd"
-        cell.label_datetime?.text = dateformatter.string(from: currentitem.updated_at)
-        cell.label_title?.text = currentitem.title
-        cell.label_content?.text = currentitem.content
-        
-        return cell
-        */
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let currentNote = selectedNotebookContents[indexPath.row]
         cell.textLabel?.text = currentNote.title
@@ -270,11 +260,6 @@ extension NotebookContentsViewController {
             try! realm.write {
                 selectedNotebookContents[indexPath.row].relatedNotebookId = -1
                 selectedNotebookContents[indexPath.row].oldNotebookId = self.selectedNoteBookId
-                
-                /*
-                 tableView.beginUpdates()
-                 tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-                 tableView.endUpdates()*/
             }
             loadContents()
         }

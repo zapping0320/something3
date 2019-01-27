@@ -119,6 +119,10 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
         
         self.tableview.reloadData()
     }
+    @IBAction func buttonCancelClose(_ sender: Any) {
+         self.closeViewController()
+        
+    }
 }
 
 extension TagFilterViewController {
@@ -161,6 +165,7 @@ extension TagFilterViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let currentTag = self.tagArray_[indexPath.section]![indexPath.row] as R_Tag
         cell.textLabel?.text = currentTag.content
+        
         return cell
     }
     
