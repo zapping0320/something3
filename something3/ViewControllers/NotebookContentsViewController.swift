@@ -34,6 +34,14 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if(self.selectedNoteBookId == -1)
+        {
+            self.button_searchByTag.isEnabled = false
+        }
+        else
+        {
+            self.button_searchByTag.isEnabled = true
+        }
         applyCurrentColor()
     }
     
@@ -157,46 +165,48 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         let predicateNotebook = NSPredicate(format: "id = %@", NSNumber(value:self.selectedNoteBookId))
         let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebook)
         if(notebookResults.count == 0){
-            return
+            //trash
+            selectedNotebookContents = Array(results)
         }
-        
-        let currentNotebook = notebookResults[0]
-        if(currentNotebook.searchTags != "")
-        {
-            let predicateTagString = String.localizedStringWithFormat("tagId in { %@ } ", currentNotebook.searchTags)
-            let predicateTag = NSPredicate(format: predicateTagString)
-            let relationResults = realm.objects(R_NoteTagRelations.self).filter(predicateTag)
-            var noteidList = [Int]()
-            for i in 0..<relationResults.count {
-                let relationItem = relationResults[i]
-                if (noteidList.contains(relationItem.noteId) == false){
-                    noteidList.append(relationItem.noteId)
-                }
-            }
-            
-            if(noteidList.count == 0)
+        else{
+            let currentNotebook = notebookResults[0]
+            if(currentNotebook.searchTags != "")
             {
-                selectedNotebookContents = Array(results)
+                let predicateTagString = String.localizedStringWithFormat("tagId in { %@ } ", currentNotebook.searchTags)
+                let predicateTag = NSPredicate(format: predicateTagString)
+                let relationResults = realm.objects(R_NoteTagRelations.self).filter(predicateTag)
+                var noteidList = [Int]()
+                for i in 0..<relationResults.count {
+                    let relationItem = relationResults[i]
+                    if (noteidList.contains(relationItem.noteId) == false){
+                        noteidList.append(relationItem.noteId)
+                    }
+                }
+                
+                if(noteidList.count == 0)
+                {
+                    selectedNotebookContents = Array(results)
+                }
+                else
+                {
+                    for i in 0..<results.count {
+                        let noteItem = results[i]
+                        if( noteidList.contains(noteItem.id)){
+                            selectedNotebookContents.append(noteItem)
+                        }
+                    }
+                }
+                
             }
             else
             {
-                for i in 0..<results.count {
-                    let noteItem = results[i]
-                    if( noteidList.contains(noteItem.id)){
-                        selectedNotebookContents.append(noteItem)
-                    }
-                }
+                selectedNotebookContents = Array(results)
             }
-            
-        }
-        else
-        {
-            selectedNotebookContents = Array(results)
         }
         
         self.tableview?.reloadData()
         
-        if(results.count == 0)
+        if(selectedNotebookContents.count == 0)
         {
             self.lb_searchResult.isHidden = false
         }
