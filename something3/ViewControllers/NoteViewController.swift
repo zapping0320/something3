@@ -62,28 +62,31 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
             self.tv_content.textColor = UIColor.lightGray
         }
         
+        
+        self.loadNotebooks()
         if(selectedNote.relatedNotebookId == -1){
             self.tf_title.isUserInteractionEnabled = false
             self.tf_tags.isEnabled = false
             self.tv_content.isEditable = false
             self.lb_guideTrash.isHidden = false
-            self.switch_favorite.isHidden = true
-            self.bt_alarm.isHidden = true
+            self.switch_favorite.isEnabled = false
+            self.bt_alarm.isEnabled = false
+            self.pv_notebooks.isHidden = true
         }
         else{
             self.lb_guideTrash.isHidden = true
-            self.switch_favorite.isHidden = false
-            self.bt_alarm.isHidden = false
-            self.pv_notebooks.isAccessibilityElement = true
-        }
-         loadNotebooks()
-        if notebookArray_.count > 0 {
-            for i in 0..<notebookArray_.count {
-                let notebook = notebookArray_[i]
-                if(notebook.id == self.selectedNote.relatedNotebookId)
-                {
-                    self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
-                    break
+            self.switch_favorite.isEnabled = true
+            self.bt_alarm.isEnabled = true
+            self.pv_notebooks.isHidden = false
+            
+            if notebookArray_.count > 0 {
+                for i in 0..<notebookArray_.count {
+                    let notebook = notebookArray_[i]
+                    if(notebook.id == self.selectedNote.relatedNotebookId)
+                    {
+                        self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
+                        break
+                    }
                 }
             }
         }
@@ -100,6 +103,7 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
     func applyCurrentColor(){
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
         self.bt_alarm.tintColor = ColorHelper.getCurrentDeepTextColor()
+        self.lb_guideTrash.backgroundColor = ColorHelper.getCurrentAppBackground()
     }
     
     @objc func barBtn_more_Action(){

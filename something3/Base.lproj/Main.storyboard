@@ -576,7 +576,7 @@
                                 <rect key="frame" x="15" y="590" width="345" height="23"/>
                                 <color key="backgroundColor" red="0.38654898030000001" green="0.75559884430000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" red="1" green="0.39664300689999998" blue="0.84325342140000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="0.14133548256713047" blue="0.19953146996476823" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y48-IS-eFl">
