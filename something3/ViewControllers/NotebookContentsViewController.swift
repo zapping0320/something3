@@ -154,20 +154,18 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         }
         let results = realm.objects(R_Note.self).filter(andPredicate).sorted(byKeyPath: sortField, ascending: sortAscending)
         
-        if(self.button_searchByTag.isSelected == true)
+        
+        let predicateNotebook = NSPredicate(format: "id = %@", NSNumber(value:self.selectedNoteBookId))
+        let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebook)
+        if(notebookResults.count > 0)
         {
-            let predicateNotebook = NSPredicate(format: "id = %@", NSNumber(value:self.selectedNoteBookId))
-            let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebook)
-            if(notebookResults.count > 0)
+            let currentNotebook = notebookResults[0]
+            if(currentNotebook.searchTags != "")
             {
-                let currentNotebook = notebookResults[0]
-                if(currentNotebook.searchTags != "")
-                {
-                    let predicateTag = NSPredicate(format: "tagId in { %@ } ", currentNotebook.searchTags)
- //                   let relationResults = realm.objects(R_NoteTagRelations.self).filter(predicateTag)
-                }
+                let predicateTagString = String.localizedStringWithFormat("tagId in { %@ } ", currentNotebook.searchTags)
+                let predicateTag = NSPredicate(format: predicateTagString)
+                let relationResults = realm.objects(R_NoteTagRelations.self).filter(predicateTag)
             }
-            
         }
         
         selectedNotebookContents = Array(results)
@@ -215,7 +213,6 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         self.loadContents()
     }
     @IBAction func buutonFilterTag(_ sender: UIButton) {
-        self.button_searchByTag.isSelected = !self.button_searchByTag.isSelected
         self.loadContents()
     }
 }
