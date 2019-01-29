@@ -154,21 +154,45 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
         }
         let results = realm.objects(R_Note.self).filter(andPredicate).sorted(byKeyPath: sortField, ascending: sortAscending)
         
-        
         let predicateNotebook = NSPredicate(format: "id = %@", NSNumber(value:self.selectedNoteBookId))
         let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebook)
-        if(notebookResults.count > 0)
-        {
-            let currentNotebook = notebookResults[0]
-            if(currentNotebook.searchTags != "")
-            {
-                let predicateTagString = String.localizedStringWithFormat("tagId in { %@ } ", currentNotebook.searchTags)
-                let predicateTag = NSPredicate(format: predicateTagString)
-                let relationResults = realm.objects(R_NoteTagRelations.self).filter(predicateTag)
-            }
+        if(notebookResults.count == 0){
+            return
         }
         
-        selectedNotebookContents = Array(results)
+        let currentNotebook = notebookResults[0]
+        if(currentNotebook.searchTags != "")
+        {
+            let predicateTagString = String.localizedStringWithFormat("tagId in { %@ } ", currentNotebook.searchTags)
+            let predicateTag = NSPredicate(format: predicateTagString)
+            let relationResults = realm.objects(R_NoteTagRelations.self).filter(predicateTag)
+            var noteidList = [Int]()
+            for i in 0..<relationResults.count {
+                let relationItem = relationResults[i]
+                if (noteidList.contains(relationItem.noteId) == false){
+                    noteidList.append(relationItem.noteId)
+                }
+            }
+            
+            if(noteidList.count == 0)
+            {
+                selectedNotebookContents = Array(results)
+            }
+            else
+            {
+                for i in 0..<results.count {
+                    let noteItem = results[i]
+                    if( noteidList.contains(noteItem.id)){
+                        selectedNotebookContents.append(noteItem)
+                    }
+                }
+            }
+            
+        }
+        else
+        {
+            selectedNotebookContents = Array(results)
+        }
         
         self.tableview?.reloadData()
         
