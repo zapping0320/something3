@@ -32,6 +32,7 @@
 		0BD657C1214876970037FE79 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD657C0214876970037FE79 /* NoteViewController.swift */; };
 		0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */; };
 		0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */; };
+		0BEE10142201108500C9DED7 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE10132201108500C9DED7 /* NoteTableViewCell.swift */; };
 		0BF9DA7B21D5852400C20167 /* SendMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */; };
 		0BF9DA7D21D982AE00C20167 /* ManageTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */; };
 		0BF9DA7F21DAE17400C20167 /* R_Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9DA7E21DAE17400C20167 /* R_Tag.swift */; };
@@ -93,6 +94,7 @@
 		0BD657C0214876970037FE79 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookContentsViewController.swift; sourceTree = "<group>"; };
 		0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		0BEE10132201108500C9DED7 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMailViewController.swift; sourceTree = "<group>"; };
 		0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageTagsViewController.swift; sourceTree = "<group>"; };
 		0BF9DA7E21DAE17400C20167 /* R_Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R_Tag.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		0B2B43AB213DE73D00DFD4A9 /* something3 */ = {
 			isa = PBXGroup;
 			children = (
+				0BEE10122201101E00C9DED7 /* UIControllers */,
 				0B4626E921DC236A00268F79 /* Managers */,
 				0B2B3CB1219CD64300A0FF14 /* Helper */,
 				0BB4D6882141D5980046F7F0 /* Model */,
@@ -233,6 +236,14 @@
 				0BF9DA8021DC1C7D00C20167 /* R_NoteTagRelations.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0BEE10122201101E00C9DED7 /* UIControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0BEE10132201108500C9DED7 /* NoteTableViewCell.swift */,
+			);
+			path = UIControllers;
 			sourceTree = "<group>";
 		};
 		AA1AA6FB088295AA804BFA36 /* Frameworks */ = {
@@ -444,6 +455,7 @@
 				0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */,
 				0B27BEC621E97F8E00656B5E /* SearchedResultUIViewController.swift in Sources */,
 				0B91D1C52145CCF2005DCCD9 /* AddNoteViewController.swift in Sources */,
+				0BEE10142201108500C9DED7 /* NoteTableViewCell.swift in Sources */,
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
 				0B27BEA021E55D4E00656B5E /* TagFilterViewController.swift in Sources */,
 				0BB69B8B21A8E1A2003B64C0 /* ColorHelper.swift in Sources */,

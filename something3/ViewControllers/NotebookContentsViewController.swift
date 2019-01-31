@@ -17,6 +17,8 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     let cellIdentifier: String = "noteCell"
     let sortTypeByName : String = "ByName"
     let sortTypeByRecent : String = "ByRecent"
+    let dateformatter = DateFormatter()
+    
     
     @IBOutlet weak var button_searchByAlarm: UIButton!
     @IBOutlet weak var button_searchByTag: UIButton!
@@ -27,6 +29,9 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        
         self.lb_searchResult.isHidden = true
         self.sortType_ = self.sortTypeByRecent
         let moreBtn = UIBarButtonItem(title: "More", style: .plain , target: self, action: #selector(barBtn_more_Action))
@@ -263,13 +268,23 @@ extension NotebookContentsViewController {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NoteTableViewCell
         let currentNote = selectedNotebookContents[indexPath.row]
-        cell.textLabel?.text = currentNote.title
+        cell.labelTitle?.text = currentNote.title
         if(currentNote.alarmDate != nil)
         {
-            cell.textLabel?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
+            //cell.textLabel?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
+            cell.labelAlarm?.isHidden = false
         }
+        else
+        {
+             cell.labelAlarm?.isHidden = true
+        }
+        
+        cell.labelContent?.text = currentNote.content
+       
+        cell.labelDate?.text  = dateformatter.string(from: currentNote.updated_at)
+        
         
         return cell
     }
