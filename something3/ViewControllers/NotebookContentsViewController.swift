@@ -268,23 +268,15 @@ extension NotebookContentsViewController {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NoteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let currentNote = selectedNotebookContents[indexPath.row]
-        cell.labelTitle?.text = currentNote.title
+        cell.textLabel?.text = currentNote.title
         if(currentNote.alarmDate != nil)
         {
-            //cell.textLabel?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
-            cell.labelAlarm?.isHidden = false
-        }
-        else
-        {
-             cell.labelAlarm?.isHidden = true
+            cell.textLabel?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
         }
         
-        cell.labelContent?.text = currentNote.content
-       
-        cell.labelDate?.text  = dateformatter.string(from: currentNote.updated_at)
-        
+        cell.detailTextLabel?.text = currentNote.content
         
         return cell
     }
