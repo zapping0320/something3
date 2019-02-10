@@ -14,12 +14,16 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     let cellIdentifier: String = "noteFavoriteCell"
+    let dateformatter = DateFormatter()
     
     fileprivate var favoriteNotes:[Int:[R_Note]] = [Int:[R_Note]]()
     var searchText_: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        
         let moreBtn = UIBarButtonItem(title: "Edit", style: .plain , target: self, action: #selector(toggleEditing))
         self.navigationItem.rightBarButtonItem = moreBtn
         
@@ -130,6 +134,10 @@ extension FavoriteViewController {
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title:String = "Favorite Notes"
         if section == 0 {
@@ -150,13 +158,23 @@ extension FavoriteViewController {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NoteTableViewCell
         let currentNote = favoriteNotes[indexPath.section]![indexPath.row]
-        cell.textLabel?.text = currentNote.title
+        //cell.textLabel?.text = currentNote.title
         if(currentNote.alarmDate != nil)
         {
-            cell.textLabel?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
+            //cell.textLabel?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
+            cell.labelTitle?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
         }
+        else
+        {
+            cell.labelTitle?.text  = currentNote.title
+        }
+        
+        cell.labelContent?.text = currentNote.content
+        
+        cell.labelDate?.text =  dateformatter.string(from: currentNote.updated_at)
+        
         return cell
     }
     
