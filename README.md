@@ -7,7 +7,7 @@ I'm trying to training swift development
 
 I'm also know this app's UI is weired and you can find some bugs when using this.
 
-this project started at first in 2018
+this project's origin started at first in Nov, 2017
 https://github.com/zapping0320/something_ios
 
 I met a variety of problems. so I quitted this project and concentrating studying on swift
