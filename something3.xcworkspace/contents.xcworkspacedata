@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:something3"
+      name = "something3">
+      <FileRef
+         location = "group:something3.xcodeproj">
+      </FileRef>
+      <Group
+         location = "group:something3"
+         name = "something3">
+         <FileRef
+            location = "group:AppDelegate.swift">
+         </FileRef>
+         <Group
+            location = "group:Base.lproj"
+            name = "Base.lproj">
+            <FileRef
+               location = "group:Main.storyboard">
+            </FileRef>
+            <FileRef
+               location = "group:LaunchScreen.storyboard">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:ViewController.swift">
+         </FileRef>
+         <Group
+            location = "group:Assets.xcassets"
+            name = "Assets.xcassets">
+            <Group
+               location = "group:AppIcon.appiconset"
+               name = "AppIcon.appiconset">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <FileRef
+               location = "group:Contents.json">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:ViewControllers"
+            name = "ViewControllers">
+            <FileRef
+               location = "group:FavoriteViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:AddNotebookViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:NotebookViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:AddNoteViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:NoteViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:NotebookContentsViewController.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Model"
+            name = "Model">
+            <FileRef
+               location = "group:R_NoteBook.swift">
+            </FileRef>
+            <FileRef
+               location = "group:R_Note.swift">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:Info.plist">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:something3Tests"
+         name = "something3Tests">
+         <FileRef
+            location = "group:something3Tests.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Info.plist">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:something3UITests"
+         name = "something3UITests">
+         <FileRef
+            location = "group:something3UITests.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Info.plist">
+         </FileRef>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
