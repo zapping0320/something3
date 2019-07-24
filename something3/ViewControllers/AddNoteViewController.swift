@@ -86,7 +86,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         let realm = try! Realm()
         let results = realm.objects(R_NoteBook.self)
-        print(results.count)
+        //print(results.count)
         if(results.count ==  0)
         {
             let newid = (realm.objects(R_NoteBook.self).max(ofProperty: "id") as Int? ?? 0) + 1
@@ -111,12 +111,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.pv_notebooks.reloadAllComponents()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
@@ -178,17 +173,10 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         let alarmAlert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
         alarmAlert.view.addSubview(datePicker)
-        /*
-         datePicker.snp.makeConstraints { (make) in
-         make.centerX.equalTo(alert.view)
-         make.top.equalTo(alert.view).offset(8)
-         }*/
-        
-        
         
         if(self.alarmDate == nil)
         {
-            let setAction = UIAlertAction(title: "설정", style: .default) { (action) in
+            let setAction = UIAlertAction(title: NSLocalizedString("Setting", comment: ""), style: .default) { (action) in
                 
                 let addResult = self.eventHelper?.addEvent(title: self.tf_title.text!, date: datePicker.date)
                 if addResult?.result == false {
@@ -203,7 +191,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                     self.present(alert, animated: true, completion: nil)
                     return
                 }
-               
+                
                 self.alarmDate = datePicker.date
                 self.alarmIdentifier = addResult?.identifier
                 self.chekcAlarmState()
@@ -211,7 +199,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             setAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alarmAlert.addAction(setAction)
         }else{
-            let changeAlarmAction = UIAlertAction(title: "알람변경", style: .default) { (action) in
+            let changeAlarmAction = UIAlertAction(title: NSLocalizedString("Set Alarm", comment: ""), style: .default) { (action) in
                 let changeResult = self.eventHelper?.changeAlarm(title: self.tf_title.text!, date: datePicker.date, identifier: self.alarmIdentifier!)
                 if changeResult?.result == false {
                     let alert = UIAlertController(title: self.title,
@@ -232,7 +220,7 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             changeAlarmAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alarmAlert.addAction(changeAlarmAction)
             
-            let unsetAction = UIAlertAction(title: "설정해제", style: .default) { (action) in
+            let unsetAction = UIAlertAction(title: NSLocalizedString("Unset Alarm", comment: ""), style: .default) { (action) in
                 if self.eventHelper?.removeEvent(identifier: self.alarmIdentifier!) == false {
                     let alert = UIAlertController(title: self.title,
                                                   message: "some problems occurs when removing this alarm.\nplease try again",
@@ -264,11 +252,11 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func chekcAlarmState(){
         if(self.alarmDate == nil)
         {
-            self.bt_alarm.setTitle("미설정", for: .normal)
+            self.bt_alarm.setTitle(NSLocalizedString("Unset", comment: ""), for: .normal)
         }
         else
         {
-            self.bt_alarm.setTitle("설정됨", for: .normal)
+            self.bt_alarm.setTitle(NSLocalizedString("Set", comment: ""), for: .normal)
         }
     }
     

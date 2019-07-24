@@ -37,7 +37,7 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         }
         
         dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
+        self.lb_updatedAt.text = "Last Modified:" + dateformatter.string(from: selectedNote.updated_at)
         self.switch_favorite.isOn = selectedNote.isfavorite
         self.alarmDate = selectedNote.alarmDate
         if(self.selectedNote.alarmDate == nil)
