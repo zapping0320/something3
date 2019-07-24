@@ -29,6 +29,6 @@ class SearchKeywordelper {
     }
     
     static func getKeywordList() -> [String] {
-        return UserDefaults.standard.array(forKey: keywordField) as! [String]
+        return UserDefaults.standard.array(forKey: keywordField) as? [String] ?? []
     }
 }
