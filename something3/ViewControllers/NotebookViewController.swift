@@ -12,7 +12,7 @@ import EventKit
 
 var selectedNotebookId: Int = 0
 
-class NotebookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate {
+class NotebookViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var btn_AddNotebook: UIButton!
     @IBOutlet weak var tableview: UITableView!
@@ -139,7 +139,7 @@ class NotebookViewController: UIViewController, UITableViewDataSource, UITableVi
 
 }
 
-extension NotebookViewController {
+extension NotebookViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentNoteBook = notebookArray_[indexPath.section]![indexPath.row] as R_NoteBook
@@ -150,6 +150,7 @@ extension NotebookViewController {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section > 1 || section < 0){
             return 0
@@ -175,9 +176,9 @@ extension NotebookViewController {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title:String = "All Notebooks"
+        var title:String = NSLocalizedString("All Notebooks", comment: "")
         if section == 0 {
-            title = "Recent Notebooks"
+            title = NSLocalizedString("Recent Notebooks", comment: "")
         }
         return title
     }
@@ -211,6 +212,7 @@ extension NotebookViewController {
             return false
         }
     }
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
         let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: { (action, indexPath) in
             let currentNotebook = self.notebookArray_[indexPath.section]![indexPath.row] as R_NoteBook
