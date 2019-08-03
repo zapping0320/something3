@@ -9,13 +9,14 @@
 import UIKit
 import RealmSwift
 
-class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
+class FavoriteViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
+    
+    
     let cellIdentifier: String = "noteFavoriteCell"
     let dateformatter = DateFormatter()
-    
     fileprivate var favoriteNotes:[Int:[R_Note]] = [Int:[R_Note]]()
     var searchText_: String = ""
     
@@ -49,11 +50,6 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     @objc private func toggleEditing() {
         tableview.setEditing(!tableview.isEditing, animated: true) // Set opposite value of current editing status
         navigationItem.rightBarButtonItem?.title = tableview.isEditing ? "Done" : "Edit" // Set title depending on the editing status
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func loadNotes() {
@@ -113,7 +109,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
 
 }
 
-extension FavoriteViewController {
+extension FavoriteViewController : UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return 2
@@ -146,24 +142,12 @@ extension FavoriteViewController {
         return title
     }
     
-    /*
-     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
-     let viewController = self.storyboard?.instantiateViewController(withIdentifier: "Note View") as! NoteViewController
-     viewController.selectedNotebook = self.selectedNotebook
-     viewController.selectedNote = selectedNotebookContents[indexPath.row]
-     self.present(viewController, animated: true)
-     }
-     */
-    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NoteTableViewCell
         let currentNote = favoriteNotes[indexPath.section]![indexPath.row]
-        //cell.textLabel?.text = currentNote.title
         if(currentNote.alarmDate != nil)
         {
-            //cell.textLabel?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
             cell.labelTitle?.text = StringHelper.makeHeaderStringAlarmed(title: currentNote.title)
         }
         else

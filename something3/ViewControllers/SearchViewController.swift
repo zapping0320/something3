@@ -9,13 +9,13 @@
 import UIKit
 import RealmSwift
 
-class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
+class SearchViewController: UIViewController,UISearchBarDelegate {
 
     @IBOutlet weak var lb_searchResult: UILabel!
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
-    let cellIdentifier: String = "searchedNoteCell"
     
+    let cellIdentifier: String = "searchedNoteCell"
     
     var searchedNotes:[R_Note] = [R_Note]()
     var keywordList:[String] = [String]()
@@ -91,35 +91,33 @@ class SearchViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         SearchKeywordelper.updateKeywordList(keyword: self.sb_searchBar.text!)
-        //move result view
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if self.searchText_ == "" {
-            
+        if self.searchText_.isEmpty {
+            return
         }
-        else {
-            
-            guard let noteVC : NoteViewController = segue.destination as? NoteViewController
-                else {
-                    return
-            }
-            
-            guard let cell:UITableViewCell = sender as? UITableViewCell else {
-                return
-            }
-            
-            guard  let index:IndexPath = self.tableview?.indexPath(for: cell)  else {
-                return
-            }
-            
-            noteVC.selectedNote = searchedNotes[index.row]
+        
+        
+        guard let noteVC : NoteViewController = segue.destination as? NoteViewController else {
+            return
         }
+        
+        guard let cell:UITableViewCell = sender as? UITableViewCell else {
+            return
+        }
+        
+        guard  let index:IndexPath = self.tableview?.indexPath(for: cell)  else {
+            return
+        }
+        
+        noteVC.selectedNote = searchedNotes[index.row]
+        
     }
 
 }
 
-extension SearchViewController {
+extension SearchViewController : UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1

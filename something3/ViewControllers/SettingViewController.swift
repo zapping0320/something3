@@ -15,8 +15,6 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
         let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         self.labelVersion.text = appVersion
         
@@ -33,6 +31,5 @@ class SettingViewController: UIViewController {
     @IBAction func changeDarkModeChange(_ sender: UISwitch) {
         ColorHelper.changeCurrentAppBackground()
         self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
-        //self.buttonSendMail.backgroundColor = ColorHelper.getCurrentMainButtonColor()
     }
 }
