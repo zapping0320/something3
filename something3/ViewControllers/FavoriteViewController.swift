@@ -62,8 +62,6 @@ class FavoriteViewController: UIViewController, UISearchBarDelegate {
         let recentPredicate = NSPredicate(format: "isfavorite = true")
         let recentResults = realm.objects(R_Note.self).filter(recentPredicate).sorted(byKeyPath: "updated_at", ascending: false)
         let itemCount = recentResults.count > 4 ? 3 : recentResults.count - 1
-        let notearray_recent = Array(recentResults[0...itemCount])
-        
         
         if(self.searchText_ == "")
         {
@@ -78,8 +76,13 @@ class FavoriteViewController: UIViewController, UISearchBarDelegate {
             let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
             notearray_all = Array(results)
         }
+        if(itemCount > 0){
+            let notearray_recent = Array(recentResults[0...itemCount])
+            favoriteNotes[0] = notearray_recent
+        }else {
+            favoriteNotes[0] = [R_Note]()
+        }
         
-        favoriteNotes[0] = notearray_recent
         favoriteNotes[1] = notearray_all
         
         self.tableview?.reloadData()
