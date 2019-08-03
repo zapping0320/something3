@@ -20,10 +20,11 @@ struct TagUI {
     var count:Int
 }
 
-class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class ManageTagsViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
+    
     let cellIdentifier: String = "tagCell"
     var searchText_: String = ""
     
@@ -129,7 +130,7 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
 }
 
-extension ManageTagsViewController {
+extension ManageTagsViewController : UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return tagArray_.count
