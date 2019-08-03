@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import EventKit
 
-class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UITextViewDelegate {
+class AddNoteViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var tf_title: UITextField!
     @IBOutlet weak var tf_tags: UITextField!
     @IBOutlet weak var tv_content: UITextView!
@@ -111,21 +111,6 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.pv_notebooks.reloadAllComponents()
     }
 
-  func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return notebookArray_.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return notebookArray_[row].name
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(notebookArray_[row].name)
-    }
     
     @IBAction func btn_save_action(_ sender: UIButton) {
         if(self.tf_title.text == "" && self.tv_content.text == "")
@@ -260,4 +245,22 @@ class AddNoteViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
     }
     
+}
+
+extension AddNoteViewController : UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return notebookArray_.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return notebookArray_[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(notebookArray_[row].name)
+    }
 }

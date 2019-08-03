@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate {
+class NoteViewController: UIViewController,UITextViewDelegate {
 
     @IBOutlet weak var lb_updatedAt: UILabel!
     @IBOutlet weak var tf_title: UITextField!
@@ -239,22 +239,6 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         saveChangedData()
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return notebookArray_.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return notebookArray_[row].name
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        saveChangedData()
-    }
-    
     func saveChangedData() {
         let realm = try! Realm()
         
@@ -304,11 +288,6 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         
         let alarmAlert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
         alarmAlert.view.addSubview(datePicker)
-        /*
-         datePicker.snp.makeConstraints { (make) in
-         make.centerX.equalTo(alert.view)
-         make.top.equalTo(alert.view).offset(8)
-         }*/
         
         if(self.alarmDate == nil)
         {
@@ -385,6 +364,22 @@ class NoteViewController: UIViewController,UITextViewDelegate,UIPickerViewDataSo
         present(alarmAlert, animated: true, completion: nil)
         
     }
+}
+
+extension NoteViewController : UIPickerViewDataSource, UIPickerViewDelegate{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
-   
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return notebookArray_.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return notebookArray_[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        saveChangedData()
+    }
 }

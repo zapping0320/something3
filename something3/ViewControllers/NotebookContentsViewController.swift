@@ -9,19 +9,21 @@
 import UIKit
 import RealmSwift
 
-class NotebookContentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
+class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var lb_searchResult: UILabel!
     @IBOutlet weak var sb_searchBar: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
+    
+    @IBOutlet weak var button_searchByAlarm: UIButton!
+    @IBOutlet weak var button_searchByTag: UIButton!
+    
+    
     let cellIdentifier: String = "noteCell"
     let sortTypeByName : String = "ByName"
     let sortTypeByRecent : String = "ByRecent"
     let dateformatter = DateFormatter()
     
-    
-    @IBOutlet weak var button_searchByAlarm: UIButton!
-    @IBOutlet weak var button_searchByTag: UIButton!
     fileprivate var selectedNotebookContents:[R_Note] = [R_Note]()
     open var selectedNoteBookId: Int = 0
     var searchText_: String = ""
@@ -256,7 +258,7 @@ class NotebookContentsViewController: UIViewController, UITableViewDelegate, UIT
     }
 }
 
-extension NotebookContentsViewController {
+extension NotebookContentsViewController : UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
