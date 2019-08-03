@@ -13,7 +13,7 @@ class SendMailViewController: UIViewController, UITextViewDelegate, MFMailCompos
     @IBOutlet weak var tf_senderAddress: UITextField!
     @IBOutlet weak var tv_sendContents: UITextView!
     
-    let contentPlaceHolder:String = "문제를 설명하거나 아이디어를 공유하세요"
+    let contentPlaceHolder:String = NSLocalizedString("Describe the problem or share your ideas", comment: "")
     
     var composeVC:MFMailComposeViewController? = nil
     
