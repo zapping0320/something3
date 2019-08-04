@@ -9,7 +9,7 @@
 "1EC-3X-Wxv.text" = "제공해주신 정보는 개인 정보처리방침 및 서비스 약관에 따라 기술적인 문제를 해결하고 서비스를 개선하는 데 사용됩니다.";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "1fX-eM-nHL"; */
-"1fX-eM-nHL.text" = "Label";
+"1fX-eM-nHL.text" = "버전";
 
 /* Class = "UILabel"; text = "Insert Note"; ObjectID = "1tX-B0-qaO"; */
 "1tX-B0-qaO.text" = "노트 작성";
@@ -33,7 +33,7 @@
 "9vj-sR-bHc.text" = "새로운 노트북 작성";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Ahz-QR-u3b"; */
-"Ahz-QR-u3b.text" = "Label";
+"Ahz-QR-u3b.text" = "0000-00-00";
 
 /* Class = "UILabel"; text = "Favorite"; ObjectID = "Ce3-Tl-nAB"; */
 "Ce3-Tl-nAB.text" = "즐겨찾기";

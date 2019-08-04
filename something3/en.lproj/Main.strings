@@ -9,7 +9,7 @@
 "1EC-3X-Wxv.text" = "The information you provide is used to resolve technical issues and improve our services in accordance with our Privacy Policy and Terms of Service.";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "1fX-eM-nHL"; */
-"1fX-eM-nHL.text" = "Label";
+"1fX-eM-nHL.text" = "Version";
 
 /* Class = "UILabel"; text = "Insert Note"; ObjectID = "1tX-B0-qaO"; */
 "1tX-B0-qaO.text" = "Insert Note";
@@ -33,7 +33,7 @@
 "9vj-sR-bHc.text" = "Insert New Notebook";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Ahz-QR-u3b"; */
-"Ahz-QR-u3b.text" = "Label";
+"Ahz-QR-u3b.text" = "0000-00-00";
 
 /* Class = "UILabel"; text = "Favorite"; ObjectID = "Ce3-Tl-nAB"; */
 "Ce3-Tl-nAB.text" = "Favorite";
