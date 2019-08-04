@@ -44,3 +44,21 @@
 "Delete" = "삭제";
 
 "Are you sure want to delete this notebook?" = "정말 이 노트북을 삭제하시겠습니까?";
+
+"Ok" = "Ok";
+
+"you entered no text, please check" = "아무 것도 입력하지 않았습니다. 다시 확인해주세요.";
+
+"Title" = "제목";
+
+"Content" = "내용";
+
+"Anonymous" = "미지정";
+
+"\n\n\n\n\n\n\n\n\n\n\nAlarm Setting" = "\n\n\n\n\n\n\n\n\n\n\n알람 설정";
+
+"some problems occurs when registering new alarm.\nplease try again" = "알람 추가중 문제가 발생했습니다. 다시 시도해주세요.";
+
+"some problems occurs when modifying this alarm.\nplease try again" = "알람 수정중 문제가 발생했습니다. 다시 시도해주세요.";
+
+"some problems occurs when removing this alarm.\nplease try again" = "알람 삭제중 문제가 발생했습니다. 다시 시도해주세요.";

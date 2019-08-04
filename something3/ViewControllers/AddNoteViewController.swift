@@ -31,10 +31,10 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
         if self.eventHelper == nil {
             self.eventHelper = EventHelper()
         }
-        self.tf_title.placeholder = "Title"
+        self.tf_title.placeholder = NSLocalizedString("Title", comment: "")
         self.tf_tags.placeholder = TagManager.tagPlaceHolderString
         self.tv_content.delegate = self
-        self.tv_content.text = "Content"
+        self.tv_content.text = NSLocalizedString("Content", comment: "")
         self.tv_content.textColor = UIColor.lightGray
         loadNotebooks()
     }
@@ -92,7 +92,7 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
             let newid = (realm.objects(R_NoteBook.self).max(ofProperty: "id") as Int? ?? 0) + 1
             
             let newnotebook = R_NoteBook()
-            newnotebook.name = "Anonymous"
+            newnotebook.name = NSLocalizedString("Anonymous", comment: "")
             newnotebook.id = newid
             
             try! realm.write {
@@ -116,10 +116,10 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
         if(self.tf_title.text == "" && self.tv_content.text == "")
         {
             let alert = UIAlertController(title: title,
-                                          message: "you entered no text, please check",
+                                          message: NSLocalizedString("you entered no text, please check", comment: ""),
                                           preferredStyle: UIAlertControllerStyle.alert)
             
-            let cancelAction = UIAlertAction(title: "OK",
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
                                              style: .cancel, handler: nil)
             
             alert.addAction(cancelAction)
@@ -156,7 +156,7 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
             datePicker.setDate(self.alarmDate!, animated: false)
         }
         
-        let alarmAlert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
+        let alarmAlert = UIAlertController(title: NSLocalizedString("\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", comment: ""), message: nil, preferredStyle: .actionSheet)
         alarmAlert.view.addSubview(datePicker)
         
         if(self.alarmDate == nil)
@@ -166,10 +166,10 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
                 let addResult = self.eventHelper?.addEvent(title: self.tf_title.text!, date: datePicker.date)
                 if addResult?.result == false {
                     let alert = UIAlertController(title: self.title,
-                                                  message: "some problems occurs when registering new alarm.\nplease try again",
+                                                  message: NSLocalizedString("some problems occurs when registering new alarm.\nplease try again", comment: ""),
                                                   preferredStyle: UIAlertControllerStyle.alert)
                     
-                    let cancelAction = UIAlertAction(title: "OK",
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
                                                      style: .cancel, handler: nil)
                     
                     alert.addAction(cancelAction)
@@ -188,10 +188,10 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
                 let changeResult = self.eventHelper?.changeAlarm(title: self.tf_title.text!, date: datePicker.date, identifier: self.alarmIdentifier!)
                 if changeResult?.result == false {
                     let alert = UIAlertController(title: self.title,
-                                                  message: "some problems occurs when modifying this alarm.\nplease try again",
+                                                  message: NSLocalizedString("some problems occurs when modifying this alarm.\nplease try again", comment: ""),
                                                   preferredStyle: UIAlertControllerStyle.alert)
                     
-                    let cancelAction = UIAlertAction(title: "OK",
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
                                                      style: .cancel, handler: nil)
                     
                     alert.addAction(cancelAction)
@@ -208,10 +208,10 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
             let unsetAction = UIAlertAction(title: NSLocalizedString("Unset Alarm", comment: ""), style: .default) { (action) in
                 if self.eventHelper?.removeEvent(identifier: self.alarmIdentifier!) == false {
                     let alert = UIAlertController(title: self.title,
-                                                  message: "some problems occurs when removing this alarm.\nplease try again",
+                                                  message: NSLocalizedString("some problems occurs when removing this alarm.\nplease try again", comment: ""),
                                                   preferredStyle: UIAlertControllerStyle.alert)
                     
-                    let cancelAction = UIAlertAction(title: "OK",
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
                                                      style: .cancel, handler: nil)
                     
                     alert.addAction(cancelAction)
@@ -226,7 +226,7 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
             alarmAlert.addAction(unsetAction)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
         cancelAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
         alarmAlert.addAction(cancelAction)
         

@@ -43,6 +43,28 @@
 
 "Delete" = "Delete";
 
+"Ok" = "Ok";
+
+"you entered no text, please check" = "you entered no text, please check";
+
 "Are you sure want to delete this notebook?" = "Are you sure want to delete this notebook?";
+
+"Title" = "Title";
+
+"Content" = "Content";
+
+"Anonymous" = "Anonymous";
+
+"\n\n\n\n\n\n\n\n\n\n\nAlarm Setting" = "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting";
+
+"some problems occurs when registering new alarm.\nplease try again" = "some problems occurs when registering new alarm.\nplease try again";
+
+"some problems occurs when modifying this alarm.\nplease try again" = "some problems occurs when modifying this alarm.\nplease try again";
+
+"some problems occurs when removing this alarm.\nplease try again" = "some problems occurs when removing this alarm.\nplease try again";
+
+
+
+
 
 

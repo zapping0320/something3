@@ -41,10 +41,10 @@ class AddNotebookViewController : UIViewController {
         if(self.tf_notebookName.text == "")
         {
             let alert = UIAlertController(title: title,
-                                          message: "you entered no text, please check",
+                                          message: NSLocalizedString("you entered no text, please check", comment: ""),
                                           preferredStyle: UIAlertControllerStyle.alert)
             
-            let cancelAction = UIAlertAction(title: "OK",
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
                                              style: .cancel, handler: nil)
             
             alert.addAction(cancelAction)
