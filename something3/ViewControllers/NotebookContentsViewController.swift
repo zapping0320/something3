@@ -36,7 +36,7 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
         
         self.lb_searchResult.isHidden = true
         self.sortType_ = self.sortTypeByRecent
-        let moreBtn = UIBarButtonItem(title: "More", style: .plain , target: self, action: #selector(barBtn_more_Action))
+        let moreBtn = UIBarButtonItem(title: NSLocalizedString("More", comment: ""), style: .plain , target: self, action: #selector(barBtn_more_Action))
         self.navigationItem.rightBarButtonItem = moreBtn
     }
     
@@ -65,10 +65,10 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
     
     @objc func barBtn_more_Action(){
         let alert = UIAlertController(title: title,
-                                      message: "more",
+                                      message: NSLocalizedString("More", comment: ""),
                                       preferredStyle: UIAlertControllerStyle.actionSheet)
         //change sort way
-        let sortByNameAction = UIAlertAction(title: "SortByName",
+        let sortByNameAction = UIAlertAction(title: NSLocalizedString("SortByName", comment: ""),
                                              style: .default, handler: {result in
                                                 self.sortType_ = self.sortTypeByName
                                                 self.loadContents()
@@ -76,7 +76,7 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
         sortByNameAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
         alert.addAction(sortByNameAction)
         
-        let sortByRecentAction = UIAlertAction(title: "SortByRecent",
+        let sortByRecentAction = UIAlertAction(title: NSLocalizedString("SortByRecent", comment: ""),
                                                style: .default, handler: {result in
                                                 self.sortType_ = self.sortTypeByRecent
                                                 self.loadContents()
@@ -93,11 +93,11 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
             sortByNameAction.setValue(true, forKey: "checked")
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),
                                          style: .cancel, handler: nil)
         if(self.selectedNoteBookId == -1)
         {
-            let deleteAllAction = UIAlertAction(title: "Empty Trash",
+            let deleteAllAction = UIAlertAction(title: NSLocalizedString("Empty Trash", comment: ""),
                                                 style: .default, handler:
                 { reuslt in
                     let realm = try! Realm()
@@ -120,7 +120,7 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
     
     override func  viewDidAppear(_ animated: Bool) {
         searchText_ = ""
-        self.sb_searchBar.placeholder = "Search Note"
+        self.sb_searchBar.placeholder = NSLocalizedString("Search Notes", comment: "")
         loadContents()
     }
 
@@ -253,6 +253,7 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
         self.button_searchByAlarm.isSelected = !self.button_searchByAlarm.isSelected
         self.loadContents()
     }
+    
     @IBAction func buutonFilterTag(_ sender: UIButton) {
         self.loadContents()
     }

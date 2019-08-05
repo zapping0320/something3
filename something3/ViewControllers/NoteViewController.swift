@@ -37,28 +37,28 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         }
         
         dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        self.lb_updatedAt.text = "Last Modified:" + dateformatter.string(from: selectedNote.updated_at)
+        self.lb_updatedAt.text = NSLocalizedString("Last Modified" , comment: "") + ":" + dateformatter.string(from: selectedNote.updated_at)
         self.switch_favorite.isOn = selectedNote.isfavorite
         self.alarmDate = selectedNote.alarmDate
         if(self.selectedNote.alarmDate == nil)
         {
-            self.bt_alarm.setTitle("미설정", for: .normal)
+            self.bt_alarm.setTitle(NSLocalizedString("Unset", comment: ""), for: .normal)
         }
         else
         {
-            self.bt_alarm.setTitle("설정됨", for: .normal)
+            self.bt_alarm.setTitle(NSLocalizedString("Set", comment: ""), for: .normal)
             self.alarmIdentifier = selectedNote.alarmIdentifier
         }
         
         self.tf_title.text = selectedNote.title
-        self.tf_title.placeholder = "Title"
+        self.tf_title.placeholder = NSLocalizedString("Title", comment: "")
         self.tf_tags.placeholder = TagManager.tagPlaceHolderString
         self.tf_tags.text = TagManager.makeTagString(noteid: selectedNote.id)
         self.tv_content.text = selectedNote.content
         self.tv_content.delegate = self
         if(selectedNote.content == "")
         {
-            self.tv_content.text = "Content"
+            self.tv_content.text = NSLocalizedString("Content", comment: "")
             self.tv_content.textColor = UIColor.lightGray
         }
         
@@ -91,7 +91,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             }
         }
         
-        let moreBtn = UIBarButtonItem(title: "More", style: .plain , target: self, action: #selector(barBtn_more_Action))
+        let moreBtn = UIBarButtonItem(title: NSLocalizedString("More", comment: ""), style: .plain , target: self, action: #selector(barBtn_more_Action))
         self.navigationItem.rightBarButtonItem = moreBtn
     }
     
@@ -108,16 +108,15 @@ class NoteViewController: UIViewController,UITextViewDelegate {
     
     @objc func barBtn_more_Action(){
         let alert = UIAlertController(title: title,
-                                      message: "more",
+                                      message: NSLocalizedString("More", comment: ""),
                                       preferredStyle: UIAlertControllerStyle.actionSheet)
         if(self.selectedNote.relatedNotebookId != -1)
         {
-            let copyNoteAction = UIAlertAction(title: "Copy Note",
+            let copyNoteAction = UIAlertAction(title: NSLocalizedString("Copy Note", comment: ""),
                                                style: .default, handler: {result in
                                                 
                                                 let realm = try! Realm()
                                                 let newnote = R_Note()
-                                                //newnote.title = self.tf_title.text! + " copied"
                                                 newnote.title = StringHelper.makeHeaderStringCopied(title: self.tf_title.text!)
                                                 newnote.content = self.tv_content.text!
                                                 newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
@@ -134,7 +133,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             copyNoteAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(copyNoteAction)
             
-            let sendToTrashAction = UIAlertAction(title: "Send To Trash",
+            let sendToTrashAction = UIAlertAction(title: NSLocalizedString("Send To Trash", comment: ""),
                                                   style: .default, handler: {result in
                                                     let realm = try! Realm()
                                                     
@@ -149,7 +148,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         }
         else
         {
-            let restoreAction = UIAlertAction(title: "Restore",
+            let restoreAction = UIAlertAction(title: NSLocalizedString("Restore", comment: ""),
                                               style: .default, handler: {result in
                                                 let realm = try! Realm()
                                                 try! realm.write {
@@ -160,7 +159,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             })
             restoreAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(restoreAction)
-            let deleteAction = UIAlertAction(title: "Delete Completely",
+            let deleteAction = UIAlertAction(title: NSLocalizedString("Delete Completely", comment: ""),
                                              style: .default, handler: { reuslt in
                                                 let realm = try! Realm()
                                                 try! realm.write {
@@ -173,7 +172,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         }
         
         
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),
                                          style: .cancel, handler: nil)
         cancelAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
         alert.addAction(cancelAction)
@@ -202,11 +201,6 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func closeViewController() {
         self.dismiss(animated: false, completion: nil)
@@ -221,7 +215,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Content"
+            textView.text = NSLocalizedString("Content", comment: "")
             textView.textColor = UIColor.lightGray
         }
         else
@@ -264,11 +258,11 @@ class NoteViewController: UIViewController,UITextViewDelegate {
     func chekcAlarmState(){
         if(self.alarmDate == nil)
         {
-            self.bt_alarm.setTitle("미설정", for: .normal)
+            self.bt_alarm.setTitle(NSLocalizedString("Unset", comment: ""), for: .normal)
         }
         else
         {
-            self.bt_alarm.setTitle("설정됨", for: .normal)
+            self.bt_alarm.setTitle(NSLocalizedString("Set", comment: ""), for: .normal)
         }
     }
     
@@ -286,20 +280,20 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             datePicker.setDate(self.alarmDate!, animated: false)
         }
         
-        let alarmAlert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", message: nil, preferredStyle: .actionSheet)
+        let alarmAlert = UIAlertController(title: NSLocalizedString("\n\n\n\n\n\n\n\n\n\n\nAlarm Setting", comment: ""), message: nil, preferredStyle: .actionSheet)
         alarmAlert.view.addSubview(datePicker)
         
         if(self.alarmDate == nil)
         {
-            let setAction = UIAlertAction(title: "설정", style: .default) { (action) in
+            let setAction = UIAlertAction(title: NSLocalizedString("Set", comment: ""), style: .default) { (action) in
               
                 let addResult = self.eventHelper?.addEvent(title: self.tf_title.text!, date: datePicker.date)
                 if addResult?.result == false {
                     let alert = UIAlertController(title: self.title,
-                                                  message: "some problems occurs when registering new alarm.\nplease try again",
+                                                  message: NSLocalizedString("some problems occurs when registering new alarm.\nplease try again", comment: ""),
                                                   preferredStyle: UIAlertControllerStyle.alert)
                     
-                    let cancelAction = UIAlertAction(title: "OK",
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
                                                      style: .cancel, handler: nil)
                     
                     alert.addAction(cancelAction)
@@ -315,14 +309,14 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             alarmAlert.addAction(setAction)
             
         }else {
-            let changeAlarmAction = UIAlertAction(title: "알람변경", style: .default) { (action) in
+            let changeAlarmAction = UIAlertAction(title: NSLocalizedString("Set Alarm", comment: ""), style: .default) { (action) in
                 let changeResult = self.eventHelper?.changeAlarm(title: self.tf_title.text!, date: datePicker.date, identifier: self.alarmIdentifier!)
                 if changeResult?.result == false {
                     let alert = UIAlertController(title: self.title,
-                                                  message: "some problems occurs when modifying this alarm.\nplease try again",
+                                                  message: NSLocalizedString("some problems occurs when modifying this alarm.\nplease try again", comment: ""),
                                                   preferredStyle: UIAlertControllerStyle.alert)
                     
-                    let cancelAction = UIAlertAction(title: "OK",
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""),
                                                      style: .cancel, handler: nil)
                     
                     alert.addAction(cancelAction)
@@ -336,10 +330,10 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             changeAlarmAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alarmAlert.addAction(changeAlarmAction)
             
-            let unsetAction = UIAlertAction(title: "설정해제", style: .default) { (action) in
+            let unsetAction = UIAlertAction(title: NSLocalizedString("Unset", comment: ""), style: .default) { (action) in
                 if self.eventHelper?.removeEvent(identifier: self.alarmIdentifier!) == false {
                     let alert = UIAlertController(title: self.title,
-                                                  message: "some problems occurs when removing this alarm.\nplease try again",
+                                                  message: NSLocalizedString("some problems occurs when removing this alarm.\nplease try again", comment: ""),
                                                   preferredStyle: UIAlertControllerStyle.alert)
                     
                     let cancelAction = UIAlertAction(title: "OK",

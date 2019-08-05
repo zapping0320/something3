@@ -62,3 +62,23 @@
 "some problems occurs when modifying this alarm.\nplease try again" = "알람 수정중 문제가 발생했습니다. 다시 시도해주세요.";
 
 "some problems occurs when removing this alarm.\nplease try again" = "알람 삭제중 문제가 발생했습니다. 다시 시도해주세요.";
+
+"More" = "추가로";
+
+"SortByName" = "이름순";
+
+"SortByRecent" = "최신순";
+
+"Empty Trash" = "휴지통비우기";
+
+"Search Notes" = "노트 찾기";
+
+"Last Modified" = "마지막 수정일";
+
+"Copy Note" = "노트 복사";
+
+"Send To Trash" = "휴지통에 버리기";
+
+"Restore" = "복구하기";
+
+"Delete Completely" = "완전히 삭제하기";
