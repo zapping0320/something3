@@ -23,7 +23,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sb_searchBar.placeholder = "Search Note"
+        self.sb_searchBar.placeholder = NSLocalizedString("Search Notes", comment: "")
         self.loadContents()
     }
     
@@ -134,9 +134,9 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.searchText_ == "" {
-                return "Keywords"
+                return NSLocalizedString("Keywords", comment: "")
         } else {
-            return "Notes"
+            return NSLocalizedString("Notes", comment: "")
         }
     }
     

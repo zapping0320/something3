@@ -151,10 +151,10 @@ extension TagFilterViewController {
             return "error"
         }else{
             if section == 0 {
-                return "Selected"
+                return NSLocalizedString("Selected", comment: "")
             }
             else{
-                return "Others"
+                return NSLocalizedString("Others", comment: "")
             }
         }
     }

@@ -83,8 +83,35 @@
 
 "Delete Completely" = "Delete Completely";
 
+"Done" = "Done";
 
+"Favorite Notes" = "Favorite Notes";
 
+"Recent Notes" = "Recent Notes";
+
+"Keywords" = "Keywords";
+
+"Notes" = "Notes";
+
+"Mail services are not available" = "Mail services are not available";
+
+"It needs to fill form(email, contents) , please check" = "It needs to fill form(email, contents) , please check";
+
+"please check your email format" = "please check your email format";
+
+"Customer's opinion" = "Customer's opinion";
+
+"Selected" = "Selected";
+
+"Others" = "Others";
+
+"Add" = "Add";
+
+"Add Tag" = "Add Tag";
+
+"Edit Tag" = "Edit Tag";
+
+"Are you sure want to delete this tag?" = "Are you sure want to delete this tag?";
 
 
 

@@ -25,7 +25,7 @@ class FavoriteViewController: UIViewController, UISearchBarDelegate {
         
          dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         
-        let moreBtn = UIBarButtonItem(title: "Edit", style: .plain , target: self, action: #selector(toggleEditing))
+        let moreBtn = UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain , target: self, action: #selector(toggleEditing))
         self.navigationItem.rightBarButtonItem = moreBtn
         
         loadNotes()
@@ -49,7 +49,7 @@ class FavoriteViewController: UIViewController, UISearchBarDelegate {
     
     @objc private func toggleEditing() {
         tableview.setEditing(!tableview.isEditing, animated: true) // Set opposite value of current editing status
-        navigationItem.rightBarButtonItem?.title = tableview.isEditing ? "Done" : "Edit" // Set title depending on the editing status
+        navigationItem.rightBarButtonItem?.title = tableview.isEditing ? NSLocalizedString("Done", comment: "") : NSLocalizedString("Edit", comment: "")// Set title depending on the editing status
     }
     
     func loadNotes() {
@@ -138,9 +138,9 @@ extension FavoriteViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title:String = "Favorite Notes"
+        var title:String = NSLocalizedString("Favorite Notes", comment: "")
         if section == 0 {
-            title = "Recent Notes"
+            title = NSLocalizedString("Recent Notes", comment: "")
         }
         return title
     }

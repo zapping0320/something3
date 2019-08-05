@@ -35,7 +35,7 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate {
         
         self.sb_searchBar.delegate = self
         
-        let addButton = UIBarButtonItem(title: "Add", style: .plain , target: self, action: #selector(addTag_Action))
+        let addButton = UIBarButtonItem(title: NSLocalizedString("Add", comment: ""), style: .plain , target: self, action: #selector(addTag_Action))
         self.navigationItem.rightBarButtonItem = addButton
         
         self.loadTags()
@@ -117,15 +117,15 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate {
     }
     
     @objc func addTag_Action() {
-        let alert = UIAlertController(title: "", message: "Add Tag", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: NSLocalizedString("Add Tag", comment: ""), preferredStyle: .alert)
         alert.addTextField(configurationHandler: { (textField) in
             textField.text = ""
         })
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (updateAction) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default, handler: { (updateAction) in
             _ = TagManager.storeTagInfo(tag: alert.textFields!.first!.text!)
             self.loadTags()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         self.present(alert, animated: false)
     }
 }
@@ -172,30 +172,30 @@ extension ManageTagsViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: { (action, indexPath) in
+        let editAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("Edit", comment: ""), handler: { (action, indexPath) in
             let currentTagSection = self.tagArray_[indexPath.section]
             let currentTag = currentTagSection.tagList[indexPath.row]
-            let alert = UIAlertController(title: "", message: "Edit Tag", preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: NSLocalizedString("Edit Tag", comment: ""), preferredStyle: .alert)
             alert.addTextField(configurationHandler: { (textField) in
                 textField.text = currentTag.tag.content
             })
-            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Update", comment: ""), style: .default, handler: { (updateAction) in
                 let realm = try! Realm()
                 try! realm.write {
                     currentTag.tag.content = alert.textFields!.first!.text!
                 }
                 self.loadTags()
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             self.present(alert, animated: false)
         })
         
-        let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
-            let alert = UIAlertController(title: "Delete",
-                                          message: "Are you sure want to delete this tag?",
+        let deleteAction = UITableViewRowAction(style: .default, title: NSLocalizedString("Delete", comment: ""), handler: { (action, indexPath) in
+            let alert = UIAlertController(title: NSLocalizedString("Delete", comment: ""),
+                                          message: NSLocalizedString("Are you sure want to delete this tag?", comment: ""),
                                           preferredStyle: UIAlertControllerStyle.alert)
             
-            let yesAction = UIAlertAction(title: "YES",
+            let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""),
                                           style: .default, handler:
                 { action in
                     let currentTagSection = self.tagArray_[indexPath.section]
@@ -205,7 +205,7 @@ extension ManageTagsViewController : UITableViewDelegate, UITableViewDataSource{
             }
             )
             
-            let cancelAction = UIAlertAction(title: "No",
+            let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""),
                                              style: .cancel, handler: nil)
             
             alert.addAction(cancelAction)

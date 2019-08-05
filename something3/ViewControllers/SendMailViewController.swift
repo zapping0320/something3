@@ -56,20 +56,20 @@ class SendMailViewController: UIViewController, UITextViewDelegate, MFMailCompos
     
     @objc func sendEmailToAppAdministrator() {
         if !MFMailComposeViewController.canSendMail() {
-            popupMessaage(alertMessage: "Mail services are not available")
+            popupMessaage(alertMessage: NSLocalizedString("Mail services are not available", comment: ""))
         }
         
         if (self.tv_sendContents.text == "" || self.tf_senderAddress.text == "")
         {
-            popupMessaage(alertMessage: "It needs to fill form(email, contents) , please check")
+            popupMessaage(alertMessage: NSLocalizedString("It needs to fill form(email, contents) , please check", comment: ""))
         }
         
         if self.tf_senderAddress.text?.isValidEmail() == false {
-            popupMessaage(alertMessage: "please chekc your email format")
+            popupMessaage(alertMessage: NSLocalizedString("please check your email format", comment: ""))
         }
         
         self.composeVC!.setToRecipients(["zappingtest@gmail.com"])
-        self.composeVC!.setSubject("Customer's opinion" + self.tf_senderAddress.text!)
+        self.composeVC!.setSubject(NSLocalizedString("Customer's opinion", comment: "") + self.tf_senderAddress.text!)
         self.composeVC!.setMessageBody(self.tv_sendContents.text, isHTML: false)
         self.present(self.composeVC!, animated: true, completion: {self.dismiss(animated: false, completion: nil)})
     }

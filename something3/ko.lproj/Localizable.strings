@@ -82,3 +82,33 @@
 "Restore" = "복구하기";
 
 "Delete Completely" = "완전히 삭제하기";
+
+"Done" = "완료";
+
+"Favorite Notes" = "즐겨찾기 노트";
+
+"Recent Notes" = "최신 노트";
+
+"Keywords" = "키워드";
+
+"Notes" = "노트";
+
+"Mail services are not available" = "유효한 메일서비스가 없습니다.";
+
+"It needs to fill form(email, contents) , please check" = "이메일주소와 내용을 입력해주세요.";
+
+"please check your email format" = "이메일 형식을 확인해주세요.";
+
+"Customer's opinion" = "고객님의 의견";
+
+"Selected" = "선택됨";
+
+"Others" = "나머지";
+
+"Add" = "추가";
+
+"Add Tag" = "태그 추가";
+
+"Edit Tag" = "태그 수정";
+
+"Are you sure want to delete this tag?" = "정말 이 태그를 삭제하시겠습니까?";
