@@ -18,3 +18,6 @@ https://github.com/zapping0320/something3
 I'm preparing next version app for higher training.
 
 Coming soon
+---------------------------------------------------
+
+During two weeks, I fixed some warnings. removed korean resouces at codes and translated all strings to English and Korean.
