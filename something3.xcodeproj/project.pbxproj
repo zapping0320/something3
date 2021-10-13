@@ -196,7 +196,6 @@
 				0BB4D6882141D5980046F7F0 /* Model */,
 				0B502124213F3D48009C3510 /* ViewControllers */,
 				0B2B43AC213DE73E00DFD4A9 /* AppDelegate.swift */,
-				0B2B43B0213DE73E00DFD4A9 /* Main.storyboard */,
 				0B2B43B3213DE74000DFD4A9 /* Assets.xcassets */,
 				0B2B43B5213DE74000DFD4A9 /* LaunchScreen.storyboard */,
 				0B2B43B8213DE74000DFD4A9 /* Info.plist */,
@@ -235,6 +234,7 @@
 		0B502124213F3D48009C3510 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B2B43B0213DE73E00DFD4A9 /* Main.storyboard */,
 				E36A3C6227167DAB000E1388 /* TagFilter */,
 				E36A3C6127167D9F000E1388 /* ManageTags */,
 				E36A3C6027167D90000E1388 /* SendMail */,

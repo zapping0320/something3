@@ -9,6 +9,7 @@
 import UIKit
 
 enum Scene {
+    case tabBar
     case list//(MemoListViewModel)
 //    case detail(MemoDetailViewModel)
 //    case compose(MemoComposeViewModel)
@@ -19,8 +20,14 @@ extension Scene {
         let storyboard = UIStoryboard(name: storyboard, bundle: nil)
         
         switch self {
+        case .tabBar:
+            guard let tabBar = storyboard.instantiateViewController(withIdentifier: "tabBar") as? UITabBarController else {
+                fatalError()
+            }
+
+            return tabBar
         case .list://(let viewModel):
-            guard let nav = storyboard.instantiateViewController(withIdentifier: "ListNav") as? UINavigationController else {
+            guard let nav = storyboard.instantiateViewController(withIdentifier: "noteBookView") as? NotebookViewController else {
                 fatalError()
             }
             
