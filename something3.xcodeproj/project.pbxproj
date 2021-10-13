@@ -43,6 +43,8 @@
 		E379CA0E27168FCD00B3137B /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA0D27168FCD00B3137B /* Scene.swift */; };
 		E379CA102716910000B3137B /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA0F2716910000B3137B /* SceneCoordinatorType.swift */; };
 		E379CA122716920300B3137B /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA112716920300B3137B /* SceneCoordinator.swift */; };
+		E379CA14271693AF00B3137B /* NotebookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA13271693AF00B3137B /* NotebookViewModel.swift */; };
+		E379CA182716982A00B3137B /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA172716982A00B3137B /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,8 @@
 		E379CA0D27168FCD00B3137B /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		E379CA0F2716910000B3137B /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
 		E379CA112716920300B3137B /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		E379CA13271693AF00B3137B /* NotebookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookViewModel.swift; sourceTree = "<group>"; };
+		E379CA172716982A00B3137B /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		E37EE0EA2E8888BC64906729 /* Pods-something3-something3UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3-something3UITests.release.xcconfig"; path = "Target Support Files/Pods-something3-something3UITests/Pods-something3-something3UITests.release.xcconfig"; sourceTree = "<group>"; };
 		E3ED456FF862D44442A0BA86 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
 		FE61E67E21F60F19C374CD97 /* Pods-something3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.release.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 		0B2B43AB213DE73D00DFD4A9 /* something3 */ = {
 			isa = PBXGroup;
 			children = (
+				E379CA16271693E500B3137B /* Base */,
 				E379CA0A27168F8200B3137B /* Scene */,
 				0BEE10122201101E00C9DED7 /* UIControllers */,
 				0B4626E921DC236A00268F79 /* Managers */,
@@ -289,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				0B502125213F3D7D009C3510 /* NotebookViewController.swift */,
+				E379CA13271693AF00B3137B /* NotebookViewModel.swift */,
 			);
 			path = Notebook;
 			sourceTree = "<group>";
@@ -382,6 +388,14 @@
 				E379CA112716920300B3137B /* SceneCoordinator.swift */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		E379CA16271693E500B3137B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E379CA172716982A00B3137B /* CommonViewModel.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -639,6 +653,7 @@
 				0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */,
 				0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */,
 				0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */,
+				E379CA182716982A00B3137B /* CommonViewModel.swift in Sources */,
 				0B91D1C52145CCF2005DCCD9 /* AddNoteViewController.swift in Sources */,
 				0BEE10142201108500C9DED7 /* NoteTableViewCell.swift in Sources */,
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
@@ -649,6 +664,7 @@
 				0BF9DA7B21D5852400C20167 /* SendMailViewController.swift in Sources */,
 				E379CA0E27168FCD00B3137B /* Scene.swift in Sources */,
 				0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */,
+				E379CA14271693AF00B3137B /* NotebookViewModel.swift in Sources */,
 				0BBEC59B21CDABD4005BAB45 /* EventHelper.swift in Sources */,
 				0B2B3CB5219CDC6100A0FF14 /* SettingViewController.swift in Sources */,
 				E379CA122716920300B3137B /* SceneCoordinator.swift in Sources */,
