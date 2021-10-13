@@ -41,6 +41,7 @@
 		2E763181F2A95ECE10B5D19F /* Pods_something3_something3UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68D14F53AF180D3189A8522 /* Pods_something3_something3UITests.framework */; };
 		E379CA0C27168F9800B3137B /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA0B27168F9800B3137B /* TransitionModel.swift */; };
 		E379CA0E27168FCD00B3137B /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA0D27168FCD00B3137B /* Scene.swift */; };
+		E379CA102716910000B3137B /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA0F2716910000B3137B /* SceneCoordinatorType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		B68D14F53AF180D3189A8522 /* Pods_something3_something3UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_something3_something3UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E379CA0B27168F9800B3137B /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
 		E379CA0D27168FCD00B3137B /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		E379CA0F2716910000B3137B /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
 		E37EE0EA2E8888BC64906729 /* Pods-something3-something3UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3-something3UITests.release.xcconfig"; path = "Target Support Files/Pods-something3-something3UITests/Pods-something3-something3UITests.release.xcconfig"; sourceTree = "<group>"; };
 		E3ED456FF862D44442A0BA86 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
 		FE61E67E21F60F19C374CD97 /* Pods-something3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.release.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.release.xcconfig"; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			children = (
 				E379CA0B27168F9800B3137B /* TransitionModel.swift */,
 				E379CA0D27168FCD00B3137B /* Scene.swift */,
+				E379CA0F2716910000B3137B /* SceneCoordinatorType.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				0BEE10142201108500C9DED7 /* NoteTableViewCell.swift in Sources */,
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
 				0B27BEA021E55D4E00656B5E /* TagFilterViewController.swift in Sources */,
+				E379CA102716910000B3137B /* SceneCoordinatorType.swift in Sources */,
 				0BB69B8B21A8E1A2003B64C0 /* ColorHelper.swift in Sources */,
 				0B9C11252143339600E4AE7D /* AddNotebookViewController.swift in Sources */,
 				0BF9DA7B21D5852400C20167 /* SendMailViewController.swift in Sources */,
