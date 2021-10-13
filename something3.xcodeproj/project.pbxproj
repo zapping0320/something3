@@ -42,6 +42,7 @@
 		E379CA0C27168F9800B3137B /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA0B27168F9800B3137B /* TransitionModel.swift */; };
 		E379CA0E27168FCD00B3137B /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA0D27168FCD00B3137B /* Scene.swift */; };
 		E379CA102716910000B3137B /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA0F2716910000B3137B /* SceneCoordinatorType.swift */; };
+		E379CA122716920300B3137B /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA112716920300B3137B /* SceneCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		E379CA0B27168F9800B3137B /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
 		E379CA0D27168FCD00B3137B /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		E379CA0F2716910000B3137B /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
+		E379CA112716920300B3137B /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		E37EE0EA2E8888BC64906729 /* Pods-something3-something3UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3-something3UITests.release.xcconfig"; path = "Target Support Files/Pods-something3-something3UITests/Pods-something3-something3UITests.release.xcconfig"; sourceTree = "<group>"; };
 		E3ED456FF862D44442A0BA86 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
 		FE61E67E21F60F19C374CD97 /* Pods-something3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.release.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.release.xcconfig"; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				E379CA0B27168F9800B3137B /* TransitionModel.swift */,
 				E379CA0D27168FCD00B3137B /* Scene.swift */,
 				E379CA0F2716910000B3137B /* SceneCoordinatorType.swift */,
+				E379CA112716920300B3137B /* SceneCoordinator.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				0B502126213F3D7D009C3510 /* NotebookViewController.swift in Sources */,
 				0BBEC59B21CDABD4005BAB45 /* EventHelper.swift in Sources */,
 				0B2B3CB5219CDC6100A0FF14 /* SettingViewController.swift in Sources */,
+				E379CA122716920300B3137B /* SceneCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
