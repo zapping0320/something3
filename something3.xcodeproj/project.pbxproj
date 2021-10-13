@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -219,17 +219,17 @@
 		0B502124213F3D48009C3510 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0B502125213F3D7D009C3510 /* NotebookViewController.swift */,
-				0B9C11242143339600E4AE7D /* AddNotebookViewController.swift */,
-				0B91D1C42145CCF2005DCCD9 /* AddNoteViewController.swift */,
-				0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */,
-				0BD657C0214876970037FE79 /* NoteViewController.swift */,
-				0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */,
-				0B78D6C4215AEF0D008A2E46 /* SearchViewController.swift */,
-				0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */,
-				0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */,
-				0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */,
-				0B27BE9F21E55D4E00656B5E /* TagFilterViewController.swift */,
+				E36A3C6227167DAB000E1388 /* TagFilter */,
+				E36A3C6127167D9F000E1388 /* ManageTags */,
+				E36A3C6027167D90000E1388 /* SendMail */,
+				E36A3C5F27167D7C000E1388 /* Setting */,
+				E36A3C5E27167D70000E1388 /* Search */,
+				E36A3C5D27167D5A000E1388 /* Favorite */,
+				E36A3C5C27167D4C000E1388 /* NoteView */,
+				E36A3C5B27167D36000E1388 /* NotebookContents */,
+				E36A3C5A27167CE6000E1388 /* AddNote */,
+				E36A3C5927167CD4000E1388 /* AddNotebook */,
+				E36A3C5827167CC4000E1388 /* Notebook */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -273,8 +273,95 @@
 				9DE9EE535C749B9DF3ED6A6B /* Pods-something3Tests.debug.xcconfig */,
 				9658451B359141F55DB478FE /* Pods-something3Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E36A3C5827167CC4000E1388 /* Notebook */ = {
+			isa = PBXGroup;
+			children = (
+				0B502125213F3D7D009C3510 /* NotebookViewController.swift */,
+			);
+			path = Notebook;
+			sourceTree = "<group>";
+		};
+		E36A3C5927167CD4000E1388 /* AddNotebook */ = {
+			isa = PBXGroup;
+			children = (
+				0B9C11242143339600E4AE7D /* AddNotebookViewController.swift */,
+			);
+			path = AddNotebook;
+			sourceTree = "<group>";
+		};
+		E36A3C5A27167CE6000E1388 /* AddNote */ = {
+			isa = PBXGroup;
+			children = (
+				0B91D1C42145CCF2005DCCD9 /* AddNoteViewController.swift */,
+			);
+			path = AddNote;
+			sourceTree = "<group>";
+		};
+		E36A3C5B27167D36000E1388 /* NotebookContents */ = {
+			isa = PBXGroup;
+			children = (
+				0BD9DF8021471EFB0008DBD8 /* NotebookContentsViewController.swift */,
+			);
+			path = NotebookContents;
+			sourceTree = "<group>";
+		};
+		E36A3C5C27167D4C000E1388 /* NoteView */ = {
+			isa = PBXGroup;
+			children = (
+				0BD657C0214876970037FE79 /* NoteViewController.swift */,
+			);
+			path = NoteView;
+			sourceTree = "<group>";
+		};
+		E36A3C5D27167D5A000E1388 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		E36A3C5E27167D70000E1388 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0B78D6C4215AEF0D008A2E46 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E36A3C5F27167D7C000E1388 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0B2B3CB4219CDC6100A0FF14 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		E36A3C6027167D90000E1388 /* SendMail */ = {
+			isa = PBXGroup;
+			children = (
+				0BF9DA7A21D5852400C20167 /* SendMailViewController.swift */,
+			);
+			path = SendMail;
+			sourceTree = "<group>";
+		};
+		E36A3C6127167D9F000E1388 /* ManageTags */ = {
+			isa = PBXGroup;
+			children = (
+				0BF9DA7C21D982AE00C20167 /* ManageTagsViewController.swift */,
+			);
+			path = ManageTags;
+			sourceTree = "<group>";
+		};
+		E36A3C6227167DAB000E1388 /* TagFilter */ = {
+			isa = PBXGroup;
+			children = (
+				0B27BE9F21E55D4E00656B5E /* TagFilterViewController.swift */,
+			);
+			path = TagFilter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
