@@ -10,6 +10,8 @@ target 'something3' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Action'
+  pod 'RxDataSources'
+  pod 'RxCoreData'
 
   target 'something3Tests' do
     inherit! :search_paths
