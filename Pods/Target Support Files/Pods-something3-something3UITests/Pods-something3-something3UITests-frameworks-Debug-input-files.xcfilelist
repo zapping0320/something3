@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-something3-something3UITests/Pods-something3-something3UITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Action/Action.framework
 ${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
 ${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
