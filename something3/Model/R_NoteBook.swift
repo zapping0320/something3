@@ -7,8 +7,11 @@
 //
 
 import RealmSwift
+import RxDataSources
 
-class R_NoteBook : Object {
+class R_NoteBook : Object, IdentifiableType {
+    var identity:String = ""
+    
     @objc dynamic var id = 0
     @objc dynamic var name = ""
     @objc dynamic var isfavorite = false
@@ -19,5 +22,10 @@ class R_NoteBook : Object {
     @objc dynamic var deleted_at:Date? = nil
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    override init() {
+        super.init()
+        identity = String(id)
     }
 }

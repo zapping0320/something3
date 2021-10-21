@@ -12,12 +12,14 @@ import RxCocoa
 import Action
 import RxDataSources
 
+typealias NotebookSectionModel = AnimatableSectionModel<Int, R_NoteBook>
+
 class NotebookViewModel : CommonViewModel {
-    let dataSource:RxTableViewSectionedAnimatedDataSource<MemoSectionModel> = {
-        let ds = RxTableViewSectionedAnimatedDataSource<MemoSectionModel>(configureCell: {
-            (dataSource, tableView, indexPath, memo) -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = memo.content
+    let dataSource:RxTableViewSectionedAnimatedDataSource<NotebookSectionModel> = {
+        let ds = RxTableViewSectionedAnimatedDataSource<NotebookSectionModel>(configureCell: {
+            (dataSource, tableView, indexPath, notebook) -> UITableViewCell in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "notebookCell", for: indexPath)
+            cell.textLabel?.text = notebook.name
             return cell
         })
         
@@ -25,4 +27,8 @@ class NotebookViewModel : CommonViewModel {
         
         return ds
     }()
+    
+//    var notebookList: Observable<[NoteBookSectionModel]> {
+//        return storage.memoList()
+//    }
 }
