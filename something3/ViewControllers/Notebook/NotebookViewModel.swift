@@ -26,6 +26,10 @@ class NotebookViewModel {//} : CommonViewModel {
         return notebookMgr.updateNotebook(id: id, updatedName: updatedName)
     }
     
+    public func deleteNotebook(id:Int) {
+        return notebookMgr.deleteNotebook(id: id)
+    }
+    
     public func getRelatedNoteCount(notebookId:Int) -> Int {
         return noteMgr.getRelatedNoteCount(notebookId: notebookId)
     }

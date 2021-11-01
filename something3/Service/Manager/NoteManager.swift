@@ -20,4 +20,15 @@ class NoteManager {
         return results.count
     }
     
+    public func setNotesInitialized(notebookId:Int) {
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: notebookId))
+        try! realm.write {
+            for note in realm.objects(R_Note.self).filter(predicate){
+                note.relatedNotebookId = -1
+                note.oldNotebookId = notebookId
+            }
+        }
+    }
+    
 }

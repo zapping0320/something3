@@ -88,4 +88,16 @@ class NotebookManager {
             originalNotebook.updated_at = Date()
         }
     }
+    
+    public func deleteNotebook(id:Int) {
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "id = %@",  NSNumber(value: id))
+        guard let originalNotebook = realm.objects(R_NoteBook.self).filter(predicate).first else { return }
+        
+        NoteManager.shared.setNotesInitialized(notebookId: id)
+        try! realm.write {
+            realm.delete(originalNotebook)
+        }
+        
+    }
 }

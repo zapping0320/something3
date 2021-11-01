@@ -173,20 +173,12 @@ extension NotebookViewController: UITableViewDataSource, UITableViewDelegate {
             
             let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""),
                                           style: .default, handler:
-                { action in
-                    let currentNotebook = self.viewModel.loadNotebooks(searchWord: self.searchText_)[indexPath.section]![indexPath.row] as R_NoteBook
-                    let realm = try! Realm()
-                    try! realm.write {
-                        
-                        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: currentNotebook.id))
-                        for note in realm.objects(R_Note.self).filter(predicate){
-                            note.relatedNotebookId = -1
-                            note.oldNotebookId = currentNotebook.id
-                        }
-                        realm.delete(currentNotebook)
-                    }
-                    self.loadNotebooks()
-            }
+                                            { action in
+                                                let currentNotebook = self.viewModel.loadNotebooks(searchWord: self.searchText_)[indexPath.section]![indexPath.row] as R_NoteBook
+                                                self.viewModel.deleteNotebook(id: currentNotebook.id)
+                                                
+                                                self.loadNotebooks()
+                                            }
             )
             
             let cancelAction = UIAlertAction(title: NSLocalizedString("No", comment: ""),
@@ -195,7 +187,7 @@ extension NotebookViewController: UITableViewDataSource, UITableViewDelegate {
             alert.addAction(cancelAction)
             alert.addAction(yesAction)
             self.present(alert, animated: true, completion: nil)
-        
+            
             tableView.reloadData()
         })
         
