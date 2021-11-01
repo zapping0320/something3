@@ -76,6 +76,17 @@ class NotebookViewController: UIViewController, UISearchBarDelegate {
     func loadNotebooks() {
         self.tableview.reloadData()
     }
+    
+    @IBAction func addNotebookAction(_ sender: Any) {
+        let addNotebookVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addNotebook") as! AddNotebookViewController
+  
+        addNotebookVC.dataChanged = {
+            self.loadNotebooks()
+        }
+        
+        self.present(addNotebookVC, animated: true, completion: nil)
+        
+    }
 
 }
 
@@ -205,16 +216,7 @@ extension NotebookViewController: UITableViewDataSource, UITableViewDelegate {
                                           style: .default, handler:
                 { action in
                     let currentNotebook = self.viewModel.loadNotebooks(searchWord: self.searchText_)[indexPath.section]![indexPath.row] as R_NoteBook
-                    let realm = try! Realm()
-                    try! realm.write {
-                        
-                        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: currentNotebook.id))
-                        for note in realm.objects(R_Note.self).filter(predicate){
-                            note.relatedNotebookId = -1
-                            note.oldNotebookId = currentNotebook.id
-                        }
-                        realm.delete(currentNotebook)
-                    }
+                    self.viewModel.deleteNotebook(id: currentNotebook.id)
                     self.loadNotebooks()
                 }
             )

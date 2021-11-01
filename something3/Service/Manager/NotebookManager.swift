@@ -100,4 +100,18 @@ class NotebookManager {
         }
         
     }
+    
+    public func addNotebook(name:String) {
+        let realm = try! Realm()
+        
+        let newid = (realm.objects(R_NoteBook.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        
+        let newnotebook = R_NoteBook()
+        newnotebook.name = name
+        newnotebook.id = newid
+        
+        try! realm.write {
+            realm.add(newnotebook)
+        }
+    }
 }

@@ -6,19 +6,18 @@
 //  Copyright © 2018년 John Kim. All rights reserved.
 //
 
-import Foundation
-import RealmSwift
+import UIKit
 
 class AddNotebookViewController : UIViewController {
 
+    public var dataChanged:(() -> Void)?
+    
     @IBOutlet weak var tf_notebookName: UITextField!
     @IBOutlet weak var btn_SaveNotebook: UIButton!
     
-    override func viewDidLoad() {
-        applyCurrentColor()
-    }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         applyCurrentColor()
     }
     
@@ -52,17 +51,10 @@ class AddNotebookViewController : UIViewController {
             return
         }
         
-        let realm = try! Realm()
+        NotebookManager.shared.addNotebook(name: self.tf_notebookName.text!)
         
-        let newid = (realm.objects(R_NoteBook.self).max(ofProperty: "id") as Int? ?? 0) + 1
-        
-        let newnotebook = R_NoteBook()
-        newnotebook.name = self.tf_notebookName.text!
-        newnotebook.id = newid
-        
-        try! realm.write {
-            realm.add(newnotebook)
-        }
+        self.dataChanged?()
+
         
         closeViewController()
     }

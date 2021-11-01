@@ -391,9 +391,7 @@
                                     <color key="titleShadowColor" red="1" green="0.6845327819" blue="0.19650800609999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="7Q8-aW-MNB" kind="popoverPresentation" popoverAnchorView="csw-rO-Fym" id="YJY-d4-vC4">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="addNotebookAction:" destination="KuC-bY-jQR" eventType="touchUpInside" id="PmQ-mo-MyD"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -706,9 +704,9 @@
         <!--Add Notebook View Controller-->
         <scene sceneID="0tN-fp-LuT">
             <objects>
-                <viewController id="7Q8-aW-MNB" customClass="AddNotebookViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addNotebook" id="7Q8-aW-MNB" customClass="AddNotebookViewController" customModule="something3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d8i-R9-6vq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insert New Notebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vj-sR-bHc">
