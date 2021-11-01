@@ -77,5 +77,15 @@ class NotebookManager {
         return notebookArray
     }
     
-    
+    public func updateNotebook(id:Int,updatedName:String) {
+        let realm = try! Realm()
+        
+        let predicate = NSPredicate(format: "id = %@",  NSNumber(value: id))
+        guard let originalNotebook = realm.objects(R_NoteBook.self).filter(predicate).first else { return }
+        
+        try! realm.write {
+            originalNotebook.name = updatedName
+            originalNotebook.updated_at = Date()
+        }
+    }
 }

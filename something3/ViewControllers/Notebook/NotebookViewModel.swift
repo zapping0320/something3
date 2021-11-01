@@ -15,10 +15,19 @@ import RxDataSources
 typealias NotebookSectionModel = AnimatableSectionModel<Int, R_NoteBook>
 
 class NotebookViewModel {//} : CommonViewModel {
-    private let mgr = NotebookManager.shared
+    private let notebookMgr = NotebookManager.shared
+    private let noteMgr = NoteManager.shared
     
     public func loadNotebooks(searchWord:String) -> [Int:[R_NoteBook]] {
-        return mgr.loadNotebooks(searchWord: searchWord)
+        return notebookMgr.loadNotebooks(searchWord: searchWord)
+    }
+    
+    public func updateNotebook(id:Int,updatedName:String) {
+        return notebookMgr.updateNotebook(id: id, updatedName: updatedName)
+    }
+    
+    public func getRelatedNoteCount(notebookId:Int) -> Int {
+        return noteMgr.getRelatedNoteCount(notebookId: notebookId)
     }
     
     

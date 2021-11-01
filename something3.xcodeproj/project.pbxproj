@@ -49,6 +49,7 @@
 		E39A4A7327210681001432AA /* NotebookStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A4A7227210681001432AA /* NotebookStorageType.swift */; };
 		E39A4A7627210743001432AA /* DBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A4A7527210743001432AA /* DBStorage.swift */; };
 		E3B15C5D272F99740013D0DF /* NotebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B15C5C272F99740013D0DF /* NotebookManager.swift */; };
+		E3B15C5F272FA0A50013D0DF /* NoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B15C5E272FA0A50013D0DF /* NoteManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		E39A4A7227210681001432AA /* NotebookStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookStorageType.swift; sourceTree = "<group>"; };
 		E39A4A7527210743001432AA /* DBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorage.swift; sourceTree = "<group>"; };
 		E3B15C5C272F99740013D0DF /* NotebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookManager.swift; sourceTree = "<group>"; };
+		E3B15C5E272FA0A50013D0DF /* NoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManager.swift; sourceTree = "<group>"; };
 		E3ED456FF862D44442A0BA86 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
 		FE61E67E21F60F19C374CD97 /* Pods-something3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.release.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -430,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				E3B15C5C272F99740013D0DF /* NotebookManager.swift */,
+				E3B15C5E272FA0A50013D0DF /* NoteManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				E3B15C5D272F99740013D0DF /* NotebookManager.swift in Sources */,
 				0BD9DF8121471EFB0008DBD8 /* NotebookContentsViewController.swift in Sources */,
 				0BB4D68A2141D5B70046F7F0 /* R_NoteBook.swift in Sources */,
+				E3B15C5F272FA0A50013D0DF /* NoteManager.swift in Sources */,
 				0BE39B14214E5CEB00974B87 /* FavoriteViewController.swift in Sources */,
 				E379CA182716982A00B3137B /* CommonViewModel.swift in Sources */,
 				0B91D1C52145CCF2005DCCD9 /* AddNoteViewController.swift in Sources */,

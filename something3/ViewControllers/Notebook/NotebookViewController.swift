@@ -108,10 +108,8 @@ extension NotebookViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let currentNotebook =  viewModel.loadNotebooks(searchWord: self.searchText_)[indexPath.section]![indexPath.row] as R_NoteBook
-        let realm = try! Realm()
-        let predicate = NSPredicate(format: "relatedNotebookId = %@",  NSNumber(value: currentNotebook.id))
-        let results = realm.objects(R_Note.self).filter(predicate)
-        cell.textLabel?.text = currentNotebook.name + "(" + String(results.count) + ")"
+        let noteCount = viewModel.getRelatedNoteCount(notebookId: currentNotebook.id)
+        cell.textLabel?.text = currentNotebook.name + "(" + String(noteCount) + ")"
         return cell
     }
     
@@ -161,11 +159,7 @@ extension NotebookViewController: UITableViewDataSource, UITableViewDelegate {
                 textField.text = currentNotebook.name
             })
             alert.addAction(UIAlertAction(title: NSLocalizedString("Update", comment: ""), style: .default, handler: { (updateAction) in
-                let realm = try! Realm()
-                try! realm.write {
-                    currentNotebook.name = alert.textFields!.first!.text!
-                    currentNotebook.updated_at = Date()
-                }
+                self.viewModel.updateNotebook(id: currentNotebook.id, updatedName: alert.textFields!.first!.text!)
                 self.loadNotebooks()
             }))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
