@@ -14,19 +14,26 @@ import RxDataSources
 
 typealias NotebookSectionModel = AnimatableSectionModel<Int, R_NoteBook>
 
-class NotebookViewModel : CommonViewModel {
-    let dataSource:RxTableViewSectionedAnimatedDataSource<NotebookSectionModel> = {
-        let ds = RxTableViewSectionedAnimatedDataSource<NotebookSectionModel>(configureCell: {
-            (dataSource, tableView, indexPath, notebook) -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "notebookCell", for: indexPath)
-            cell.textLabel?.text = notebook.name
-            return cell
-        })
-        
-        ds.canEditRowAtIndexPath = { _, _ in return true }
-        
-        return ds
-    }()
+class NotebookViewModel {//} : CommonViewModel {
+    private let mgr = NotebookManager.shared
+    
+    public func loadNotebooks(searchWord:String) -> [Int:[R_NoteBook]] {
+        return mgr.loadNotebooks(searchWord: searchWord)
+    }
+    
+    
+//    let dataSource:RxTableViewSectionedAnimatedDataSource<NotebookSectionModel> = {
+//        let ds = RxTableViewSectionedAnimatedDataSource<NotebookSectionModel>(configureCell: {
+//            (dataSource, tableView, indexPath, notebook) -> UITableViewCell in
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "notebookCell", for: indexPath)
+//            cell.textLabel?.text = notebook.name
+//            return cell
+//        })
+//
+//        ds.canEditRowAtIndexPath = { _, _ in return true }
+//
+//        return ds
+//    }()
     
 //    var notebookList: Observable<[NoteBookSectionModel]> {
 //        return storage.memoList()
