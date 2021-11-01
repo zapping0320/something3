@@ -8,13 +8,20 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 class DBStorage{//}: NotebookStorageType {
     
 //    private lazy var sectionModel = MemoSectionModel(model: 0, items: list)
+    private var sectionModel:NotebookSectionModel?
 //
 //    private lazy var store = BehaviorSubject<[MemoSectionModel]>(value: [sectionModel])
 //
+    init() {
+//        let 
+//        sectionModel = NotebookSectionModel(model: 0, items: <#T##[R_NoteBook]#>)
+    }
+    
 //    func createNotebook(content: String) -> Observable<R_NoteBook> {
 //        return Observable<R_NoteBook>()
 //    }
