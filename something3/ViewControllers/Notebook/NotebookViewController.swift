@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import EventKit
 
 var selectedNotebookId: Int = 0

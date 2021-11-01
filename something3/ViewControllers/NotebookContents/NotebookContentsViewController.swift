@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
 
@@ -22,20 +21,18 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
     let cellIdentifier: String = "noteCell"
     let sortTypeByName : String = "ByName"
     let sortTypeByRecent : String = "ByRecent"
-    let dateformatter = DateFormatter()
+  
     
-    fileprivate var selectedNotebookContents:[R_Note] = [R_Note]()
     open var selectedNoteBookId: Int = 0
     var searchText_: String = ""
-    var sortType_: String = ""
+    
+    private let viewModel = NotebookContentsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+      
         
         self.lb_searchResult.isHidden = true
-        self.sortType_ = self.sortTypeByRecent
         let moreBtn = UIBarButtonItem(title: NSLocalizedString("More", comment: ""), style: .plain , target: self, action: #selector(barBtn_more_Action))
         self.navigationItem.rightBarButtonItem = moreBtn
     }
@@ -70,7 +67,7 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
         //change sort way
         let sortByNameAction = UIAlertAction(title: NSLocalizedString("SortByName", comment: ""),
                                              style: .default, handler: {result in
-                                                self.sortType_ = self.sortTypeByName
+                                                self.viewModel.isSortTypeByName = true
                                                 self.loadContents()
         })
         sortByNameAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
@@ -78,13 +75,13 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
         
         let sortByRecentAction = UIAlertAction(title: NSLocalizedString("SortByRecent", comment: ""),
                                                style: .default, handler: {result in
-                                                self.sortType_ = self.sortTypeByRecent
+                                                self.viewModel.isSortTypeByName = false
                                                 self.loadContents()
         })
         sortByRecentAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
         alert.addAction(sortByRecentAction)
         
-        if(self.sortType_ == self.sortTypeByRecent)
+        if(self.viewModel.isSortTypeByName != true)
         {
             sortByRecentAction.setValue(true, forKey: "checked")
         }
@@ -100,13 +97,7 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
             let deleteAllAction = UIAlertAction(title: NSLocalizedString("Empty Trash", comment: ""),
                                                 style: .default, handler:
                 { reuslt in
-                    let realm = try! Realm()
-                    try! realm.write {
-                        let predicate = NSPredicate(format: "relatedNotebookId = -1")
-                        for note in realm.objects(R_Note.self).filter(predicate){
-                            realm.delete(note)
-                        }
-                    }
+                    self.viewModel.deleteTrashNotes()
                     self.navigationController?.popViewController(animated: false)
             })
             deleteAllAction.setValue(ColorHelper.getCancelColor(), forKey: "titleTextColor")
@@ -124,99 +115,16 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
         loadContents()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func loadContents() {
-        selectedNotebookContents = [R_Note]()
         
         self.lb_searchResult.isHidden = true
         
-        let realm = try! Realm()
-        
-        let predicateNotebookId = NSPredicate(format: "relatedNotebookId = %@", NSNumber(value: self.selectedNoteBookId))
-        var predicateList = [NSPredicate]()
-        predicateList.append(predicateNotebookId)
-
-        if(self.searchText_ != "")
-        {
-             let predicateSearch = NSPredicate(format: "title contains %@ OR content contains %@", self.searchText_, self.searchText_)
-
-             predicateList.append(predicateSearch)
-        }
-        
-        if(self.button_searchByAlarm.isSelected == true)
-        {
-            let predicateAlarm = NSPredicate(format: "alarmDate != nil ")
-            predicateList.append(predicateAlarm)
-        }
-        
-        let andPredicate:NSCompoundPredicate = NSCompoundPredicate(type: .and, subpredicates: predicateList)
-        
-        var sortField : String = ""
-        var sortAscending: Bool = false
-        if(sortType_ == self.sortTypeByName)
-        {
-            sortField = "title"
-            sortAscending = true
-        }
-        else
-        {
-            sortField = "updated_at"
-            sortAscending = false
-        }
-        let results = realm.objects(R_Note.self).filter(andPredicate).sorted(byKeyPath: sortField, ascending: sortAscending)
-        
-        let predicateNotebook = NSPredicate(format: "id = %@", NSNumber(value:self.selectedNoteBookId))
-        let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebook)
-        if(notebookResults.count == 0){
-            //trash
-            selectedNotebookContents = Array(results)
-        }
-        else{
-            let currentNotebook = notebookResults[0]
-            if(currentNotebook.searchTags != "")
-            {
-                let predicateTagString = String.localizedStringWithFormat("tagId in { %@ } ", currentNotebook.searchTags)
-                let predicateTag = NSPredicate(format: predicateTagString)
-                let relationResults = realm.objects(R_NoteTagRelations.self).filter(predicateTag)
-                var noteidList = [Int]()
-                for i in 0..<relationResults.count {
-                    let relationItem = relationResults[i]
-                    if (noteidList.contains(relationItem.noteId) == false){
-                        noteidList.append(relationItem.noteId)
-                    }
-                }
-                
-                if(noteidList.count == 0)
-                {
-                    selectedNotebookContents = Array(results)
-                }
-                else
-                {
-                    for i in 0..<results.count {
-                        let noteItem = results[i]
-                        if( noteidList.contains(noteItem.id)){
-                            selectedNotebookContents.append(noteItem)
-                        }
-                    }
-                }
-                
-            }
-            else
-            {
-                selectedNotebookContents = Array(results)
-            }
-        }
+        _ = viewModel.getNotes(notebookId: self.selectedNoteBookId, searchWord: self.searchText_)
         
         self.tableview?.reloadData()
         
-        if(selectedNotebookContents.count == 0)
-        {
-            self.lb_searchResult.isHidden = false
-        }
+
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -238,7 +146,7 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
                 else {
                     return
             }
-            noteVC.selectedNote = selectedNotebookContents[index.row]
+            noteVC.selectedNote = viewModel.getNotes(notebookId: self.selectedNoteBookId, searchWord: self.searchText_)[index.row]
         }
         else if segue.identifier == "TagFilter" {
             guard let tagFilterVC : TagFilterViewController = segue.destination as? TagFilterViewController
@@ -267,12 +175,14 @@ extension NotebookContentsViewController : UITableViewDelegate, UITableViewDataS
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return selectedNotebookContents.count
+        let count = viewModel.getNotes(notebookId: self.selectedNoteBookId, searchWord: self.searchText_).count
+        self.lb_searchResult.isHidden = count != 0
+        return count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let currentNote = selectedNotebookContents[indexPath.row]
+        let currentNote = viewModel.getNotes(notebookId: self.selectedNoteBookId, searchWord: self.searchText_)[indexPath.row]
         cell.textLabel?.text = currentNote.title
         if(currentNote.alarmDate != nil)
         {
@@ -297,11 +207,8 @@ extension NotebookContentsViewController : UITableViewDelegate, UITableViewDataS
     
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            let realm = try! Realm()
-            try! realm.write {
-                selectedNotebookContents[indexPath.row].relatedNotebookId = -1
-                selectedNotebookContents[indexPath.row].oldNotebookId = self.selectedNoteBookId
-            }
+            let note = viewModel.getNotes(notebookId: self.selectedNoteBookId, searchWord: self.searchText_)[indexPath.row]
+            self.viewModel.setNoteInitialized(noteId: note.id)
             loadContents()
         }
     }
