@@ -80,12 +80,8 @@ class NotebookManager {
     public func getNotebooks() -> [R_NoteBook] {
         let realm = try! Realm()
         let results = realm.objects(R_NoteBook.self)
-        var notebooks = Array(results)
-        let notDefinedNotebook = R_NoteBook()
-        notDefinedNotebook.id = -1
-        notDefinedNotebook.name = "없음"
-        notebooks.append(notDefinedNotebook)
-        return notebooks
+        
+        return Array(results)
     }
 
     

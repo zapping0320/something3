@@ -22,7 +22,9 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
     
     var eventHelper:EventHelper?
     
-    fileprivate var notebookArray_ = [R_NoteBook]()
+    private let viewModel = AddNoteViewModel()
+    
+   // fileprivate var notebookArray_ = [R_NoteBook]()
     var alarmDate:Date?
     var alarmIdentifier:String?
     
@@ -36,7 +38,7 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
         self.tv_content.delegate = self
         self.tv_content.text = NSLocalizedString("Content", comment: "")
         self.tv_content.textColor = UIColor.lightGray
-        loadNotebooks()
+        //loadNotebooks()
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -55,17 +57,17 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
     
     override func  viewDidAppear(_ animated: Bool) {
         clearInputFields()
-        loadNotebooks()
-        if notebookArray_.count > 0 {
-            for i in 0..<notebookArray_.count {
-                let notebook = notebookArray_[i]
-                if(notebook.id == selectedNotebookId)
-                {
-                    self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
-                    break
-                }
-            }
-        }
+        //loadNotebooks()
+//        if notebookArray_.count > 0 {
+//            for i in 0..<notebookArray_.count {
+//                let notebook = notebookArray_[i]
+//                if(notebook.id == selectedNotebookId)
+//                {
+//                    self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
+//                    break
+//                }
+//            }
+//        }
         applyCurrentColor()
     }
     
@@ -81,35 +83,35 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
         self.bt_alarm.tintColor = ColorHelper.getCurrentDeepTextColor()
     }
     
-    func loadNotebooks() {
-        notebookArray_ = [R_NoteBook]()
-        
-        let realm = try! Realm()
-        let results = realm.objects(R_NoteBook.self)
-        //print(results.count)
-        if(results.count ==  0)
-        {
-            let newid = (realm.objects(R_NoteBook.self).max(ofProperty: "id") as Int? ?? 0) + 1
-            
-            let newnotebook = R_NoteBook()
-            newnotebook.name = NSLocalizedString("Anonymous", comment: "")
-            newnotebook.id = newid
-            
-            try! realm.write {
-                realm.add(newnotebook)
-            }
-            
-            notebookArray_.append(newnotebook)
-        }
-        else
-        {
-            for i in 0..<results.count {
-                let item = results[i]
-                notebookArray_.append(item)
-            }
-        }
-        self.pv_notebooks.reloadAllComponents()
-    }
+//    func loadNotebooks() {
+//        notebookArray_ = [R_NoteBook]()
+//
+//        let realm = try! Realm()
+//        let results = realm.objects(R_NoteBook.self)
+//        //print(results.count)
+//        if(results.count ==  0)
+//        {
+//            let newid = (realm.objects(R_NoteBook.self).max(ofProperty: "id") as Int? ?? 0) + 1
+//
+//            let newnotebook = R_NoteBook()
+//            newnotebook.name = NSLocalizedString("Anonymous", comment: "")
+//            newnotebook.id = newid
+//
+//            try! realm.write {
+//                realm.add(newnotebook)
+//            }
+//
+//            notebookArray_.append(newnotebook)
+//        }
+//        else
+//        {
+//            for i in 0..<results.count {
+//                let item = results[i]
+//                notebookArray_.append(item)
+//            }
+//        }
+//        self.pv_notebooks.reloadAllComponents()
+//    }
 
     
     @IBAction func btn_save_action(_ sender: UIButton) {
@@ -131,7 +133,7 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
         let newnote = R_Note()
         newnote.title = self.tf_title.text!
         newnote.content = self.tv_content.text!
-        newnote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
+       // newnote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
         newnote.isfavorite = self.switch_favorite.isOn
         newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
         newnote.alarmDate = self.alarmDate
@@ -141,7 +143,7 @@ class AddNoteViewController: UIViewController, UITextViewDelegate {
       
         try! realm.write {
             realm.add(newnote)
-            notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
+            //notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
         }
         //add tags noteid, tags
         _ = TagManager.addTagsToNote(noteid: newnote.id, tagString: self.tf_tags.text)
@@ -253,14 +255,14 @@ extension AddNoteViewController : UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return notebookArray_.count
+        return viewModel.getNotebooks().count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return notebookArray_[row].name
+        return viewModel.getNotebooks()[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(notebookArray_[row].name)
+        //print(notebookArray_[row].name)
     }
 }
