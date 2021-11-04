@@ -107,7 +107,8 @@ class FavoriteViewController: UIViewController, UISearchBarDelegate {
             return
         }
         
-        noteVC.selectedNote = favoriteNotes[index.section]![index.row]
+        //noteVC.selectedNote = favoriteNotes[index.section]![index.row]
+        noteVC.setSelectedNote(note: favoriteNotes[index.section]![index.row])
     }
 
 }

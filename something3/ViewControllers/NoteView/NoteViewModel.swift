@@ -12,6 +12,18 @@ class NoteViewModel {
     private let notebookMgr = NotebookManager.shared
     private let noteMgr = NoteManager.shared
     
+    public var selectedNote:R_Note = R_Note()
+    
+    let dateformatter = DateFormatter()
+    
+    init() {
+        dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+    }
+    
+    public func getUpdatedDateString() -> String {
+        return NSLocalizedString("Last Modified" , comment: "") + ":" + dateformatter.string(from: selectedNote.updated_at)
+    }
+    
     public func getAllNotes() {
         
         

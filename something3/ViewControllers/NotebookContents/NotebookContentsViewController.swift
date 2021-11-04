@@ -143,7 +143,8 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
                 else {
                     return
             }
-            noteVC.selectedNote = viewModel.getNotes(notebookId: self.selectedNoteBookId, searchWord: self.searchText_)[index.row]
+            //noteVC.selectedNote = viewModel.getNotes(notebookId: self.selectedNoteBookId, searchWord: self.searchText_)[index.row]
+            noteVC.setSelectedNote(note: viewModel.getNotes(notebookId: self.selectedNoteBookId, searchWord: self.searchText_)[index.row])
         }
         else if segue.identifier == "TagFilter" {
             guard let tagFilterVC : TagFilterViewController = segue.destination as? TagFilterViewController

@@ -21,9 +21,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var bt_alarm: UIButton!
     @IBOutlet weak var lb_guideTrash: UILabel!
     
-    open var selectedNote:R_Note = R_Note()
-   
-    let dateformatter = DateFormatter()
+     
     var alarmDate:Date?
     var alarmIdentifier:String?
     
@@ -38,11 +36,25 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             self.eventHelper = EventHelper()
         }
         
-        dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        self.lb_updatedAt.text = NSLocalizedString("Last Modified" , comment: "") + ":" + dateformatter.string(from: selectedNote.updated_at)
+       
+        
+        
+        let moreBtn = UIBarButtonItem(title: NSLocalizedString("More", comment: ""), style: .plain , target: self, action: #selector(barBtn_more_Action))
+        self.navigationItem.rightBarButtonItem = moreBtn
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        updateUI()
+    }
+    
+    private func updateUI() {
+        let selectedNote = viewModel.selectedNote
+        self.lb_updatedAt.text = viewModel.getUpdatedDateString()
         self.switch_favorite.isOn = selectedNote.isfavorite
         self.alarmDate = selectedNote.alarmDate
-        if(self.selectedNote.alarmDate == nil)
+        if(selectedNote.alarmDate == nil)
         {
             self.bt_alarm.setTitle(NSLocalizedString("Unset", comment: ""), for: .normal)
         }
@@ -52,7 +64,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             self.alarmIdentifier = selectedNote.alarmIdentifier
         }
         
-        self.tf_title.text = selectedNote.title
+        self.tf_title.text = viewModel.selectedNote.title
         self.tf_title.placeholder = NSLocalizedString("Title", comment: "")
         self.tf_tags.placeholder = TagManager.tagPlaceHolderString
         self.tf_tags.text = TagManager.makeTagString(noteid: selectedNote.id)
@@ -85,7 +97,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             if notebooks.count > 0 {
                 for i in 0..<notebooks.count {
                     let notebook = notebooks[i]
-                    if(notebook.id == self.selectedNote.relatedNotebookId)
+                    if(notebook.id == selectedNote.relatedNotebookId)
                     {
                         self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
                         break
@@ -94,13 +106,16 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             }
         }
         
-        let moreBtn = UIBarButtonItem(title: NSLocalizedString("More", comment: ""), style: .plain , target: self, action: #selector(barBtn_more_Action))
-        self.navigationItem.rightBarButtonItem = moreBtn
+        self.tf_tags.text = TagManager.makeTagString(noteid: selectedNote.id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         applyCurrentColor()
-        self.tf_tags.text = TagManager.makeTagString(noteid: selectedNote.id)
+        
+    }
+    
+    public func setSelectedNote(note:R_Note) {
+        viewModel.selectedNote = note
     }
     
     func applyCurrentColor(){
@@ -113,7 +128,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         let alert = UIAlertController(title: title,
                                       message: NSLocalizedString("More", comment: ""),
                                       preferredStyle: UIAlertControllerStyle.actionSheet)
-        if(self.selectedNote.relatedNotebookId != -1)
+        if(true)//self.selectedNote.relatedNotebookId != -1)
         {
             let copyNoteAction = UIAlertAction(title: NSLocalizedString("Copy Note", comment: ""),
                                                style: .default, handler: {result in
