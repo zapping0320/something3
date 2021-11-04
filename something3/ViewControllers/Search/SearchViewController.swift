@@ -111,7 +111,6 @@ class SearchViewController: UIViewController,UISearchBarDelegate {
             return
         }
         
-        //noteVC.selectedNote = searchedNotes[index.row]
         noteVC.setSelectedNote(note: searchedNotes[index.row])
         
     }

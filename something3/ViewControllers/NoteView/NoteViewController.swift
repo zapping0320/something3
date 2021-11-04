@@ -36,9 +36,6 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             self.eventHelper = EventHelper()
         }
         
-       
-        
-        
         let moreBtn = UIBarButtonItem(title: NSLocalizedString("More", comment: ""), style: .plain , target: self, action: #selector(barBtn_more_Action))
         self.navigationItem.rightBarButtonItem = moreBtn
     }
@@ -128,11 +125,11 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         let alert = UIAlertController(title: title,
                                       message: NSLocalizedString("More", comment: ""),
                                       preferredStyle: UIAlertControllerStyle.actionSheet)
-        if(true)//self.selectedNote.relatedNotebookId != -1)
+        if(viewModel.selectedNote.relatedNotebookId != -1)
         {
             let copyNoteAction = UIAlertAction(title: NSLocalizedString("Copy Note", comment: ""),
                                                style: .default, handler: {result in
-                                                
+                                                self.viewModel.copyNote(title: StringHelper.makeHeaderStringCopied(title: self.tf_title.text!), content: self.tv_content.text!, relatedNotebookId: self.viewModel.getNotebooks()[self.pv_notebooks.selectedRow(inComponent: 0)].id, isFavorite: self.switch_favorite.isOn, alarmDate: self.alarmDate)
 //                                                let realm = try! Realm()
 //                                                let newnote = R_Note()
 //                                                newnote.title = StringHelper.makeHeaderStringCopied(title: self.tf_title.text!)

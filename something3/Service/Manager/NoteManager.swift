@@ -136,4 +136,19 @@ class NoteManager {
         }
     }
     
+    public func copyNote(title:String,content:String, relatedNotebookId:Int, isFavorite:Bool, alarmDate:Date?) {
+        let realm = try! Realm()
+        let newnote = R_Note()
+        newnote.title = title
+        newnote.content = content
+        newnote.relatedNotebookId = relatedNotebookId
+        newnote.isfavorite = isFavorite
+        newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        newnote.alarmDate = alarmDate
+
+        try! realm.write {
+            realm.add(newnote)
+        }
+    }
+    
 }

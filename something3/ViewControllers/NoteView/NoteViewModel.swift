@@ -32,4 +32,8 @@ class NoteViewModel {
     public func getNotebooks() -> [R_NoteBook] {
         return notebookMgr.getNotebooks()
     }
+    
+    public func copyNote(title:String,content:String, relatedNotebookId:Int, isFavorite:Bool, alarmDate:Date?) {
+        noteMgr.copyNote(title: title, content: content, relatedNotebookId: relatedNotebookId, isFavorite: isFavorite, alarmDate: alarmDate)
+    }
 }
