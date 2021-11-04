@@ -47,7 +47,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
     }
     
     private func updateUI() {
-        let selectedNote = viewModel.selectedNote
+        guard let selectedNote = viewModel.selectedNote else { return }
         self.lb_updatedAt.text = viewModel.getUpdatedDateString()
         self.switch_favorite.isOn = selectedNote.isfavorite
         self.alarmDate = selectedNote.alarmDate
@@ -61,7 +61,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             self.alarmIdentifier = selectedNote.alarmIdentifier
         }
         
-        self.tf_title.text = viewModel.selectedNote.title
+        self.tf_title.text = selectedNote.title
         self.tf_title.placeholder = NSLocalizedString("Title", comment: "")
         self.tf_tags.placeholder = TagManager.tagPlaceHolderString
         self.tf_tags.text = TagManager.makeTagString(noteid: selectedNote.id)
@@ -104,6 +104,8 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         }
         
         self.tf_tags.text = TagManager.makeTagString(noteid: selectedNote.id)
+        
+        chekcAlarmState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,7 +127,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         let alert = UIAlertController(title: title,
                                       message: NSLocalizedString("More", comment: ""),
                                       preferredStyle: UIAlertControllerStyle.actionSheet)
-        if(viewModel.selectedNote.relatedNotebookId != -1)
+        if(viewModel.selectedNote?.relatedNotebookId != -1)
         {
             let copyNoteAction = UIAlertAction(title: NSLocalizedString("Copy Note", comment: ""),
                                                style: .default, handler: {result in
@@ -201,25 +203,25 @@ class NoteViewController: UIViewController,UITextViewDelegate {
     }
     
     func saveChangedData() {
-//        let realm = try! Realm()
-//
-//        try! realm.write {
-//            notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
-//
-//            selectedNote.title = self.tf_title.text!
-//            selectedNote.content = self.tv_content.text
-//            selectedNote.isfavorite = self.switch_favorite.isOn
-//            selectedNote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
-//            selectedNote.updated_at = Date()
-//            selectedNote.alarmDate = self.alarmDate
-//            selectedNote.alarmIdentifier = self.alarmIdentifier
-//        }
-//
-//        self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
-//
-//        _ = TagManager.addTagsToNote(noteid: selectedNote.id, tagString: self.tf_tags.text)
-//
-//        self.chekcAlarmState()
+        let note = getUIData()
+        
+        viewModel.updateNote(updatedNote: note)
+        viewModel.addTags(tagString: self.tf_tags.text ?? "")
+        
+        updateUI()
+
+    }
+    
+    func getUIData() -> R_Note {
+        let note = R_Note()
+        note.title = self.tf_title.text!
+        note.content = self.tv_content.text
+        note.isfavorite = self.switch_favorite.isOn
+        note.relatedNotebookId = viewModel.getNotebooks()[pv_notebooks.selectedRow(inComponent: 0)].id
+        note.alarmDate = self.alarmDate
+        note.alarmIdentifier = self.alarmIdentifier
+        
+        return note
     }
     
     func chekcAlarmState(){

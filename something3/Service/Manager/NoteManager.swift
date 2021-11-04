@@ -172,4 +172,28 @@ class NoteManager {
         }
     }
     
+    public func updateNote(updatedNote:R_Note) {
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "id = %@",  NSNumber(value: updatedNote.id))
+        guard let originalNote = realm.objects(R_Note.self).filter(predicate).first else { return }
+        
+        try! realm.write {
+            
+            originalNote.title = updatedNote.title
+            originalNote.content = updatedNote.content
+            originalNote.relatedNotebookId = updatedNote.relatedNotebookId
+            originalNote.isfavorite = updatedNote.isfavorite
+            originalNote.alarmDate = updatedNote.alarmDate
+            originalNote.updated_at = Date()
+        }
+    }
+    
+    public func getNote(noteId:Int) -> R_Note?{
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "id = %@",  NSNumber(value: noteId))
+        guard let originalNote = realm.objects(R_Note.self).filter(predicate).first else { return nil }
+        
+        return originalNote
+    }
+    
 }

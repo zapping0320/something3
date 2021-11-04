@@ -12,16 +12,27 @@ class NoteViewModel {
     private let notebookMgr = NotebookManager.shared
     private let noteMgr = NoteManager.shared
     
-    public var selectedNote:R_Note = R_Note()
-    
+    public var selectedNote:R_Note?
+    private var selectedNoteId:Int {
+        if self.selectedNote == nil {
+            return -1
+        }
+        
+        return self.selectedNote!.id
+    }
     let dateformatter = DateFormatter()
     
     init() {
         dateformatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
     }
     
+   
+    
     public func getUpdatedDateString() -> String {
-        return NSLocalizedString("Last Modified" , comment: "") + ":" + dateformatter.string(from: selectedNote.updated_at)
+        if self.selectedNote == nil {
+            return ""
+        }
+        return NSLocalizedString("Last Modified" , comment: "") + ":" + dateformatter.string(from: selectedNote!.updated_at)
     }
     
     public func getAllNotes() {
@@ -38,16 +49,42 @@ class NoteViewModel {
     }
     
     public func restoreNotebookInfo() {
-        noteMgr.restoreNotebookInfo(noteId: self.selectedNote.id)
+        if selectedNoteId == -1 {
+            return
+        }
+        noteMgr.restoreNotebookInfo(noteId: self.selectedNoteId)
     }
     
     public func setNoteInitialized() {
-        noteMgr.setNoteInitialized(noteId: self.selectedNote.id)
+        if selectedNoteId == -1 {
+            return
+        }
+        noteMgr.setNoteInitialized(noteId: self.selectedNoteId)
     }
     
     public func deleteNote() {
-        noteMgr.deleteNote(noteId: self.selectedNote.id)
+        if selectedNoteId == -1 {
+            return
+        }
+        noteMgr.deleteNote(noteId: self.selectedNoteId)
     }
     
+    public func updateNote(updatedNote:R_Note) {
+        if selectedNoteId == -1 {
+            return
+        }
+        updatedNote.id = selectedNoteId
+        notebookMgr.updateNotebook(id: updatedNote.relatedNotebookId)
+        noteMgr.updateNote(updatedNote: updatedNote)
+        
+        self.selectedNote = noteMgr.getNote(noteId: selectedNoteId)
+    }
+    
+    public func addTags(tagString:String) {
+        if selectedNoteId == -1 {
+            return
+        }
+        _ = TagManager.addTagsToNote(noteid: selectedNoteId, tagString: tagString)
+    }
     
 }
