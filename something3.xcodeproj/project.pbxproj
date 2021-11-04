@@ -51,6 +51,7 @@
 		E3B15C5D272F99740013D0DF /* NotebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B15C5C272F99740013D0DF /* NotebookManager.swift */; };
 		E3B15C5F272FA0A50013D0DF /* NoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B15C5E272FA0A50013D0DF /* NoteManager.swift */; };
 		E3B15C61272FB4600013D0DF /* NotebookContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B15C60272FB4600013D0DF /* NotebookContentsViewModel.swift */; };
+		E3B15C63272FC3170013D0DF /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B15C62272FC3170013D0DF /* NoteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		E3B15C5C272F99740013D0DF /* NotebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookManager.swift; sourceTree = "<group>"; };
 		E3B15C5E272FA0A50013D0DF /* NoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteManager.swift; sourceTree = "<group>"; };
 		E3B15C60272FB4600013D0DF /* NotebookContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookContentsViewModel.swift; sourceTree = "<group>"; };
+		E3B15C62272FC3170013D0DF /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		E3ED456FF862D44442A0BA86 /* Pods-something3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.debug.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.debug.xcconfig"; sourceTree = "<group>"; };
 		FE61E67E21F60F19C374CD97 /* Pods-something3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3.release.xcconfig"; path = "Target Support Files/Pods-something3/Pods-something3.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -341,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				0BD657C0214876970037FE79 /* NoteViewController.swift */,
+				E3B15C62272FC3170013D0DF /* NoteViewModel.swift */,
 			);
 			path = NoteView;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3B15C63272FC3170013D0DF /* NoteViewModel.swift in Sources */,
 				0B4626EB21DC237F00268F79 /* TagManager.swift in Sources */,
 				E379CA0C27168F9800B3137B /* TransitionModel.swift in Sources */,
 				E39A4A7627210743001432AA /* DBStorage.swift in Sources */,

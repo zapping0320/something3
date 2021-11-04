@@ -19,9 +19,6 @@ class NotebookContentsViewController: UIViewController, UISearchBarDelegate {
     
     
     let cellIdentifier: String = "noteCell"
-    let sortTypeByName : String = "ByName"
-    let sortTypeByRecent : String = "ByRecent"
-  
     
     open var selectedNoteBookId: Int = 0
     var searchText_: String = ""

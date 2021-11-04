@@ -77,6 +77,13 @@ class NotebookManager {
         return notebookArray
     }
     
+    public func getNotebooks() -> [R_NoteBook] {
+        let realm = try! Realm()
+        let results = realm.objects(R_NoteBook.self)
+        return Array(results)
+    }
+
+    
     public func updateNotebook(id:Int,updatedName:String) {
         let realm = try! Realm()
         

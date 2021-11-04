@@ -22,12 +22,14 @@ class NoteViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var lb_guideTrash: UILabel!
     
     open var selectedNote:R_Note = R_Note()
-    fileprivate var notebookArray_ = [R_NoteBook]()
+   
     let dateformatter = DateFormatter()
     var alarmDate:Date?
     var alarmIdentifier:String?
     
     var eventHelper:EventHelper?
+    
+    private let viewModel = NoteViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +65,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         }
         
         
-        self.loadNotebooks()
+     
         if(selectedNote.relatedNotebookId == -1){
             self.tf_title.isUserInteractionEnabled = false
             self.tf_tags.isEnabled = false
@@ -79,9 +81,10 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             self.bt_alarm.isEnabled = true
             self.pv_notebooks.isHidden = false
             
-            if notebookArray_.count > 0 {
-                for i in 0..<notebookArray_.count {
-                    let notebook = notebookArray_[i]
+            let notebooks = viewModel.getNotebooks()
+            if notebooks.count > 0 {
+                for i in 0..<notebooks.count {
+                    let notebook = notebooks[i]
                     if(notebook.id == self.selectedNote.relatedNotebookId)
                     {
                         self.pv_notebooks.selectRow(i, inComponent: 0, animated: false)
@@ -115,18 +118,18 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             let copyNoteAction = UIAlertAction(title: NSLocalizedString("Copy Note", comment: ""),
                                                style: .default, handler: {result in
                                                 
-                                                let realm = try! Realm()
-                                                let newnote = R_Note()
-                                                newnote.title = StringHelper.makeHeaderStringCopied(title: self.tf_title.text!)
-                                                newnote.content = self.tv_content.text!
-                                                newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
-                                                newnote.isfavorite = self.switch_favorite.isOn
-                                                newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
-                                                newnote.alarmDate = self.alarmDate
-                                                
-                                                try! realm.write {
-                                                    realm.add(newnote)
-                                                }
+//                                                let realm = try! Realm()
+//                                                let newnote = R_Note()
+//                                                newnote.title = StringHelper.makeHeaderStringCopied(title: self.tf_title.text!)
+//                                                newnote.content = self.tv_content.text!
+//                                                newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
+//                                                newnote.isfavorite = self.switch_favorite.isOn
+//                                                newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
+//                                                newnote.alarmDate = self.alarmDate
+//
+//                                                try! realm.write {
+//                                                    realm.add(newnote)
+//                                                }
                                                 
                                                 self.navigationController?.popViewController(animated: false)
             })
@@ -135,12 +138,12 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             
             let sendToTrashAction = UIAlertAction(title: NSLocalizedString("Send To Trash", comment: ""),
                                                   style: .default, handler: {result in
-                                                    let realm = try! Realm()
-                                                    
-                                                    try! realm.write {
-                                                        self.selectedNote.oldNotebookId = self.selectedNote.relatedNotebookId
-                                                        self.selectedNote.relatedNotebookId = -1
-                                                    }
+//                                                    let realm = try! Realm()
+//
+//                                                    try! realm.write {
+//                                                        self.selectedNote.oldNotebookId = self.selectedNote.relatedNotebookId
+//                                                        self.selectedNote.relatedNotebookId = -1
+//                                                    }
                                                     self.navigationController?.popViewController(animated: false)
             })
             sendToTrashAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
@@ -150,21 +153,21 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         {
             let restoreAction = UIAlertAction(title: NSLocalizedString("Restore", comment: ""),
                                               style: .default, handler: {result in
-                                                let realm = try! Realm()
-                                                try! realm.write {
-                                                    self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
-                                                    self.selectedNote.oldNotebookId = -1
-                                                }
+//                                                let realm = try! Realm()
+//                                                try! realm.write {
+//                                                    self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
+//                                                    self.selectedNote.oldNotebookId = -1
+//                                                }
                                                 self.navigationController?.popViewController(animated: false)
             })
             restoreAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(restoreAction)
             let deleteAction = UIAlertAction(title: NSLocalizedString("Delete Completely", comment: ""),
                                              style: .default, handler: { reuslt in
-                                                let realm = try! Realm()
-                                                try! realm.write {
-                                                    realm.delete(self.selectedNote)
-                                                }
+//                                                let realm = try! Realm()
+//                                                try! realm.write {
+//                                                    realm.delete(self.selectedNote)
+//                                                }
                                                 self.navigationController?.popViewController(animated: false)
             })
             deleteAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
@@ -177,29 +180,6 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         cancelAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    func loadNotebooks() {
-        notebookArray_ = [R_NoteBook]()
-        
-        let realm = try! Realm()
-        let results = realm.objects(R_NoteBook.self)
-        for i in 0..<results.count {
-            let item = results[i]
-            if(selectedNote.relatedNotebookId == -1)
-            {
-                if(item.id != self.selectedNote.oldNotebookId)
-                {
-                    continue
-                }
-                notebookArray_.append(item)
-                break
-            }
-            else
-            {
-                notebookArray_.append(item)
-            }
-        }
     }
     
     func closeViewController() {
@@ -234,25 +214,25 @@ class NoteViewController: UIViewController,UITextViewDelegate {
     }
     
     func saveChangedData() {
-        let realm = try! Realm()
-        
-        try! realm.write {
-            notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
-            
-            selectedNote.title = self.tf_title.text!
-            selectedNote.content = self.tv_content.text
-            selectedNote.isfavorite = self.switch_favorite.isOn
-            selectedNote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
-            selectedNote.updated_at = Date()
-            selectedNote.alarmDate = self.alarmDate
-            selectedNote.alarmIdentifier = self.alarmIdentifier
-        }
-        
-        self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
-        
-        _ = TagManager.addTagsToNote(noteid: selectedNote.id, tagString: self.tf_tags.text)
-        
-        self.chekcAlarmState()
+//        let realm = try! Realm()
+//
+//        try! realm.write {
+//            notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].updated_at = Date()
+//
+//            selectedNote.title = self.tf_title.text!
+//            selectedNote.content = self.tv_content.text
+//            selectedNote.isfavorite = self.switch_favorite.isOn
+//            selectedNote.relatedNotebookId = notebookArray_[pv_notebooks.selectedRow(inComponent: 0)].id
+//            selectedNote.updated_at = Date()
+//            selectedNote.alarmDate = self.alarmDate
+//            selectedNote.alarmIdentifier = self.alarmIdentifier
+//        }
+//
+//        self.lb_updatedAt.text = dateformatter.string(from: selectedNote.updated_at)
+//
+//        _ = TagManager.addTagsToNote(noteid: selectedNote.id, tagString: self.tf_tags.text)
+//
+//        self.chekcAlarmState()
     }
     
     func chekcAlarmState(){
@@ -366,11 +346,11 @@ extension NoteViewController : UIPickerViewDataSource, UIPickerViewDelegate{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return notebookArray_.count
+        return viewModel.getNotebooks().count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return notebookArray_[row].name
+        return viewModel.getNotebooks()[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
