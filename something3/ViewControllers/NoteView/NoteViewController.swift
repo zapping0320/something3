@@ -130,19 +130,6 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             let copyNoteAction = UIAlertAction(title: NSLocalizedString("Copy Note", comment: ""),
                                                style: .default, handler: {result in
                                                 self.viewModel.copyNote(title: StringHelper.makeHeaderStringCopied(title: self.tf_title.text!), content: self.tv_content.text!, relatedNotebookId: self.viewModel.getNotebooks()[self.pv_notebooks.selectedRow(inComponent: 0)].id, isFavorite: self.switch_favorite.isOn, alarmDate: self.alarmDate)
-//                                                let realm = try! Realm()
-//                                                let newnote = R_Note()
-//                                                newnote.title = StringHelper.makeHeaderStringCopied(title: self.tf_title.text!)
-//                                                newnote.content = self.tv_content.text!
-//                                                newnote.relatedNotebookId = self.notebookArray_[self.pv_notebooks.selectedRow(inComponent: 0)].id
-//                                                newnote.isfavorite = self.switch_favorite.isOn
-//                                                newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
-//                                                newnote.alarmDate = self.alarmDate
-//
-//                                                try! realm.write {
-//                                                    realm.add(newnote)
-//                                                }
-                                                
                                                 self.navigationController?.popViewController(animated: false)
             })
             copyNoteAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
@@ -150,12 +137,7 @@ class NoteViewController: UIViewController,UITextViewDelegate {
             
             let sendToTrashAction = UIAlertAction(title: NSLocalizedString("Send To Trash", comment: ""),
                                                   style: .default, handler: {result in
-//                                                    let realm = try! Realm()
-//
-//                                                    try! realm.write {
-//                                                        self.selectedNote.oldNotebookId = self.selectedNote.relatedNotebookId
-//                                                        self.selectedNote.relatedNotebookId = -1
-//                                                    }
+                                                    self.viewModel.setNoteInitialized()
                                                     self.navigationController?.popViewController(animated: false)
             })
             sendToTrashAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
@@ -165,21 +147,14 @@ class NoteViewController: UIViewController,UITextViewDelegate {
         {
             let restoreAction = UIAlertAction(title: NSLocalizedString("Restore", comment: ""),
                                               style: .default, handler: {result in
-//                                                let realm = try! Realm()
-//                                                try! realm.write {
-//                                                    self.selectedNote.relatedNotebookId = self.selectedNote.oldNotebookId
-//                                                    self.selectedNote.oldNotebookId = -1
-//                                                }
+                                                self.viewModel.restoreNotebookInfo()
                                                 self.navigationController?.popViewController(animated: false)
             })
             restoreAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")
             alert.addAction(restoreAction)
             let deleteAction = UIAlertAction(title: NSLocalizedString("Delete Completely", comment: ""),
                                              style: .default, handler: { reuslt in
-//                                                let realm = try! Realm()
-//                                                try! realm.write {
-//                                                    realm.delete(self.selectedNote)
-//                                                }
+                                                self.viewModel.deleteNote()
                                                 self.navigationController?.popViewController(animated: false)
             })
             deleteAction.setValue(ColorHelper.getIdentityColor(), forKey: "titleTextColor")

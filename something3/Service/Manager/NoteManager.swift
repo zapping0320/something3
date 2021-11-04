@@ -42,6 +42,17 @@ class NoteManager {
         }
     }
     
+    public func restoreNotebookInfo(noteId:Int) {
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "id = %@",  NSNumber(value: noteId))
+        guard let originalNote = realm.objects(R_Note.self).filter(predicate).first else { return }
+        try! realm.write {
+            originalNote.relatedNotebookId = originalNote.oldNotebookId
+            originalNote.oldNotebookId = -1
+            
+        }
+    }
+    
     public func loadNotes(notebookId:Int, searchWord:String, isIncludeAlarm:Bool, isSortByName:Bool) -> [R_Note] {
         
         var selectedNotebookContents = [R_Note]()
@@ -133,6 +144,16 @@ class NoteManager {
             for note in realm.objects(R_Note.self).filter(predicate){
                 realm.delete(note)
             }
+        }
+    }
+    
+    public func deleteNote(noteId:Int) {
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "id = %@",  NSNumber(value: noteId))
+        guard let originalNote = realm.objects(R_Note.self).filter(predicate).first else { return }
+        
+        try! realm.write {
+            realm.delete(originalNote)
         }
     }
     

@@ -36,4 +36,18 @@ class NoteViewModel {
     public func copyNote(title:String,content:String, relatedNotebookId:Int, isFavorite:Bool, alarmDate:Date?) {
         noteMgr.copyNote(title: title, content: content, relatedNotebookId: relatedNotebookId, isFavorite: isFavorite, alarmDate: alarmDate)
     }
+    
+    public func restoreNotebookInfo() {
+        noteMgr.restoreNotebookInfo(noteId: self.selectedNote.id)
+    }
+    
+    public func setNoteInitialized() {
+        noteMgr.setNoteInitialized(noteId: self.selectedNote.id)
+    }
+    
+    public func deleteNote() {
+        noteMgr.deleteNote(noteId: self.selectedNote.id)
+    }
+    
+    
 }
