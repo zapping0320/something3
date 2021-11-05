@@ -15,4 +15,14 @@ class AddNoteViewModel {
     public func getNotebooks() -> [R_NoteBook] {
         return notebookMgr.getNotebooks()
     }
+    
+    public func addNote(newNote:R_Note) -> Int {
+        notebookMgr.updateNotebook(id: newNote.relatedNotebookId)
+        return noteMgr.addNote(newNote: newNote)
+    }
+    
+    public func addTags(noteId:Int, tagString:String) {
+        
+        _ = TagManager.addTagsToNote(noteid: noteId, tagString: tagString)
+    }
 }

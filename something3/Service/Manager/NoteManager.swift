@@ -232,4 +232,23 @@ class NoteManager {
         return originalNote
     }
     
+    public func addNote(newNote:R_Note) -> Int {
+        
+        let realm = try! Realm()
+        let newnote = R_Note()
+        newnote.title = newNote.title
+        newnote.content = newNote.content
+        newnote.relatedNotebookId = newNote.relatedNotebookId
+        newnote.isfavorite = newNote.isfavorite
+        newnote.id = (realm.objects(R_Note.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        newnote.alarmDate = newNote.alarmDate
+        newnote.alarmIdentifier = newNote.alarmIdentifier
+        newnote.created_at = Date()
+
+        try! realm.write {
+            realm.add(newnote)
+        }
+        
+        return newnote.id
+    }
 }
