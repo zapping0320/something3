@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SearchKeywordelper {
+class SearchKeywordHelper {
     static let keywordField = "SearchKeyword"
     
     static func updateKeywordList(keyword : String) {

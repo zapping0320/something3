@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class SearchViewController: UIViewController,UISearchBarDelegate {
 
@@ -17,9 +16,9 @@ class SearchViewController: UIViewController,UISearchBarDelegate {
     
     let cellIdentifier: String = "searchedNoteCell"
     
-    var searchedNotes:[R_Note] = [R_Note]()
-    var keywordList:[String] = [String]()
     var searchText_: String = ""
+    
+    private let viewModel = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +51,10 @@ class SearchViewController: UIViewController,UISearchBarDelegate {
         
         if(self.searchText_ == "")
         {
-           self.loadKeywords()
+            let keywords = viewModel.getKeywords()
+            if keywords.count == 0 {
+                lb_searchResult.isHidden = false
+            }
         }
         else
         {
@@ -61,23 +63,12 @@ class SearchViewController: UIViewController,UISearchBarDelegate {
         
         self.tableview?.reloadData()
     }
-    
-    func loadKeywords() {
-        self.keywordList = SearchKeywordelper.getKeywordList()
-        
-        if self.keywordList.count == 0 {
-            lb_searchResult.isHidden = false
-        }
-    }
+   
     
     func loadNotes() {
-        self.searchedNotes = [R_Note]()
-        
-        let realm = try! Realm()
-        let predicateSearch = NSPredicate(format: "title contains %@ OR content contains %@", self.searchText_, self.searchText_)
-        let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
-        self.searchedNotes = Array(results)
-        
+
+        viewModel.loadNotes(searchKeyword: self.searchText_)
+        let results = viewModel.getNotes()
         if(results.count == 0)
         {
             lb_searchResult.isHidden = false
@@ -90,7 +81,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        SearchKeywordelper.updateKeywordList(keyword: self.sb_searchBar.text!)
+        SearchKeywordHelper.updateKeywordList(keyword: self.sb_searchBar.text!)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,7 +102,7 @@ class SearchViewController: UIViewController,UISearchBarDelegate {
             return
         }
         
-        noteVC.setSelectedNote(note: searchedNotes[index.row])
+        noteVC.setSelectedNote(note: viewModel.getNotes()[index.row])
         
     }
 
@@ -125,11 +116,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource{
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if self.searchText_ == "" {
-            return self.keywordList.count
-        } else {
-            return searchedNotes.count
-        }
+        return viewModel.getItemCount()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -143,18 +130,19 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource{
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if self.searchText_ == "" {
-            if(indexPath.row > self.keywordList.count - 1){
+            let keyword = viewModel.getKeywords()
+            if(indexPath.row > keyword.count - 1){
                 return UITableViewCell()
             }
-            cell.textLabel?.text = self.keywordList[indexPath.row]
+            cell.textLabel?.text = keyword[indexPath.row]
         }
         else {
-            
-            if(indexPath.row > searchedNotes.count - 1){
+            let notes = viewModel.getNotes()
+            if(indexPath.row > notes.count - 1){
                 return UITableViewCell()
             }
             
-            let currentNote = searchedNotes[indexPath.row]
+            let currentNote = notes[indexPath.row]
             cell.textLabel?.text = currentNote.title
             if(currentNote.alarmDate != nil)
             {
@@ -172,11 +160,8 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource{
     
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            let realm = try! Realm()
-            try! realm.write {
-                let currentNote = self.searchedNotes[indexPath.row]
-                currentNote.isfavorite = false
-            }
+            let currentNote = self.viewModel.getNotes()[indexPath.row]
+            self.viewModel.setNoteUnfavorite(note: currentNote)
             loadNotes()
         }
     }

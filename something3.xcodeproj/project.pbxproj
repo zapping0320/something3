@@ -47,6 +47,7 @@
 		E379CA182716982A00B3137B /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA172716982A00B3137B /* CommonViewModel.swift */; };
 		E379CA1A2716992E00B3137B /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA192716992E00B3137B /* ViewModelBindableType.swift */; };
 		E39524382734C8A500E2A8B4 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39524372734C8A500E2A8B4 /* FavoriteViewModel.swift */; };
+		E395243A2734E57E00E2A8B4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39524392734E57E00E2A8B4 /* SearchViewModel.swift */; };
 		E39A4A7327210681001432AA /* NotebookStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A4A7227210681001432AA /* NotebookStorageType.swift */; };
 		E39A4A7627210743001432AA /* DBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A4A7527210743001432AA /* DBStorage.swift */; };
 		E3A2E2B42733B68800B929BF /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A2E2B32733B68800B929BF /* AddNoteViewModel.swift */; };
@@ -129,6 +130,7 @@
 		E379CA192716992E00B3137B /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		E37EE0EA2E8888BC64906729 /* Pods-something3-something3UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3-something3UITests.release.xcconfig"; path = "Target Support Files/Pods-something3-something3UITests/Pods-something3-something3UITests.release.xcconfig"; sourceTree = "<group>"; };
 		E39524372734C8A500E2A8B4 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		E39524392734E57E00E2A8B4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		E39A4A7227210681001432AA /* NotebookStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookStorageType.swift; sourceTree = "<group>"; };
 		E39A4A7527210743001432AA /* DBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorage.swift; sourceTree = "<group>"; };
 		E3A2E2B32733B68800B929BF /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				0B78D6C4215AEF0D008A2E46 /* SearchViewController.swift */,
+				E39524392734E57E00E2A8B4 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				0B4626EB21DC237F00268F79 /* TagManager.swift in Sources */,
 				E379CA0C27168F9800B3137B /* TransitionModel.swift in Sources */,
 				E39A4A7627210743001432AA /* DBStorage.swift in Sources */,
+				E395243A2734E57E00E2A8B4 /* SearchViewModel.swift in Sources */,
 				0BF9DA7F21DAE17400C20167 /* R_Tag.swift in Sources */,
 				0BF9DA8121DC1C7D00C20167 /* R_NoteTagRelations.swift in Sources */,
 				E379CA1A2716992E00B3137B /* ViewModelBindableType.swift in Sources */,

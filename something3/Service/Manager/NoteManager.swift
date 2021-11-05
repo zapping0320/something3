@@ -173,6 +173,13 @@ class NoteManager {
         return favoriteNotes
     }
     
+    public func loadNotes(searchKeyword:String) -> [R_Note] {
+        let realm = try! Realm()
+        let predicateSearch = NSPredicate(format: "title contains %@ OR content contains %@", searchKeyword, searchKeyword)
+        let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
+        return Array(results)
+    }
+    
     public func deleteTrashNotes() {
         let realm = try! Realm()
         try! realm.write {
