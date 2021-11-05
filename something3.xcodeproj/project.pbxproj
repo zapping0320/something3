@@ -46,6 +46,7 @@
 		E379CA14271693AF00B3137B /* NotebookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA13271693AF00B3137B /* NotebookViewModel.swift */; };
 		E379CA182716982A00B3137B /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA172716982A00B3137B /* CommonViewModel.swift */; };
 		E379CA1A2716992E00B3137B /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E379CA192716992E00B3137B /* ViewModelBindableType.swift */; };
+		E39524382734C8A500E2A8B4 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39524372734C8A500E2A8B4 /* FavoriteViewModel.swift */; };
 		E39A4A7327210681001432AA /* NotebookStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A4A7227210681001432AA /* NotebookStorageType.swift */; };
 		E39A4A7627210743001432AA /* DBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A4A7527210743001432AA /* DBStorage.swift */; };
 		E3A2E2B42733B68800B929BF /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A2E2B32733B68800B929BF /* AddNoteViewModel.swift */; };
@@ -127,6 +128,7 @@
 		E379CA172716982A00B3137B /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		E379CA192716992E00B3137B /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		E37EE0EA2E8888BC64906729 /* Pods-something3-something3UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-something3-something3UITests.release.xcconfig"; path = "Target Support Files/Pods-something3-something3UITests/Pods-something3-something3UITests.release.xcconfig"; sourceTree = "<group>"; };
+		E39524372734C8A500E2A8B4 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		E39A4A7227210681001432AA /* NotebookStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookStorageType.swift; sourceTree = "<group>"; };
 		E39A4A7527210743001432AA /* DBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorage.swift; sourceTree = "<group>"; };
 		E3A2E2B32733B68800B929BF /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				0BE39B13214E5CEB00974B87 /* FavoriteViewController.swift */,
+				E39524372734C8A500E2A8B4 /* FavoriteViewModel.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				E379CA182716982A00B3137B /* CommonViewModel.swift in Sources */,
 				0B91D1C52145CCF2005DCCD9 /* AddNoteViewController.swift in Sources */,
 				E3B15C61272FB4600013D0DF /* NotebookContentsViewModel.swift in Sources */,
+				E39524382734C8A500E2A8B4 /* FavoriteViewModel.swift in Sources */,
 				0BEE10142201108500C9DED7 /* NoteTableViewCell.swift in Sources */,
 				0BB4D68C2141DC090046F7F0 /* R_Note.swift in Sources */,
 				0B27BEA021E55D4E00656B5E /* TagFilterViewController.swift in Sources */,
