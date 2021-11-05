@@ -143,6 +143,7 @@ extension TagFilterViewController {
 //                return 0
 //            }
 //        }
+        return viewModel.getItemCount(section: section)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
