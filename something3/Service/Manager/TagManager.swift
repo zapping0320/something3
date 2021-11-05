@@ -11,6 +11,8 @@ import RealmSwift
 
 class TagManager {
     
+    static let shared = TagManager()
+    
     static let tagPlaceHolderString = NSLocalizedString("add Tag like #Tag", comment: "")
     
     static func addTagsToNote(noteid:Int, tagString:String?) -> Bool {
@@ -135,7 +137,61 @@ class TagManager {
                 realm.delete(tag)
             }
         }
+    }
+    
+    public func loadTags(selectedNoteBookId:Int, noteTagString:String, searchKeyword:String) -> [Int:[R_Tag]] {
+        var tagArray:[Int:[R_Tag]] = [Int:[R_Tag]]()
         
+        let realm = try! Realm()
+        
+        var allTagResults: Results<R_Tag>
+        if(searchKeyword.isEmpty == false)
+        {
+            let predicateSearch = NSPredicate(format: "content CONTAINS[c] %@", searchKeyword)
+            allTagResults = realm.objects(R_Tag.self).filter(predicateSearch).sorted(byKeyPath: "content", ascending: true)
+        }
+        else
+        {
+            allTagResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
+        }
+       
+        var notebooksTags:[String] = []
+        if noteTagString.contains(",") {
+            notebooksTags = noteTagString.components(separatedBy: ",")
+        }
+        
+        if notebooksTags.count > 1 {
+            var selectedTags = [R_Tag]()
+            var otherTags = [R_Tag]()
+            
+            for i in 0..<allTagResults.count {
+                var foundTag = false
+                let item = allTagResults[i]
+                for selectedTag in notebooksTags {
+                    if noteTagString == "" {
+                        continue
+                    }
+                    if Int(selectedTag) == item.id {
+                        foundTag = true
+                        selectedTags.append(item)
+                        break
+                    }
+                }
+                if(foundTag == false){
+                    otherTags.append(item)
+                }
+
+            }
+            tagArray[0] = selectedTags
+            tagArray[1] = otherTags
+        }
+        else {
+            tagArray[0] = [R_Tag]()
+            tagArray[1] = Array(allTagResults)
+        }
+        
+        
+        return tagArray
     }
     
 }

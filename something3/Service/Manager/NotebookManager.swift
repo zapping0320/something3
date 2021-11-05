@@ -77,6 +77,14 @@ class NotebookManager {
         return notebookArray
     }
     
+    public func getNotebook(notebookId:Int) -> R_NoteBook? {
+        let realm = try! Realm()
+        let predicateNotebookId = NSPredicate(format: "id = %@", NSNumber(value: notebookId))
+        guard let notebook = realm.objects(R_NoteBook.self).filter(predicateNotebookId).first else { return nil }
+        
+        return notebook
+    }
+    
     public func getNotebooks() -> [R_NoteBook] {
         let realm = try! Realm()
         let results = realm.objects(R_NoteBook.self)

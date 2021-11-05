@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class TagFilterViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
-    open var selectedNoteBookId: Int = 0
+    public var selectedNoteBookId: Int = 0
     var selectedNotebook:R_NoteBook = R_NoteBook()
     var tagArray_:[Int:[R_Tag]] = [Int:[R_Tag]]()
     
@@ -20,18 +20,14 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
     let cellIdentifier: String = "tagCell"
     var searchText_: String = ""
     
+    private let viewModel = TagFilterViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.loadTags()
-        
-        self.applyCurrentColor()
     }
-    
-    func applyCurrentColor(){
-        //self.view.backgroundColor = ColorHelper.getCurrentAppBackground()
-        //self.button_CloseVC.backgroundColor = ColorHelper.getCurrentMainButtonColor()
-    }
+   
 
     @IBAction func action_CloseVC(_ sender: Any) {
         self.saveNotebookTagInfo()
@@ -59,63 +55,66 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
     }
     
     func loadTags() {
-        let realm = try! Realm()
-        let predicateNotebookId = NSPredicate(format: "id = %@", NSNumber(value: self.selectedNoteBookId))
-        let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebookId)
-        if notebookResults.count == 0 {
-            return
-        }
+        guard let notebook = viewModel.getNotebook(notebookId: self.selectedNoteBookId) else { return }
         
-        tagArray_ = [Int:[R_Tag]]()
-        
-        self.selectedNotebook = notebookResults[0]
-        
-        var allTagResults: Results<R_Tag>
-        if(self.searchText_ != "")
-        {
-            let predicateSearch = NSPredicate(format: "content CONTAINS[c] %@", self.searchText_)
-            allTagResults = realm.objects(R_Tag.self).filter(predicateSearch).sorted(byKeyPath: "content", ascending: true)
-        }
-        else
-        {
-            allTagResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
-        }
-        
-        let tagString = self.selectedNotebook.searchTags
-        var notebooksTags:[String] = []
-        if tagString.contains(",") {
-            notebooksTags = tagString.components(separatedBy: ",")
-        }
-        
-        if notebooksTags.count > 1 {
-            var selectedTags = [R_Tag]()
-            var otherTags = [R_Tag]()
-            
-            for i in 0..<allTagResults.count {
-                var foundTag = false
-                let item = allTagResults[i]
-                for selectedTag in notebooksTags {
-                    if tagString == "" {
-                        continue
-                    }
-                    if Int(selectedTag) == item.id {
-                        foundTag = true
-                        selectedTags.append(item)
-                        break
-                    }
-                }
-                if(foundTag == false){
-                    otherTags.append(item)
-                }
-
-            }
-            tagArray_[0] = selectedTags
-            tagArray_[1] = otherTags
-        }
-        else {
-            tagArray_[0] = [R_Tag]()
-            tagArray_[1] = Array(allTagResults)
-        }
+        viewModel.loadTags(selectedNoteBookId: notebook.id, noteTagString: notebook.searchTags, searchKeyword: self.searchText_)
+//        let realm = try! Realm()
+//        let predicateNotebookId = NSPredicate(format: "id = %@", NSNumber(value: self.selectedNoteBookId))
+//        let notebookResults = realm.objects(R_NoteBook.self).filter(predicateNotebookId)
+//        if notebookResults.count == 0 {
+//            return
+//        }
+//
+//        tagArray_ = [Int:[R_Tag]]()
+//
+//        self.selectedNotebook = notebookResults[0]
+//
+//        var allTagResults: Results<R_Tag>
+//        if(self.searchText_ != "")
+//        {
+//            let predicateSearch = NSPredicate(format: "content CONTAINS[c] %@", self.searchText_)
+//            allTagResults = realm.objects(R_Tag.self).filter(predicateSearch).sorted(byKeyPath: "content", ascending: true)
+//        }
+//        else
+//        {
+//            allTagResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
+//        }
+//
+//        let tagString = self.selectedNotebook.searchTags
+//        var notebooksTags:[String] = []
+//        if tagString.contains(",") {
+//            notebooksTags = tagString.components(separatedBy: ",")
+//        }
+//
+//        if notebooksTags.count > 1 {
+//            var selectedTags = [R_Tag]()
+//            var otherTags = [R_Tag]()
+//
+//            for i in 0..<allTagResults.count {
+//                var foundTag = false
+//                let item = allTagResults[i]
+//                for selectedTag in notebooksTags {
+//                    if tagString == "" {
+//                        continue
+//                    }
+//                    if Int(selectedTag) == item.id {
+//                        foundTag = true
+//                        selectedTags.append(item)
+//                        break
+//                    }
+//                }
+//                if(foundTag == false){
+//                    otherTags.append(item)
+//                }
+//
+//            }
+//            tagArray_[0] = selectedTags
+//            tagArray_[1] = otherTags
+//        }
+//        else {
+//            tagArray_[0] = [R_Tag]()
+//            tagArray_[1] = Array(allTagResults)
+//        }
         
         self.tableview.reloadData()
     }
@@ -133,17 +132,17 @@ extension TagFilterViewController {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if (section > 1 || section < 0){
-            return 0
-        }else{
-            let datalist = tagArray_[section] as [R_Tag]?
-            if datalist != nil {
-                return datalist!.count
-            }
-            else{
-                return 0
-            }
-        }
+//        if (section > 1 || section < 0){
+//            return 0
+//        }else{
+//            let datalist = tagArray_[section] as [R_Tag]?
+//            if datalist != nil {
+//                return datalist!.count
+//            }
+//            else{
+//                return 0
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
