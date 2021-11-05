@@ -16,4 +16,10 @@ class FavoriteViewModel {
         return noteMgr.loadFavoriteNotes(searchWord: searchWord)
     }
     
+    public func setNoteUnfavorite(note:R_Note) {
+        let updatedNote = R_Note()
+        updatedNote.copyFrom(source: note)
+        updatedNote.isfavorite = false
+        noteMgr.updateNote(updatedNote: updatedNote)
+    }
 }

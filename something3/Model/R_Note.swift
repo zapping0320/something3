@@ -23,4 +23,19 @@ class R_Note: Object  {
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    func copyFrom(source: R_Note) {
+        self.id = source.id
+        self.content = source.content
+        self.isfavorite = source.isfavorite
+        self.title = source.title
+        self.relatedNotebookId = source.relatedNotebookId
+        self.oldNotebookId = source.oldNotebookId
+        self.updated_at = source.updated_at
+        self.created_at = source.created_at
+        self.deleted_at = source.deleted_at
+        self.alarmDate = source.alarmDate
+        self.alarmIdentifier = source.alarmIdentifier
+        
+    }
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import RealmSwift
+
 
 class FavoriteViewController: UIViewController, UISearchBarDelegate {
 
@@ -55,38 +55,6 @@ class FavoriteViewController: UIViewController, UISearchBarDelegate {
     }
     
     func loadNotes() {
-        //favoriteNotes = [Int:[R_Note]]()
-        
-//        var notearray_all = [R_Note]()
-//        
-//        let realm = try! Realm()
-//        
-//        let recentPredicate = NSPredicate(format: "isfavorite = true")
-//        let recentResults = realm.objects(R_Note.self).filter(recentPredicate).sorted(byKeyPath: "updated_at", ascending: false)
-//        let itemCount = recentResults.count > 4 ? 3 : recentResults.count - 1
-//        
-//        if(self.searchText_ == "")
-//        {
-//            let predicate = NSPredicate(format: "isfavorite = true")
-//            let results = realm.objects(R_Note.self).filter(predicate).sorted(byKeyPath: "updated_at", ascending: false)
-//            notearray_all = Array(results)
-//        }
-//        else
-//        {
-//            let predicateSearch = NSPredicate(format: "isfavorite = true AND (title contains %@ OR content contains %@)", self.searchText_,self.searchText_)
-//            
-//            let results = realm.objects(R_Note.self).filter(predicateSearch).sorted(byKeyPath: "updated_at", ascending: false)
-//            notearray_all = Array(results)
-//        }
-//        if(itemCount > 0){
-//            let notearray_recent = Array(recentResults[0...itemCount])
-//            favoriteNotes[0] = notearray_recent
-//        }else {
-//            favoriteNotes[0] = [R_Note]()
-//        }
-//        
-//        favoriteNotes[1] = notearray_all
-        
         self.tableview?.reloadData()
     }
     
@@ -176,11 +144,9 @@ extension FavoriteViewController : UITableViewDelegate, UITableViewDataSource{
     
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-//            let realm = try! Realm()
-//            try! realm.write {
-//                let currentNote = viewModel.loadNotes(searchWord: self.searchText_)[indexPath.section]![indexPath.row]
-//                currentNote.isfavorite = false
-//            }
+            let currentNote = viewModel.loadNotes(searchWord: self.searchText_)[indexPath.section]![indexPath.row]
+            self.viewModel.setNoteUnfavorite(note: currentNote)
+
             loadNotes()
         }
     }
