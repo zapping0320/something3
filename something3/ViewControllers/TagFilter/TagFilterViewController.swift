@@ -30,22 +30,7 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
         self.viewModel.saveTagInfo()
         self.closeViewController()
     }
-    
-   // func saveNotebookTagInfo() {
-//        var tagIdString = ""
-//        for selectedTag in tagArray_[0]! {
-//            if tagIdString.isEmpty == false {
-//                tagIdString = tagIdString + ","
-//            }
-//            tagIdString = tagIdString + String(selectedTag.id)
-//        }
-//        
-//        let realm = try! Realm()
-//        
-//        try! realm.write {
-//            self.selectedNotebook.searchTags = tagIdString
-//        }
-   // }
+
     
     func closeViewController() {
         self.dismiss(animated: false, completion: nil)

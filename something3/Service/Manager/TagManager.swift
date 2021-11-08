@@ -139,6 +139,22 @@ class TagManager {
         }
     }
     
+    public func loadTags(searchKeyword:String) -> Results<R_Tag> {
+        let realm = try! Realm()
+        var allResults: Results<R_Tag>
+        if(searchKeyword != "")
+        {
+            let predicateSearch = NSPredicate(format: "content CONTAINS[c] %@", searchKeyword)
+            allResults = realm.objects(R_Tag.self).filter(predicateSearch).sorted(byKeyPath: "content", ascending: true)
+        }
+        else
+        {
+            allResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
+        }
+        
+        return allResults
+    }
+    
     public func loadTags(selectedNoteBookId:Int, noteTagString:String, searchKeyword:String) -> [Int:[R_Tag]] {
         var tagArray:[Int:[R_Tag]] = [Int:[R_Tag]]()
         
@@ -194,4 +210,16 @@ class TagManager {
         return tagArray
     }
     
+}
+
+
+class NoteTagRelationsManager {
+    static let shared = NoteTagRelationsManager()
+    
+    public func getTagNoteCount(tagId:Int) -> Int {
+        let realm = try! Realm()
+        let tagPredicate = NSPredicate(format: "tagId = %@ ", NSNumber(value: tagId))
+        let taggedNotes = realm.objects(R_NoteTagRelations.self).filter(tagPredicate)
+        return taggedNotes.count
+    }
 }

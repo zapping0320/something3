@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 
 struct TagSectionInfos {
@@ -28,7 +27,7 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate {
     let cellIdentifier: String = "tagCell"
     var searchText_: String = ""
     
-    fileprivate var tagArray_ = [TagSectionInfos]()
+    private let viewModel = ManageTagsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,55 +63,6 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate {
     
     func loadTags() {
         
-        tagArray_ = [TagSectionInfos]()
-        
-        let realm = try! Realm()
-        var allResults: Results<R_Tag>
-        if(self.searchText_ != "")
-        {
-            let predicateSearch = NSPredicate(format: "content CONTAINS[c] %@", self.searchText_)
-            allResults = realm.objects(R_Tag.self).filter(predicateSearch).sorted(byKeyPath: "content", ascending: true)
-        }
-        else
-        {
-            allResults = realm.objects(R_Tag.self).sorted(byKeyPath: "content", ascending: true)
-        }
-        
-        var lastTagHeader = ""
-        var thisTagHeader = ""
-        var tagList:[TagUI] = [TagUI]()
-        for i in 0..<allResults.count {
-            let item = allResults[i]
-            
-            let tagFirst = item.content[item.content.startIndex]
-            thisTagHeader = String(tagFirst)
-            
-            let tagPredicate = NSPredicate(format: "tagId = %@ ", NSNumber(value: item.id))
-            let taggedNotes = realm.objects(R_NoteTagRelations.self).filter(tagPredicate)
-            
-            let tatUI = TagUI(tag: item, count: taggedNotes.count)
-            
-            if(lastTagHeader == "" || lastTagHeader != thisTagHeader)
-            {
-                if(tagList.count > 0)
-                {
-                    tagArray_.append(TagSectionInfos(title: lastTagHeader, tagList: tagList))
-                }
-                
-                lastTagHeader = thisTagHeader
-                tagList = [TagUI]()
-                tagList.append(tatUI)
-            }
-            else {
-                tagList.append(tatUI)
-            }
-        }
-        
-        if(lastTagHeader != "" && tagList.count > 0)
-        {
-            tagArray_.append(TagSectionInfos(title: lastTagHeader, tagList: tagList))
-        }
-        
         self.tableview.reloadData()
     }
     
@@ -133,24 +83,24 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate {
 extension ManageTagsViewController : UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return tagArray_.count
+        return viewModel.getTagArray().count
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if (section > tagArray_.count || section < 0){
+        if (section > viewModel.getTagArray().count || section < 0){
             return 0
         }else{
-            let tagSectionInfos = tagArray_[section]
+            let tagSectionInfos = viewModel.getTagArray()[section]
             return tagSectionInfos.tagList.count
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (section > tagArray_.count || section < 0){
+        if (section > viewModel.getTagArray().count || section < 0){
             return "error"
         }else{
-            let tagSectionInfos = tagArray_[section]
+            let tagSectionInfos = viewModel.getTagArray()[section]
             return tagSectionInfos.title
         }
     }
@@ -159,7 +109,7 @@ extension ManageTagsViewController : UITableViewDelegate, UITableViewDataSource{
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        let currentTagSection = self.tagArray_[indexPath.section]
+        let currentTagSection = viewModel.getTagArray()[indexPath.section]
         let currentTag = currentTagSection.tagList[indexPath.row]
         cell.textLabel?.text = currentTag.tag.content + "(" +  String(currentTag.count) + ")"
         
@@ -173,17 +123,17 @@ extension ManageTagsViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
         let editAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("Edit", comment: ""), handler: { (action, indexPath) in
-            let currentTagSection = self.tagArray_[indexPath.section]
+            let currentTagSection = self.viewModel.getTagArray()[indexPath.section]
             let currentTag = currentTagSection.tagList[indexPath.row]
             let alert = UIAlertController(title: "", message: NSLocalizedString("Edit Tag", comment: ""), preferredStyle: .alert)
             alert.addTextField(configurationHandler: { (textField) in
                 textField.text = currentTag.tag.content
             })
             alert.addAction(UIAlertAction(title: NSLocalizedString("Update", comment: ""), style: .default, handler: { (updateAction) in
-                let realm = try! Realm()
-                try! realm.write {
-                    currentTag.tag.content = alert.textFields!.first!.text!
-                }
+//                let realm = try! Realm()
+//                try! realm.write {
+//                    currentTag.tag.content = alert.textFields!.first!.text!
+//                }
                 self.loadTags()
             }))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -198,7 +148,7 @@ extension ManageTagsViewController : UITableViewDelegate, UITableViewDataSource{
             let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""),
                                           style: .default, handler:
                 { action in
-                    let currentTagSection = self.tagArray_[indexPath.section]
+                    let currentTagSection = self.viewModel.getTagArray()[indexPath.section]
                     let currentTag = currentTagSection.tagList[indexPath.row]
                     TagManager.removeTagNTagInfo(tagId: currentTag.tag.id)
                     self.loadTags()
