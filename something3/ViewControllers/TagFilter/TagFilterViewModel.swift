@@ -25,14 +25,27 @@ class TagFilterViewModel {
         
     }
     
-    public func loadTags(selectedNoteBookId:Int, noteTagString:String, searchKeyword:String) -> [Int:[R_Tag]] {
-        
+    public func loadTags(selectedNoteBookId:Int, noteTagString:String, searchKeyword:String) {
         tagArray = tagMgr.loadTags(selectedNoteBookId: selectedNoteBookId, noteTagString: noteTagString, searchKeyword: searchKeyword)
         
-        return tagArray
+    }
+    
+    public func getTagArray() -> [Int:[R_Tag]] {
+        return self.tagArray
     }
     
     public func getNotebook(notebookId:Int) -> R_NoteBook? {
         return notebookMgr.getNotebook(notebookId: notebookId)
+    }
+    
+    public func reArrangeTag(_ sourceSection:Int, sourceIndex:Int) {
+        if tagArray.count < sourceSection {
+            return
+        }
+        let targetTag = tagArray[sourceSection]![sourceIndex] as R_Tag
+        let targetSection = sourceSection == 1 ? 0 : 1
+        
+        self.tagArray[sourceSection]?.remove(at: sourceIndex)
+        self.tagArray[targetSection]?.insert(targetTag, at: 0)
     }
 }
