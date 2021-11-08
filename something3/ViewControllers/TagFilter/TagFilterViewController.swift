@@ -10,8 +10,6 @@ import UIKit
 
 class TagFilterViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     public var selectedNoteBookId: Int = 0
-    var selectedNotebook:R_NoteBook = R_NoteBook()
-    //var tagArray_:[Int:[R_Tag]] = [Int:[R_Tag]]()
     
     @IBOutlet weak var button_CloseVC: UIButton!
     @IBOutlet weak var sb_searchBar: UISearchBar!
@@ -29,11 +27,11 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
    
 
     @IBAction func action_CloseVC(_ sender: Any) {
-        self.saveNotebookTagInfo()
+        self.viewModel.saveTagInfo()
         self.closeViewController()
     }
     
-    func saveNotebookTagInfo() {
+   // func saveNotebookTagInfo() {
 //        var tagIdString = ""
 //        for selectedTag in tagArray_[0]! {
 //            if tagIdString.isEmpty == false {
@@ -47,16 +45,15 @@ class TagFilterViewController: UIViewController,UITableViewDelegate, UITableView
 //        try! realm.write {
 //            self.selectedNotebook.searchTags = tagIdString
 //        }
-    }
+   // }
     
     func closeViewController() {
         self.dismiss(animated: false, completion: nil)
     }
     
     func loadTags() {
-        guard let notebook = viewModel.getNotebook(notebookId: self.selectedNoteBookId) else { return }
         
-        viewModel.loadTags(selectedNoteBookId: notebook.id, noteTagString: notebook.searchTags, searchKeyword: self.searchText_)
+        viewModel.loadTags(selectedNoteBookId: selectedNoteBookId, searchKeyword: self.searchText_)
         
         self.tableview.reloadData()
     }

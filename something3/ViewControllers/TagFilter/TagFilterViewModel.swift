@@ -13,6 +13,8 @@ class TagFilterViewModel {
     private let tagMgr = TagManager.shared
     
     private var tagArray:[Int:[R_Tag]] = [Int:[R_Tag]]()
+   
+    private var selectedNotebook:R_NoteBook = R_NoteBook()
     
     public func getItemCount(section:Int) -> Int {
         if section >= tagArray.count {
@@ -25,8 +27,13 @@ class TagFilterViewModel {
         
     }
     
-    public func loadTags(selectedNoteBookId:Int, noteTagString:String, searchKeyword:String) {
-        tagArray = tagMgr.loadTags(selectedNoteBookId: selectedNoteBookId, noteTagString: noteTagString, searchKeyword: searchKeyword)
+    public func loadTags(selectedNoteBookId:Int, searchKeyword:String) {
+        
+        guard let notebook = getNotebook(notebookId: selectedNoteBookId) else { return }
+        
+        selectedNotebook = notebook
+        
+        tagArray = tagMgr.loadTags(selectedNoteBookId: selectedNoteBookId, noteTagString: notebook.searchTags, searchKeyword: searchKeyword)
         
     }
     
@@ -34,7 +41,7 @@ class TagFilterViewModel {
         return self.tagArray
     }
     
-    public func getNotebook(notebookId:Int) -> R_NoteBook? {
+    private func getNotebook(notebookId:Int) -> R_NoteBook? {
         return notebookMgr.getNotebook(notebookId: notebookId)
     }
     
@@ -47,5 +54,19 @@ class TagFilterViewModel {
         
         self.tagArray[sourceSection]?.remove(at: sourceIndex)
         self.tagArray[targetSection]?.insert(targetTag, at: 0)
+    }
+    
+    public func saveTagInfo() {
+        
+        var tagIdString = ""
+        for selectedTag in tagArray[0]! {
+            if tagIdString.isEmpty == false {
+                tagIdString = tagIdString + ","
+            }
+            tagIdString = tagIdString + String(selectedTag.id)
+        }
+
+        notebookMgr.updateNotebook(id: self.selectedNotebook.id, tags: tagIdString)
+        
     }
 }
