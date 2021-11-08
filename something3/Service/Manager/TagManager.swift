@@ -210,6 +210,19 @@ class TagManager {
         return tagArray
     }
     
+    func updateTag(tagId:Int, updatedContent:String) {
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "id = %@ ", NSNumber(value: tagId))
+        
+        guard let originalTag = realm.objects(R_Tag.self).filter(predicate).first else { return }
+        
+        try! realm.write {
+            originalTag.content = updatedContent
+            
+            originalTag.updated_at = Date()
+        }
+    }
+    
 }
 
 

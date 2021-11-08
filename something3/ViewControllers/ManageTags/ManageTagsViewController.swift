@@ -63,6 +63,8 @@ class ManageTagsViewController: UIViewController, UISearchBarDelegate {
     
     func loadTags() {
         
+        viewModel.loadTags(searchKeyword: self.searchText_)
+        
         self.tableview.reloadData()
     }
     
@@ -130,10 +132,7 @@ extension ManageTagsViewController : UITableViewDelegate, UITableViewDataSource{
                 textField.text = currentTag.tag.content
             })
             alert.addAction(UIAlertAction(title: NSLocalizedString("Update", comment: ""), style: .default, handler: { (updateAction) in
-//                let realm = try! Realm()
-//                try! realm.write {
-//                    currentTag.tag.content = alert.textFields!.first!.text!
-//                }
+                TagManager.shared.updateTag(tagId: currentTag.tag.id, updatedContent: alert.textFields!.first!.text!)
                 self.loadTags()
             }))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))

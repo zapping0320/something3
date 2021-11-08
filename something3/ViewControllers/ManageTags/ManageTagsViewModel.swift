@@ -19,6 +19,8 @@ class ManageTagsViewModel {
     
     public func loadTags(searchKeyword:String) {
         
+        tagArray = [TagSectionInfos]()
+        
         let allResults = tagMgr.loadTags(searchKeyword: searchKeyword)
         
         var lastTagHeader = ""
@@ -29,9 +31,7 @@ class ManageTagsViewModel {
             
             let tagFirst = item.content[item.content.startIndex]
             thisTagHeader = String(tagFirst)
-            
-//            let tagPredicate = NSPredicate(format: "tagId = %@ ", NSNumber(value: item.id))
-//            let taggedNotes = realm.objects(R_NoteTagRelations.self).filter(tagPredicate)
+
             let noteCount = NoteTagRelationsManager.shared.getTagNoteCount(tagId: item.id)
             let tatUI = TagUI(tag: item, count: noteCount)
             
