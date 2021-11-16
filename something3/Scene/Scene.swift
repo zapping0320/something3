@@ -10,7 +10,7 @@ import UIKit
 
 enum Scene {
     case tabBar
-    case list//(MemoListViewModel)
+    case list(NotebookViewModel)
 //    case detail(MemoDetailViewModel)
 //    case compose(MemoComposeViewModel)
 }
