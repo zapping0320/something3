@@ -11,7 +11,11 @@ import EventKit
 
 var selectedNotebookId: Int = 0
 
-class NotebookViewController: UIViewController, UISearchBarDelegate {
+class NotebookViewController: UIViewController, UISearchBarDelegate, ViewModelBindableType  {
+    
+    
+    var viewModel: NotebookViewModel!
+    
     
     @IBOutlet weak var btn_AddNotebook: UIButton!
     @IBOutlet weak var tableview: UITableView!
@@ -24,7 +28,7 @@ class NotebookViewController: UIViewController, UISearchBarDelegate {
    
     var searchText_: String = ""
     
-    private let viewModel = NotebookViewModel()
+ //   private let viewModel = NotebookViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +38,10 @@ class NotebookViewController: UIViewController, UISearchBarDelegate {
         self.sb_searchBar.placeholder = NSLocalizedString("Search Notebooks", comment: "")
         
         loadNotebooks()
+    }
+    
+    func bindViewModel() {
+        
     }
     
     
@@ -73,7 +81,7 @@ class NotebookViewController: UIViewController, UISearchBarDelegate {
     }
     
     func loadNotebooks() {
-        self.tableview.reloadData()
+       // self.tableview.reloadData()
     }
     
     @IBAction func addNotebookAction(_ sender: Any) {
@@ -88,7 +96,7 @@ class NotebookViewController: UIViewController, UISearchBarDelegate {
     }
 
 }
-
+/*
 extension NotebookViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -230,3 +238,4 @@ extension NotebookViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
 }
+*/

@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let listScene = Scene.tabBar//(listViewModel)
         
         // 뷰모델 생성 - 의존성 주입
-        let listViewModel = NotebookViewModel() //(title: "나의 메모", sceneCoordinator: coordinator)
+        let listViewModel = NotebookViewModel(title: "노트북", sceneCoordinator: coordinator) //(title: "나의 메모", sceneCoordinator: coordinator)
         
         let listScene = Scene.list(listViewModel)
         

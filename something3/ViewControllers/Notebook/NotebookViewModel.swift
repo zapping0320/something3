@@ -14,7 +14,7 @@ import RxDataSources
 
 typealias NotebookSectionModel = AnimatableSectionModel<Int, R_NoteBook>
 
-class NotebookViewModel {//} : CommonViewModel {
+class NotebookViewModel : CommonViewModel {
     private let notebookMgr = NotebookManager.shared
     private let noteMgr = NoteManager.shared
     

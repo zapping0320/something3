@@ -364,10 +364,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="KuC-bY-jQR" id="Ad1-jj-VFi"/>
-                                    <outlet property="delegate" destination="KuC-bY-jQR" id="JGI-ov-Asr"/>
-                                </connections>
                             </tableView>
                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="U82-yi-1JL">
                                 <rect key="frame" x="0.0" y="44" width="375" height="56"/>
