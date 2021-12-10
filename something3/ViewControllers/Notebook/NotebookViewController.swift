@@ -11,7 +11,7 @@ import EventKit
 
 var selectedNotebookId: Int = 0
 
-class NotebookViewController: UIViewController, UISearchBarDelegate, ViewModelBindableType  {
+class NotebookViewController: UIViewController, UISearchBarDelegate  {
     
     
     var viewModel: NotebookViewModel!

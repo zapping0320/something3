@@ -7,9 +7,9 @@
 //
 
 import RealmSwift
-import RxDataSources
 
-class R_NoteBook : Object, IdentifiableType {
+
+class R_NoteBook : Object {
     var identity:String = ""
     
     @objc dynamic var id = 0

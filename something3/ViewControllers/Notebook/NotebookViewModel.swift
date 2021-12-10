@@ -7,14 +7,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-import Action
-import RxDataSources
 
-typealias NotebookSectionModel = AnimatableSectionModel<Int, R_NoteBook>
-
-class NotebookViewModel : CommonViewModel {
+class NotebookViewModel  {
     private let notebookMgr = NotebookManager.shared
     private let noteMgr = NoteManager.shared
     
@@ -33,22 +27,4 @@ class NotebookViewModel : CommonViewModel {
     public func getRelatedNoteCount(notebookId:Int) -> Int {
         return noteMgr.getRelatedNoteCount(notebookId: notebookId)
     }
-    
-    
-//    let dataSource:RxTableViewSectionedAnimatedDataSource<NotebookSectionModel> = {
-//        let ds = RxTableViewSectionedAnimatedDataSource<NotebookSectionModel>(configureCell: {
-//            (dataSource, tableView, indexPath, notebook) -> UITableViewCell in
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "notebookCell", for: indexPath)
-//            cell.textLabel?.text = notebook.name
-//            return cell
-//        })
-//
-//        ds.canEditRowAtIndexPath = { _, _ in return true }
-//
-//        return ds
-//    }()
-    
-//    var notebookList: Observable<[NoteBookSectionModel]> {
-//        return storage.memoList()
-//    }
 }

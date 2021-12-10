@@ -18,22 +18,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if window == nil {
-            return true
-        }
-        
-        
-        let coordinator = SceneCoordinator(window: window!)
-        
-        // 신 생성 이후 연관값으로 뷰 모델 저장
-        //let listScene = Scene.tabBar//(listViewModel)
-        
-        // 뷰모델 생성 - 의존성 주입
-        let listViewModel = NotebookViewModel(title: "노트북", sceneCoordinator: coordinator) //(title: "나의 메모", sceneCoordinator: coordinator)
-        
-        let listScene = Scene.list(listViewModel)
-        
-        coordinator.transition(to: listScene, using: .root, animated: false)
+//        if window == nil {
+//            return true
+//        }
+//        
+//        
+//        let coordinator = SceneCoordinator(window: window!)
+//        
+//        // 신 생성 이후 연관값으로 뷰 모델 저장
+//        //let listScene = Scene.tabBar//(listViewModel)
+//        
+//        // 뷰모델 생성 - 의존성 주입
+//        let listViewModel = NotebookViewModel(title: "노트북", sceneCoordinator: coordinator) //(title: "나의 메모", sceneCoordinator: coordinator)
+//        
+//        let listScene = Scene.list(listViewModel)
+//        
+//        coordinator.transition(to: listScene, using: .root, animated: false)
         
         
         return true
