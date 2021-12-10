@@ -7,12 +7,7 @@ target 'something3' do
 
   # Pods for something3
   pod 'RealmSwift'
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'Action'
-  pod 'RxDataSources'
-  pod 'RxCoreData'
-
+  
   target 'something3Tests' do
     inherit! :search_paths
     # Pods for testing

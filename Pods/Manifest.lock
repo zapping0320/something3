@@ -1,58 +1,22 @@
 PODS:
-  - Action (5.0.0):
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
-  - Differentiator (5.0.0)
-  - Realm (10.17.0):
-    - Realm/Headers (= 10.17.0)
-  - Realm/Headers (10.17.0)
-  - RealmSwift (10.17.0):
-    - Realm (= 10.17.0)
-  - RxCocoa (6.2.0):
-    - RxRelay (= 6.2.0)
-    - RxSwift (= 6.2.0)
-  - RxCoreData (1.0.1):
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
-  - RxDataSources (5.0.0):
-    - Differentiator (~> 5.0)
-    - RxCocoa (~> 6.0)
-    - RxSwift (~> 6.0)
-  - RxRelay (6.2.0):
-    - RxSwift (= 6.2.0)
-  - RxSwift (6.2.0)
+  - Realm (10.20.0):
+    - Realm/Headers (= 10.20.0)
+  - Realm/Headers (10.20.0)
+  - RealmSwift (10.20.0):
+    - Realm (= 10.20.0)
 
 DEPENDENCIES:
-  - Action
   - RealmSwift
-  - RxCocoa
-  - RxCoreData
-  - RxDataSources
-  - RxSwift
 
 SPEC REPOS:
   trunk:
-    - Action
-    - Differentiator
     - Realm
     - RealmSwift
-    - RxCocoa
-    - RxCoreData
-    - RxDataSources
-    - RxRelay
-    - RxSwift
 
 SPEC CHECKSUMS:
-  Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
-  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
-  Realm: 9533276bd76f66aa2fd0d3ffe700c1f6023dcab6
-  RealmSwift: 57f5d59aa29852587aad1e861989e7af139894b5
-  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
-  RxCoreData: 4c1686b30499c05b90104eec1a879f41aa1a0a65
-  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
-  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
-  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  Realm: ae32bdc1da7d19c7617e0400201a77acd4a211b9
+  RealmSwift: c95eec6a712924870b2e36c4c081d63ec07e5414
 
-PODFILE CHECKSUM: 462461635d051b109fc1f479501f8b93127fb680
+PODFILE CHECKSUM: d3756b0ea9660229ef4f8432a6a744d555a28810
 
 COCOAPODS: 1.10.1
